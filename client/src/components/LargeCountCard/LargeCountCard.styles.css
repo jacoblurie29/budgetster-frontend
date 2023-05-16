@@ -1,0 +1,46 @@
+.largecountcard-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: "Lexend", sans-serif;
+  min-height: 200px;
+  width: fit-content;
+  padding: 20px;
+
+  /* DEV TEMPORARY CSS */
+  border: 1px solid red;
+}
+
+.largecountcard-title {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 36px;
+  text-align: center;
+  color: #aeaeae;
+}
+
+.largecountcard-value {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 90px;
+  text-align: center;
+
+  background-image: -webkit-linear-gradient(180deg, #76e7aa, #8ae2e8);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.largecountcard-subtitle {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  text-align: right;
+  padding-right: 25px;
+  margin-top: -15px;
+
+  background-image: -webkit-linear-gradient(180deg, #76e7aa, #8ae2e8);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
