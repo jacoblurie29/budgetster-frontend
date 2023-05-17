@@ -31,6 +31,15 @@
   color: transparent;
 }
 
+.categorybreakdownbar-value-p {
+  display: inline-flex;
+  margin: 0;
+  height: 100%;
+  align-items: center;
+  white-space: nowrap;
+  width: min-content;
+}
+
 .largecountcard-subtitle {
   font-style: normal;
   font-weight: 400;

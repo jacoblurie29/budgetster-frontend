@@ -1,6 +1,9 @@
 import LargeCountCard from "../components/LargeCountCard/LargeCountCard";
 import "./App.css";
 import BudgetsterLogo from "../assets/BudgetsterLogo.png";
+import LargeCategoryCard from "../components/LargeCategoryCard/LargeCategoryCard";
+import { TimePeriod } from "../types/types";
+import { testExpensesData } from "../testData/testData";
 
 const App = () => {
   return (
@@ -18,6 +21,11 @@ const App = () => {
           subtitle="per month"
         />
       </div>
+      <LargeCategoryCard
+        title="Expenses"
+        values={testExpensesData}
+        timePeriod={TimePeriod.MONTHLY}
+      />
     </div>
   );
 };
