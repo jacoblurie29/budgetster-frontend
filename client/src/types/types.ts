@@ -12,7 +12,7 @@ export interface MonetaryItem {
 }
 
 /**
- * @interface MonetaryItem - Interface for a monetary item.
+ * @enum MonetaryItem - Interface for a monetary item.
  *
  * @param {string} MONTHLY - The component displays a monthly outlook.
  * @param {string} YEARLY - The component displays a yearly outlook.
