@@ -1,5 +1,5 @@
-import { MONTHS_SHORT } from "../../../constants/constants";
-import { TimePeriod } from "../../../types/types";
+import { MONTHS_SHORT } from "../../../util/constants/constants";
+import { TimePeriod } from "../../../util/types/types";
 import "./TimePeriodCarousel.styles.css";
 
 interface TimePeriodCarouselProps {

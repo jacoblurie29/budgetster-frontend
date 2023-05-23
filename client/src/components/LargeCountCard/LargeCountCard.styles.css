@@ -5,10 +5,6 @@
   font-family: "Lexend", sans-serif;
   min-height: 200px;
   width: fit-content;
-  padding: 20px;
-
-  /* DEV TEMPORARY CSS */
-  border: 1px solid red;
 }
 
 .largecountcard-title {

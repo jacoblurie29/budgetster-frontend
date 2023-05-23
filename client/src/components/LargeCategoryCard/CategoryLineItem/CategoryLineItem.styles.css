@@ -29,8 +29,10 @@
   font-size: 14px;
   color: #aeaeae;
   padding-right: 10px;
-  width: 30%;
+  width: 100%;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .categorylineitem-value {

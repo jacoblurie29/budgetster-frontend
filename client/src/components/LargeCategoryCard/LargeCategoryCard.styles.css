@@ -1,5 +1,15 @@
-.largecategorycard-container {
+.largecategorycard-content {
   background-color: #efefef;
   border-radius: 10px;
   min-height: 70px;
+}
+
+.largecategorycard-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  color: #aeaeae;
+  font-size: 24px;
 }

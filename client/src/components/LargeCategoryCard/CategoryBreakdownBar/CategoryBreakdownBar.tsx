@@ -1,4 +1,4 @@
-import { MonetaryItem } from "../../types/types";
+import { MonetaryItem } from "../../../util/types/types";
 import "./CategoryBreakdownBar.styles.css";
 import { Fragment } from "react";
 

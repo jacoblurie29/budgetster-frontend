@@ -1,4 +1,4 @@
-import { TimePeriod } from "../../types/types";
+import { TimePeriod } from "../../util/types/types";
 import TimePeriodCarousel from "./TimePeriodCarousel/TimePeriodCarousel";
 import TimePeriodSelector from "./TimePeriodSelector/TimePeriodSelector";
 import "./TimeControl.styles.css";

@@ -1,6 +1,6 @@
-import { MonetaryItem, TimePeriod } from "../../types/types";
-import CategoryBreakdownBar from "../CategoryBreakdownBar/CategoryBreakdownBar";
-import CategoryLineItem from "../CategoryLineItem/CategoryLineItem";
+import { MonetaryItem, TimePeriod } from "../../util/types/types";
+import CategoryBreakdownBar from "./CategoryBreakdownBar/CategoryBreakdownBar";
+import CategoryLineItem from "./CategoryLineItem/CategoryLineItem";
 import "./LargeCategoryCard.styles.css";
 
 /**
@@ -32,15 +32,26 @@ const LargeCategoryCard = ({
 
   return (
     <div className="largecategorycard-container">
-      <CategoryBreakdownBar values={values} />
-      {values.map((value, index) => (
-        <CategoryLineItem
-          key={index}
-          title={value.name}
-          value={value.value}
-          percentage={Math.floor((value.value / total) * 100)}
-        />
-      ))}
+      <div className="largecategorycard-header">
+        <div className="largecategorycard-title">{title}</div>
+        <div className="largecategorycard-total">
+          {(total < 0 ? "-$" : "$") +
+            total.toString().replace("-", "") +
+            " " +
+            (timePeriod === TimePeriod.MONTHLY ? "/ month" : "/ year")}
+        </div>
+      </div>
+      <div className="largecategorycard-content">
+        <CategoryBreakdownBar values={values} />
+        {values.map((value, index) => (
+          <CategoryLineItem
+            key={index}
+            title={value.name}
+            value={value.value}
+            percentage={Math.floor((value.value / total) * 100)}
+          />
+        ))}
+      </div>
     </div>
   );
 };
