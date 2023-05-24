@@ -4,6 +4,13 @@ import TimePeriodSelector from "./TimePeriodSelector/TimePeriodSelector";
 import "./TimeControl.styles.css";
 import { useState } from "react";
 
+/**
+ * @component TimeControl
+ * @description The time control component.
+ * Displays a carousel and selector for the time period.
+ * The carousel allows the user to select a month or year.
+ * The selector allows the user to select and change dates between monthly and yearly.
+ */
 const TimeControl = () => {
   // Time period state
   const [timePeriod, setTimePeriod] = useState(TimePeriod.MONTHLY);

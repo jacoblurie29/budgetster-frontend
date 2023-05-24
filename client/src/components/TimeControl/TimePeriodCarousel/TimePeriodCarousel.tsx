@@ -2,6 +2,15 @@ import { MONTHS_SHORT } from "../../../util/constants/constants";
 import { TimePeriod } from "../../../util/types/types";
 import "./TimePeriodCarousel.styles.css";
 
+/**
+ * @interface TimePeriodCarouselProps - Props for the TimePeriodCarousel component
+ *
+ * @prop {TimePeriod} timePeriod - The time period that the user has selected
+ * @prop {number} month - The current month
+ * @prop {number} year - The current year
+ * @prop {(month: number) => void} setMonth - A function that sets the month
+ * @prop {(year: number) => void} setYear - A function that sets the year
+ */
 interface TimePeriodCarouselProps {
   timePeriod: TimePeriod;
   month: number;
@@ -10,6 +19,13 @@ interface TimePeriodCarouselProps {
   setYear: (year: number) => void;
 }
 
+/**
+ * @component TimePeriodCarousel
+ * @description A carousel for the time period.
+ * Allows the user to select and change dates between monthly and yearly.
+ * Displays a left and right arrow that the user can click to change the month or year.
+ * Displays the current month and year.
+ */
 const TimePeriodCarousel = ({
   timePeriod,
   month,
@@ -44,6 +60,7 @@ const TimePeriodCarousel = ({
       setYear(year + 1);
     }
   };
+
   return (
     <div className="timeperiodcarousel-container">
       <button onClick={handleLeftClick}>

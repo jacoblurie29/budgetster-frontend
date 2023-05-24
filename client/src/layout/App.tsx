@@ -2,7 +2,7 @@ import LargeCountCard from "../components/LargeCountCard/LargeCountCard";
 import "./App.css";
 import BudgetsterLogo from "../assets/BudgetsterLogo.png";
 import LargeCategoryCard from "../components/LargeCategoryCard/LargeCategoryCard";
-import { TimePeriod } from "../util/types/types";
+import { MonetaryItemType, TimePeriod } from "../util/types/types";
 import {
   testExpensesData,
   testIncomesData,
@@ -50,16 +50,19 @@ const App = () => {
           title="Expenses"
           values={testExpensesData}
           timePeriod={TimePeriod.MONTHLY}
+          category={MonetaryItemType.EXPENSE}
         />
         <LargeCategoryCard
           title="Income"
           values={testIncomesData}
           timePeriod={TimePeriod.MONTHLY}
+          category={MonetaryItemType.INCOME}
         />
         <LargeCategoryCard
-          title="Savings/Investments"
+          title="Investments"
           values={testSavingsInvestmentsData}
           timePeriod={TimePeriod.MONTHLY}
+          category={MonetaryItemType.INVESTMENT}
         />
       </div>
     </div>
