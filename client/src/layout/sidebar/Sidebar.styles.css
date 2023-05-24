@@ -1,0 +1,18 @@
+.sidebar-container {
+  background-color: transparent;
+  height: 100vh;
+  padding: 0.5rem 0.5rem;
+  border: 1px solid transparent;
+  width: 3rem;
+  transition: 300ms;
+}
+
+.sidebar-active {
+  width: 15rem;
+}
+
+.sidebar-header {
+  display: flex;
+  width: 100%;
+  justify-content: right;
+}
