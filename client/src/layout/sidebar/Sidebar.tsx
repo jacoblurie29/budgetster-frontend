@@ -24,8 +24,8 @@ const Sidebar = () => {
 
   const sideBarIcons = [
     faHouse,
-    faMoneyBillTrendUp,
     faWallet,
+    faMoneyBillTrendUp,
     faPiggyBank,
     faCog,
   ];
