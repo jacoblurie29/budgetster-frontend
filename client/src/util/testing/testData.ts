@@ -1,5 +1,6 @@
 import { MonetaryCategory } from "../types/types";
 
+// Test data for the Expenses page
 export const testExpensesData = [
   {
     name: "Rent",
@@ -23,6 +24,7 @@ export const testExpensesData = [
   },
 ];
 
+// Test data for the Incomes page
 export const testIncomesData = [
   {
     name: "Paycheck",
@@ -36,6 +38,7 @@ export const testIncomesData = [
   },
 ];
 
+// Test data for the Savings/Investments page
 export const testSavingsInvestmentsData = [
   {
     name: "Emergency Fund",
