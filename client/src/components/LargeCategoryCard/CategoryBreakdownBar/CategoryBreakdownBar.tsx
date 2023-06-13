@@ -1,6 +1,6 @@
-import { MonetaryItem } from "../../../util/types/types";
-import "./CategoryBreakdownBar.styles.css";
 import { Fragment } from "react";
+import type { MonetaryItem } from "../../../util/types/types";
+import "./CategoryBreakdownBar.styles.css";
 
 /**
  * @interface CategoryBreakdownBarProps - Props for the CategoryBreakdownBar component
@@ -21,9 +21,7 @@ interface CategoryBreakdownBarProps {
  */
 const CategoryBreakdownBar = ({ values }: CategoryBreakdownBarProps) => {
   // Sort the values from largest to smallest
-  values = values.sort((a, b) => {
-    return b.value - a.value;
-  });
+  values = values.sort((a, b) => b.value - a.value);
 
   // Calculate the percentage each value takes up of the total
   const percentageValues = values.map((value) =>

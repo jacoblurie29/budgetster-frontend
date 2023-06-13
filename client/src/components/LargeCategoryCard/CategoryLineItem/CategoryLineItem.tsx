@@ -22,27 +22,25 @@ const CategoryLineItem = ({
   title,
   value,
   percentage,
-}: CategoryLineItemProps) => {
-  return (
-    <div className="categorylineitem-container">
-      <div className="categorylineitem-lefthalf">
-        <div className="categorylineitem-title">{title}</div>
-        <div className="categorylineitem-value">
-          {value < 0 ? "-$" : "$"}
-          {value.toString().replace("-", "")}
-        </div>
-      </div>
-      <div className="categorylineitem-righthalf">
-        <div
-          className="categorylineitem-bar"
-          style={{
-            width: `${percentage}%`,
-          }}
-        />
-        <div className="categorylineitem-percentage">{percentage}%</div>
+}: CategoryLineItemProps) => (
+  <div className="categorylineitem-container">
+    <div className="categorylineitem-lefthalf">
+      <div className="categorylineitem-title">{title}</div>
+      <div className="categorylineitem-value">
+        {value < 0 ? "-$" : "$"}
+        {value.toString().replace("-", "")}
       </div>
     </div>
-  );
-};
+    <div className="categorylineitem-righthalf">
+      <div
+        className="categorylineitem-bar"
+        style={{
+          width: `${percentage}%`,
+        }}
+      />
+      <div className="categorylineitem-percentage">{percentage}%</div>
+    </div>
+  </div>
+);
 
 export default CategoryLineItem;

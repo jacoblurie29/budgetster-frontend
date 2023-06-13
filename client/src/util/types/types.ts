@@ -1,3 +1,4 @@
+/* eslint-disable autofix/no-unused-vars */
 /**
  * @interface MonetaryItem - Interface for a monetary item.
  *
@@ -8,7 +9,7 @@
 export interface MonetaryItem {
   name: string;
   value: number;
-  type: MonetaryItemType;
+  type: MonetaryCategory;
 }
 
 /**
@@ -23,14 +24,14 @@ export enum TimePeriod {
 }
 
 /**
- * @enum MonetaryItemType - Enum for the type of a monetary item.
+ * @enum MonetaryCategory - Enum for the type of a monetary item.
  *
  * @param {string} INCOME - The monetary item is an income.
  * @param {string} EXPENSE - The monetary item is an expense.
  * @param {string} SAVINGS - The monetary item is a savings.
  * @param {string} INVESTMENT - The monetary item is an investment.
  */
-export enum MonetaryItemType {
+export enum MonetaryCategory {
   INCOME = "income",
   EXPENSE = "expense",
   SAVINGS = "savings",

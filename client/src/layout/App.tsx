@@ -1,18 +1,16 @@
-import Dashboard from "../pages/dashboard/Dashboard";
 import "./App.css";
 import Sidebar from "./sidebar/Sidebar";
+import { Outlet } from "react-router-dom";
 
-const App = () => {
-  return (
-    <div className="app-main-container">
-      <div className="app-main-sidebar">
-        <Sidebar />
-      </div>
-      <div className="app-main-content">
-        <Dashboard />
-      </div>
+const App = () => (
+  <div className="app-main-container">
+    <div className="app-main-sidebar">
+      <Sidebar />
     </div>
-  );
-};
+    <div className="app-main-content">
+      <Outlet />
+    </div>
+  </div>
+);
 
 export default App;

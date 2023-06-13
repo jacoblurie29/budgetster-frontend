@@ -1,10 +1,7 @@
-import {
-  MonetaryItem,
-  MonetaryItemType,
-  TimePeriod,
-} from "../../util/types/types";
 import CategoryBreakdownBar from "./CategoryBreakdownBar/CategoryBreakdownBar";
 import CategoryLineItem from "./CategoryLineItem/CategoryLineItem";
+import { MonetaryCategory, TimePeriod } from "../../util/types/types";
+import type { MonetaryItem } from "../../util/types/types";
 import "./LargeCategoryCard.styles.css";
 
 /**
@@ -18,7 +15,7 @@ interface LargeCategoryCardProps {
   title: string;
   values: MonetaryItem[];
   timePeriod: TimePeriod;
-  category: MonetaryItemType;
+  category: MonetaryCategory;
 }
 
 /**
@@ -41,7 +38,7 @@ const LargeCategoryCard = ({
       <div className="largecategorycard-header">
         <div className="largecategorycard-title">{title}</div>
         <div className="largecategorycard-total">
-          {(category !== MonetaryItemType.INCOME ? "-$" : "$") +
+          {(category !== MonetaryCategory.INCOME ? "-$" : "$") +
             total.toString().replace("-", "") +
             " " +
             (timePeriod === TimePeriod.MONTHLY ? "/ month" : "/ year")}

@@ -8,15 +8,15 @@ import "./TimePeriodCarousel.styles.css";
  * @prop {TimePeriod} timePeriod - The time period that the user has selected
  * @prop {number} month - The current month
  * @prop {number} year - The current year
- * @prop {(month: number) => void} setMonth - A function that sets the month
- * @prop {(year: number) => void} setYear - A function that sets the year
+ * @prop {(number) => void} setMonth - A function that sets the month
+ * @prop {(number) => void} setYear - A function that sets the year
  */
 interface TimePeriodCarouselProps {
   timePeriod: TimePeriod;
   month: number;
   year: number;
-  setMonth: (month: number) => void;
-  setYear: (year: number) => void;
+  setMonth: (_: number) => void;
+  setYear: (_: number) => void;
 }
 
 /**
@@ -64,7 +64,7 @@ const TimePeriodCarousel = ({
   return (
     <div className="timeperiodcarousel-container">
       <button onClick={handleLeftClick}>
-        <i className="arrow left"></i>
+        <i className="arrow left" />
       </button>
       <p>
         {timePeriod === TimePeriod.MONTHLY
@@ -72,7 +72,7 @@ const TimePeriodCarousel = ({
           : year}
       </p>
       <button onClick={handleRightClick}>
-        <i className="arrow right"></i>
+        <i className="arrow right" />
       </button>
     </div>
   );

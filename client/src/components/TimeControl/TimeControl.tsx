@@ -1,6 +1,6 @@
-import { TimePeriod } from "../../util/types/types";
 import TimePeriodCarousel from "./TimePeriodCarousel/TimePeriodCarousel";
 import TimePeriodSelector from "./TimePeriodSelector/TimePeriodSelector";
+import { TimePeriod } from "../../util/types/types";
 import "./TimeControl.styles.css";
 import { useState } from "react";
 
