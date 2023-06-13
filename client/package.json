@@ -10,7 +10,7 @@
     "preview": "vite preview",
     "prettier-format": "prettier --write .",
     "prettier-check": "prettier --check .",
-    "prepare": "cd .. && husky install husky/.husky"
+    "prepare": "cd .. && husky install husky/"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
