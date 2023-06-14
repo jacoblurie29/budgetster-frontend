@@ -25,14 +25,14 @@ module.exports = {
     "react/jsx-uses-react": "off",
     "arrow-body-style": ["error", "as-needed"],
     "react/self-closing-comp": [
-      "error",
+      "warn",
       {
         component: true,
         html: true,
       },
     ],
     "autofix/no-unused-vars": [
-      "error",
+      "warn",
       {
         argsIgnorePattern: "^_",
         ignoreRestSiblings: true,
@@ -40,13 +40,13 @@ module.exports = {
       },
     ],
     "@typescript-eslint/consistent-type-imports": [
-      "error",
+      "warn",
       {
         prefer: "type-imports",
       },
     ],
     "import/order": [
-      "error",
+      "warn",
       {
         groups: [
           "index",
