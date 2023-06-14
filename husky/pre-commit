@@ -1,3 +1,0 @@
-#!/bin/sh
-filename="$(basename "$file")"
-npm run lint && npm run prettier-format && npm run prettier-check
