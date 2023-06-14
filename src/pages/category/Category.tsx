@@ -1,7 +1,7 @@
-import type { MonetaryCategory } from "../../util/types/types";
+import type { MonetaryItemCategory } from "../../types/types";
 
 interface CategoryProps {
-  category: MonetaryCategory;
+  category: MonetaryItemCategory;
 }
 
 const Category = ({ category }: CategoryProps) => <h1>{category}</h1>;

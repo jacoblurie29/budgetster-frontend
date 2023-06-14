@@ -1,4 +1,14 @@
 /* eslint-disable autofix/no-unused-vars */
+
+export interface User {
+  id: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  password: string;
+  monetaryItems: MonetaryItem[];
+}
+
 /**
  * @interface MonetaryItem - Interface for a monetary item.
  *
@@ -7,9 +17,14 @@
  * @param {string} type - The type of the monetary item.
  */
 export interface MonetaryItem {
+  id: string;
   name: string;
   value: number;
-  type: MonetaryCategory;
+  date: Date;
+  repeat: boolean;
+  repeatPeriod?: TimePeriod;
+  repeatEndDate?: Date;
+  type: MonetaryItemCategory;
 }
 
 /**
@@ -19,19 +34,20 @@ export interface MonetaryItem {
  * @param {string} YEARLY - The component displays a yearly outlook.
  */
 export enum TimePeriod {
+  WEEKLY = "weekly",
   MONTHLY = "monthly",
   YEARLY = "yearly",
 }
 
 /**
- * @enum MonetaryCategory - Enum for the type of a monetary item.
+ * @enum MonetaryItemCategory - Enum for the type of a monetary item.
  *
  * @param {string} INCOME - The monetary item is an income.
  * @param {string} EXPENSE - The monetary item is an expense.
  * @param {string} SAVINGS - The monetary item is a savings.
  * @param {string} INVESTMENT - The monetary item is an investment.
  */
-export enum MonetaryCategory {
+export enum MonetaryItemCategory {
   INCOME = "income",
   EXPENSE = "expense",
   SAVINGS = "savings",

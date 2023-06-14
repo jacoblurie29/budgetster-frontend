@@ -1,4 +1,4 @@
-import { TimePeriod } from "../../../util/types/types";
+import { TimePeriod } from "../../../types/types";
 import "./TimePeriodSelector.styles.css";
 
 /**

@@ -6,7 +6,7 @@ import {
   testIncomesData,
   testSavingsInvestmentsData,
 } from "../../util/testing/testData";
-import { TimePeriod, MonetaryCategory } from "../../util/types/types";
+import { TimePeriod, MonetaryItemCategory } from "../../types/types";
 import BudgetsterLogo from "../../assets/BudgetsterLogo.png";
 import "./Dashboard.styles.css";
 
@@ -32,19 +32,19 @@ const Dashboard = () => (
       title="Expenses"
       values={testExpensesData}
       timePeriod={TimePeriod.MONTHLY}
-      category={MonetaryCategory.EXPENSE}
+      category={MonetaryItemCategory.EXPENSE}
     />
     <LargeCategoryCard
       title="Income"
       values={testIncomesData}
       timePeriod={TimePeriod.MONTHLY}
-      category={MonetaryCategory.INCOME}
+      category={MonetaryItemCategory.INCOME}
     />
     <LargeCategoryCard
       title="Investments"
       values={testSavingsInvestmentsData}
       timePeriod={TimePeriod.MONTHLY}
-      category={MonetaryCategory.INVESTMENT}
+      category={MonetaryItemCategory.INVESTMENT}
     />
   </div>
 );
