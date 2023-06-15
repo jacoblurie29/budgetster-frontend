@@ -5,9 +5,9 @@ Personal finance planner. Frontend with React + Typescript. Mobile with React Na
 ## Running Locally
 
 _In terminal:_
-```npm install```
+`npm install`
 
-```npm run dev```
+`npm run dev`
 
 ## Visual Plan (figma):
 
