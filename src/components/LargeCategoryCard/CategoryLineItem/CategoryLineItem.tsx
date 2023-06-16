@@ -23,7 +23,10 @@ const CategoryLineItem = ({
   value,
   percentage,
 }: CategoryLineItemProps) => (
-  <div className="categorylineitem-container">
+  <div
+    className="categorylineitem-container"
+    data-testid="categorylineitem-testId"
+  >
     <div className="categorylineitem-lefthalf">
       <div className="categorylineitem-title">{title}</div>
       <div className="categorylineitem-value">

@@ -34,7 +34,10 @@ const LargeCategoryCard = ({
   const total = values.reduce((a, b) => a + b.value, 0);
 
   return (
-    <div className="largecategorycard-container">
+    <div
+      className="largecategorycard-container"
+      data-testid="largecategorycard-testId"
+    >
       <div className="largecategorycard-header">
         <div className="largecategorycard-title">{title}</div>
         <div className="largecategorycard-total">

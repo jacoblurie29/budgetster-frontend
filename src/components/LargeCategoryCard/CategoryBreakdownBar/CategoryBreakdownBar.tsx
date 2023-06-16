@@ -29,7 +29,10 @@ const CategoryBreakdownBar = ({ values }: CategoryBreakdownBarProps) => {
   );
 
   return (
-    <div className="categorybreakdownbar-container">
+    <div
+      className="categorybreakdownbar-container"
+      data-testid="categorybreakdownbar-testId"
+    >
       {values.map((value, index) => (
         <Fragment key={index}>
           <div

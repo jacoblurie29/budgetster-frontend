@@ -1,80 +1,80 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CategoryBreakdownBar Tests correctly renders snapshot 1`] = `
+exports[`CategoryLineItem Tests correctly renders snapshot 1`] = `
 {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
       <div
-        class="categorybreakdownbar-container"
-        data-testid="categorybreakdownbar-testId"
+        class="categorylineitem-container"
+        data-testid="categorylineitem-testId"
       >
         <div
-          class="categorybreakdownbar-value"
-          style="width: 55%;"
+          class="categorylineitem-lefthalf"
         >
-          Rent
+          <div
+            class="categorylineitem-title"
+          >
+            Rent
+          </div>
+          <div
+            class="categorylineitem-value"
+          >
+            $
+            1000
+          </div>
         </div>
         <div
-          class="categorybreakdownbar-divider"
-        />
-        <div
-          class="categorybreakdownbar-value"
-          style="width: 27%;"
+          class="categorylineitem-righthalf"
         >
-          Groceries
+          <div
+            class="categorylineitem-bar"
+            style="width: 40%;"
+          />
+          <div
+            class="categorylineitem-percentage"
+          >
+            40
+            %
+          </div>
         </div>
-        <div
-          class="categorybreakdownbar-divider"
-        />
-        <div
-          class="categorybreakdownbar-value"
-          style="width: 11%;"
-        />
-        <div
-          class="categorybreakdownbar-divider"
-        />
-        <div
-          class="categorybreakdownbar-value"
-          style="width: 5%;"
-        />
       </div>
     </div>
   </body>,
   "container": <div>
     <div
-      class="categorybreakdownbar-container"
-      data-testid="categorybreakdownbar-testId"
+      class="categorylineitem-container"
+      data-testid="categorylineitem-testId"
     >
       <div
-        class="categorybreakdownbar-value"
-        style="width: 55%;"
+        class="categorylineitem-lefthalf"
       >
-        Rent
+        <div
+          class="categorylineitem-title"
+        >
+          Rent
+        </div>
+        <div
+          class="categorylineitem-value"
+        >
+          $
+          1000
+        </div>
       </div>
       <div
-        class="categorybreakdownbar-divider"
-      />
-      <div
-        class="categorybreakdownbar-value"
-        style="width: 27%;"
+        class="categorylineitem-righthalf"
       >
-        Groceries
+        <div
+          class="categorylineitem-bar"
+          style="width: 40%;"
+        />
+        <div
+          class="categorylineitem-percentage"
+        >
+          40
+          %
+        </div>
       </div>
-      <div
-        class="categorybreakdownbar-divider"
-      />
-      <div
-        class="categorybreakdownbar-value"
-        style="width: 11%;"
-      />
-      <div
-        class="categorybreakdownbar-divider"
-      />
-      <div
-        class="categorybreakdownbar-value"
-        style="width: 5%;"
-      />
     </div>
   </div>,
   "debug": [Function],
