@@ -1,7 +1,7 @@
 /* eslint-disable autofix/no-unused-vars */
 
 export interface User {
-  id: string;
+  _id: string;
   email: string;
   firstName: string;
   lastName: string;
@@ -13,12 +13,17 @@ export interface User {
 /**
  * @interface MonetaryItem - Interface for a monetary item.
  *
+ * @param {string} _id - The unique identifier of the monetary item.
  * @param {string} name - The name of the monetary item.
  * @param {number} value - The value of the monetary item.
- * @param {string} type - The type of the monetary item.
+ * @param {Date} date - The date of the monetary item.
+ * @param {boolean} repeat - The repeat status of the monetary item.
+ * @param {TimePeriod} repeatPeriod - (optional) The repeat period of the monetary item (weekly, monthly, yearly).
+ * @param {Date} repeatEndDate - (optional) The repeat end date of the monetary item.
+ * @param {MonetaryItemCategory} type - The type of the monetary item (income, expense, savings, investment).
  */
 export interface MonetaryItem {
-  id: string;
+  _id: string;
   name: string;
   value: number;
   date: Date;
