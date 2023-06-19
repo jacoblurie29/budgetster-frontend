@@ -11,15 +11,6 @@ h1 {
   margin-top: 20px;
   margin-bottom: 20px;
 }
-
-.app-main-topbar {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding-top: 10px;
-  padding-right: 50px;
-}
 .arrow {
   border: solid #ffffff;
   border-width: 0 3px 3px 0;

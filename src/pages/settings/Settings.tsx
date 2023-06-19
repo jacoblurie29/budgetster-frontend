@@ -1,6 +1,8 @@
+import TopBar from "../../layout/topbar/TopBar";
+
 const Settings = () => (
-  <div>
-    <h1>Settings</h1>
+  <div className="settings-container">
+    <TopBar title={"Settings"} />
   </div>
 );
 

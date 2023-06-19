@@ -4,7 +4,7 @@ import type { MonetaryItem } from "../../types/types";
 // Test data for the Expenses page
 export const testExpensesData = [
   {
-    _id: "0",
+    id: "0",
     name: "Rent",
     value: 1000,
     date: new Date(),
@@ -14,7 +14,7 @@ export const testExpensesData = [
     type: MonetaryItemCategory.EXPENSE,
   },
   {
-    _id: "1",
+    id: "1",
     name: "Groceries",
     value: 500,
     repeat: true,
@@ -23,7 +23,7 @@ export const testExpensesData = [
     type: MonetaryItemCategory.EXPENSE,
   },
   {
-    _id: "2",
+    id: "2",
     name: "Gas",
     value: 100,
     repeat: true,
@@ -32,7 +32,7 @@ export const testExpensesData = [
     type: MonetaryItemCategory.EXPENSE,
   },
   {
-    _id: "3",
+    id: "3",
     name: "Car Insurance",
     value: 200,
     repeat: true,
@@ -45,7 +45,7 @@ export const testExpensesData = [
 // Test data for the Incomes page
 export const testIncomesData = [
   {
-    _id: "4",
+    id: "4",
     name: "Paycheck",
     value: 2000,
     repeat: true,
@@ -54,7 +54,7 @@ export const testIncomesData = [
     type: MonetaryItemCategory.INCOME,
   },
   {
-    _id: "5",
+    id: "5",
     name: "Side Hustle",
     value: 500,
     repeat: true,
@@ -67,7 +67,7 @@ export const testIncomesData = [
 // Test data for the Savings/Investments page
 export const testSavingsInvestmentsData = [
   {
-    _id: "6",
+    id: "6",
     name: "Emergency Fund",
     value: 1000,
     repeat: true,
@@ -76,7 +76,7 @@ export const testSavingsInvestmentsData = [
     type: MonetaryItemCategory.SAVINGS,
   },
   {
-    _id: "7",
+    id: "7",
     name: "401k",
     value: 500,
     repeat: true,
@@ -85,7 +85,7 @@ export const testSavingsInvestmentsData = [
     type: MonetaryItemCategory.INVESTMENT,
   },
   {
-    _id: "8",
+    id: "8",
     name: "Roth IRA",
     value: 500,
     repeat: true,

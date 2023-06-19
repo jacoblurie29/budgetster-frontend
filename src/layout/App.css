@@ -1,8 +1,3 @@
-.app-main-logo {
-  width: 300px;
-  object-fit: contain;
-}
-
 .app-main-container {
   display: flex;
   width: 100vw;
@@ -11,7 +6,7 @@
 
 .app-main-content {
   flex-grow: 1;
-  padding: 1rem 1rem;
+  padding: 0rem 1rem 1rem 1rem;
   margin: 2rem;
   border-radius: 20px;
   background: linear-gradient(
@@ -20,4 +15,5 @@
     rgba(255, 255, 255, 1) 50%,
     rgba(238, 255, 246, 1) 100%
   );
+  overflow: scroll;
 }

@@ -23,7 +23,7 @@ export interface User {
  * @param {MonetaryItemCategory} type - The type of the monetary item (income, expense, savings, investment).
  */
 export interface MonetaryItem {
-  _id: string;
+  id: string;
   name: string;
   value: number;
   date: Date;
@@ -55,7 +55,7 @@ export enum TimePeriod {
  */
 export enum MonetaryItemCategory {
   INCOME = "income",
-  EXPENSE = "expense",
+  EXPENSE = "expenses",
   SAVINGS = "savings",
   INVESTMENT = "investment",
 }

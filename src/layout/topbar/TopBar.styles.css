@@ -1,0 +1,22 @@
+.app-topbar-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: fit-content;
+  padding-left: 20px;
+  padding-right: 50px;
+}
+
+.app-topbar-title {
+  object-fit: contain;
+  font-size: 50px;
+  background-image: -webkit-linear-gradient(180deg, #76e7aa, #8ae2e8);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  font-weight: 600;
+  font-family: "Lexend", sans-serif;
+  letter-spacing: 2px;
+  margin: 30px 0px 0px 0px;
+}
