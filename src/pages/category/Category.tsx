@@ -1,31 +1,44 @@
+import { dataGridStyles } from "./Category.definitions";
 import TopBar from "../../layout/topbar/TopBar";
-import { testExpensesData } from "../../util/testing/testData";
+import {
+  testExpensesData,
+  testIncomesData,
+  testSavingsInvestmentsData,
+} from "../../util/testing/testData";
 import { capitalizeFirstLetter } from "../../util/helpers/string.util";
+import { MonetaryItemCategory } from "../../types/types";
 import { DataGrid } from "@mui/x-data-grid";
-import type { MonetaryItemCategory } from "../../types/types";
+import type { GridAlignment } from "@mui/x-data-grid";
+
 import "./Category.styles.css";
+import type { CategoryProps, AmountParamsProps } from "./Category.definitions";
 
-interface CategoryProps {
-  category: MonetaryItemCategory;
-}
-
+/**
+ * @component Category - Displays the monetary items of a given category
+ * @param {MonetaryItemCategory} category - The category of the monetary items to be displayed
+ */
 const Category = ({ category }: CategoryProps) => {
   // Format category name for display
   const firstColumnTitle = category.endsWith("s")
     ? capitalizeFirstLetter(category.slice(0, -1))
     : capitalizeFirstLetter(category);
 
+  const testDataByCategory =
+    category === MonetaryItemCategory.EXPENSE
+      ? testExpensesData
+      : category === MonetaryItemCategory.INCOME
+      ? testIncomesData
+      : testSavingsInvestmentsData;
+
   // TODO: replace with real data
-  const data = testExpensesData.map((expense) => ({
+  const data = testDataByCategory.map((expense) => ({
     id: expense.id,
     name: expense.name,
     value: expense.value,
-    date: expense.date ? expense.date.toLocaleDateString() : "",
-    repeat: expense.repeat ? "Yes" : "No",
+    date: expense.date,
+    repeat: expense.repeat,
     repeatPeriod: expense.repeatPeriod,
-    repeatEndDate: expense.repeatEndDate
-      ? expense.repeatEndDate?.toLocaleDateString()
-      : "",
+    repeatEndDate: expense.repeatEndDate,
   }));
 
   // Define columns for the data grid
@@ -33,9 +46,11 @@ const Category = ({ category }: CategoryProps) => {
     {
       field: "name",
       headerName: firstColumnTitle,
-      flex: 1,
+      flex: 1.5,
       editable: true,
       type: "string",
+      align: "left" as GridAlignment,
+      headerAlign: "left" as GridAlignment,
     },
     {
       field: "value",
@@ -43,13 +58,18 @@ const Category = ({ category }: CategoryProps) => {
       flex: 1,
       editable: true,
       type: "number",
+      align: "center" as GridAlignment,
+      headerAlign: "center" as GridAlignment,
+      valueFormatter: ({ value }: AmountParamsProps) => "$" + value.toFixed(0),
     },
     {
       field: "date",
       headerName: "Date",
       flex: 1,
       editable: true,
-      type: "string",
+      type: "date",
+      align: "center" as GridAlignment,
+      headerAlign: "center" as GridAlignment,
     },
     {
       field: "repeat",
@@ -57,6 +77,8 @@ const Category = ({ category }: CategoryProps) => {
       flex: 1,
       editable: true,
       type: "boolean",
+      align: "center" as GridAlignment,
+      headerAlign: "center" as GridAlignment,
     },
     {
       field: "repeatPeriod",
@@ -65,13 +87,16 @@ const Category = ({ category }: CategoryProps) => {
       editable: true,
       type: "select",
       valueOptions: ["Weekly", "Monthly", "Yearly"],
+      align: "center" as GridAlignment,
+      headerAlign: "center" as GridAlignment,
     },
     {
       field: "repeatEndDate",
       headerName: "End Date",
       flex: 1,
       editable: true,
-      type: "string",
+      type: "date",
+      align: "center" as GridAlignment,
     },
   ];
 
@@ -83,36 +108,8 @@ const Category = ({ category }: CategoryProps) => {
           columns={columns}
           rows={data}
           checkboxSelection
-          editMode="row"
-          sx={{
-            fontFamily: "Lexend",
-            border: "2px solid",
-            borderColor: "#BBBBBB",
-            "& .MuiDataGrid-columnHeaderTitle": {
-              fontSize: "1.4rem",
-              fontWeight: "500",
-              color: "#FFFFFF",
-            },
-            "& .MuiDataGrid-row": {
-              fontSize: "1.2rem",
-              color: "#8F8F8F",
-              backgroundColor: "#EDFFF5",
-              "&.Mui-selected": {
-                backgroundColor: "#E4FAFC",
-              },
-              "&.Mui-selected:hover": {
-                backgroundColor: "#E4FAFC",
-                fontSize: "1.2rem",
-              },
-            },
-            "& .MuiDataGrid-row:hover": {
-              fontSize: "1.2rem",
-              backgroundColor: "#E4FAFC",
-            },
-            "& .MuiDataGrid-columnHeader": {
-              backgroundColor: "#D9D9D9",
-            },
-          }}
+          density="standard"
+          sx={dataGridStyles}
         />
       </div>
     </div>
