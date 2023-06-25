@@ -49,14 +49,16 @@ const LargeCategoryCard = ({
       </div>
       <div className="largecategorycard-content">
         <CategoryBreakdownBar values={values} />
-        {values.map((value, index) => (
-          <CategoryLineItem
-            key={index}
-            title={value.name}
-            value={value.value}
-            percentage={Math.floor((value.value / total) * 100)}
-          />
-        ))}
+        {values
+          .sort((a, b) => b.value - a.value)
+          .map((value, index) => (
+            <CategoryLineItem
+              key={index}
+              title={value.name}
+              value={value.value}
+              percentage={Math.floor((value.value / total) * 100)}
+            />
+          ))}
       </div>
     </div>
   );
