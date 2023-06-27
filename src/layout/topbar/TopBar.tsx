@@ -1,5 +1,5 @@
 import TimeControl from "../../components/TimeControl/TimeControl";
-import { capitalizeFirstLetter } from "../../util/helpers/string.util";
+import { formatTitle } from "../../util/helpers/string.util";
 import "./TopBar.styles.css";
 
 interface TopBarProps {
@@ -9,7 +9,7 @@ interface TopBarProps {
 
 const TopBar = ({ title, hasTimeControl = false }: TopBarProps) => (
   <div className="app-topbar-container">
-    <h1 className="app-topbar-title">{capitalizeFirstLetter(title)}</h1>
+    <h1 className="app-topbar-title">{formatTitle(title)}</h1>
     {hasTimeControl && <TimeControl />}
   </div>
 );

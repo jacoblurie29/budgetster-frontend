@@ -3,10 +3,16 @@ import TopBar from "../../layout/topbar/TopBar";
 
 import { capitalizeFirstLetter } from "../../util/helpers/string.util";
 
-import { AllMonetaryItemsQuery } from "../../graphql/AllMonetaryItems";
+import {
+  GetMonetaryItemsByTypeQuery,
+  UpdateMonetaryItemMutation,
+} from "../../graphql/MonetaryItem.gql";
 import { DataGrid } from "@mui/x-data-grid";
-import { useEffect } from "react";
-import { useQuery } from "@apollo/client";
+import { useEffect, useState } from "react";
+import { useMutation, useQuery } from "@apollo/client";
+
+import { Alert, Snackbar } from "@mui/material";
+import type { AlertProps } from "@mui/material";
 import type { MonetaryItem } from "../../types/types";
 import type { GridAlignment } from "@mui/x-data-grid";
 
@@ -18,13 +24,63 @@ import type { CategoryProps, AmountParamsProps } from "./Category.definitions";
  * @param {MonetaryItemCategory} category - The category of the monetary items to be displayed
  */
 const Category = ({ category }: CategoryProps) => {
-  const { loading, data, refetch } = useQuery(AllMonetaryItemsQuery);
+  // Query for monetary items of the given category
+  const { loading, data, refetch } = useQuery(GetMonetaryItemsByTypeQuery, {
+    variables: { type: category },
+  });
+
+  // Mutation for updating monetary items
+  const [updateMonetaryItem] = useMutation(UpdateMonetaryItemMutation);
+
+  // Snackbar state and handler
+  const [snackbar, setSnackbar] = useState<Pick<
+    AlertProps,
+    "children" | "severity"
+  > | null>(null);
+  const handleCloseSnackbar = () => setSnackbar(null);
+
+  // Update monetary item
+  const handleUpdateMonetaryItem = async (newRow: MonetaryItem) => {
+    const response = await updateMonetaryItem({
+      variables: {
+        monetaryItem: {
+          _id: newRow._id,
+          name: newRow.name,
+          value: newRow.value,
+          date: newRow.date,
+          repeat: newRow.repeat,
+          repeatPeriod: newRow.repeatPeriod,
+          repeatEndDate: newRow.repeatEndDate,
+          type: category,
+        },
+      },
+    });
+
+    // Display success message
+    setSnackbar({
+      children: capitalizeFirstLetter(category) + " updated successfully!",
+      severity: "success",
+    });
+
+    return response.data.updateMonetaryItem as MonetaryItem;
+  };
+
+  // Display error from updating monetary item
+  const handleUpdatedMonetaryItemError = (error: Error) => {
+    setSnackbar({
+      children: "Failed to update " + category + "!",
+      severity: "error",
+    });
+
+    console.log("❌ [API]: ", error);
+  };
 
   // Format category name for display
   const firstColumnTitle = category.endsWith("s")
     ? capitalizeFirstLetter(category.slice(0, -1))
     : capitalizeFirstLetter(category);
 
+  // Refetch monetary items on mount
   useEffect(() => {
     try {
       refetch();
@@ -62,7 +118,7 @@ const Category = ({ category }: CategoryProps) => {
       type: "date",
       align: "center" as GridAlignment,
       headerAlign: "center" as GridAlignment,
-      // convert string to date
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       valueGetter: (params: any) => new Date(params.row.date),
     },
     {
@@ -91,13 +147,12 @@ const Category = ({ category }: CategoryProps) => {
       editable: true,
       type: "date",
       align: "center" as GridAlignment,
-      valueGetter: (params: any) => new Date(params.row.date),
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      valueGetter: (params: any) => new Date(params.row.repeatEndDate),
     },
   ];
 
   if (loading) return <div>Loading...</div>;
-
-  console.log("DATE: ", data.getMonetaryItems[0].date);
 
   return (
     <div className="category-container">
@@ -106,12 +161,24 @@ const Category = ({ category }: CategoryProps) => {
         <DataGrid
           getRowId={(row) => row._id}
           columns={columns}
-          rows={data.getMonetaryItems as MonetaryItem[]}
+          rows={data.getMonetaryItemsByType as MonetaryItem[]}
           checkboxSelection
           density="standard"
           sx={dataGridStyles}
+          onProcessRowUpdateError={handleUpdatedMonetaryItemError}
+          processRowUpdate={handleUpdateMonetaryItem}
         />
       </div>
+      {!!snackbar && (
+        <Snackbar
+          open
+          anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+          onClose={handleCloseSnackbar}
+          autoHideDuration={6000}
+        >
+          <Alert {...snackbar} onClose={handleCloseSnackbar} />
+        </Snackbar>
+      )}
     </div>
   );
 };

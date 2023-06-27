@@ -55,7 +55,7 @@ export enum TimePeriod {
  */
 export enum MonetaryItemCategory {
   INCOME = "income",
-  EXPENSE = "expenses",
+  EXPENSE = "expense",
   SAVINGS = "savings",
   INVESTMENT = "investment",
 }
