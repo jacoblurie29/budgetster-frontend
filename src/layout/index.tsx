@@ -7,6 +7,12 @@ import Settings from "../pages/settings/Settings.tsx";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
+
+const apolloClient = new ApolloClient({
+  uri: "http://127.0.0.1:4000",
+  cache: new InMemoryCache(),
+});
 
 const router = createBrowserRouter([
   {
@@ -36,6 +42,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <ApolloProvider client={apolloClient}>
+      <RouterProvider router={router} />
+    </ApolloProvider>
   </React.StrictMode>
 );

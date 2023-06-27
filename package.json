@@ -14,6 +14,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@apollo/client": "^3.7.16",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
@@ -24,6 +25,7 @@
     "@mui/x-data-grid": "^6.8.0",
     "@reduxjs/toolkit": "^1.9.5",
     "@types/react-redux": "^7.1.25",
+    "graphql": "^16.7.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.1.0",

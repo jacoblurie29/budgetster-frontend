@@ -23,13 +23,13 @@ export interface User {
  * @param {MonetaryItemCategory} type - The type of the monetary item (income, expense, savings, investment).
  */
 export interface MonetaryItem {
-  id: string;
+  _id: string;
   name: string;
   value: number;
-  date: Date;
+  date: string;
   repeat: boolean;
   repeatPeriod?: TimePeriod;
-  repeatEndDate?: Date;
+  repeatEndDate?: string;
   type: MonetaryItemCategory;
 }
 

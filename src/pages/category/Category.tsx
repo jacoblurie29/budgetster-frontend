@@ -1,13 +1,13 @@
 import { dataGridStyles } from "./Category.definitions";
 import TopBar from "../../layout/topbar/TopBar";
-import {
-  testExpensesData,
-  testIncomesData,
-  testSavingsInvestmentsData,
-} from "../../util/testing/testData";
+
 import { capitalizeFirstLetter } from "../../util/helpers/string.util";
-import { MonetaryItemCategory } from "../../types/types";
+
+import { AllMonetaryItemsQuery } from "../../graphql/AllMonetaryItems";
 import { DataGrid } from "@mui/x-data-grid";
+import { useEffect } from "react";
+import { useQuery } from "@apollo/client";
+import type { MonetaryItem } from "../../types/types";
 import type { GridAlignment } from "@mui/x-data-grid";
 
 import "./Category.styles.css";
@@ -18,28 +18,20 @@ import type { CategoryProps, AmountParamsProps } from "./Category.definitions";
  * @param {MonetaryItemCategory} category - The category of the monetary items to be displayed
  */
 const Category = ({ category }: CategoryProps) => {
+  const { loading, data, refetch } = useQuery(AllMonetaryItemsQuery);
+
   // Format category name for display
   const firstColumnTitle = category.endsWith("s")
     ? capitalizeFirstLetter(category.slice(0, -1))
     : capitalizeFirstLetter(category);
 
-  const testDataByCategory =
-    category === MonetaryItemCategory.EXPENSE
-      ? testExpensesData
-      : category === MonetaryItemCategory.INCOME
-      ? testIncomesData
-      : testSavingsInvestmentsData;
-
-  // TODO: replace with real data
-  const data = testDataByCategory.map((expense) => ({
-    id: expense.id,
-    name: expense.name,
-    value: expense.value,
-    date: expense.date,
-    repeat: expense.repeat,
-    repeatPeriod: expense.repeatPeriod,
-    repeatEndDate: expense.repeatEndDate,
-  }));
+  useEffect(() => {
+    try {
+      refetch();
+    } catch (error) {
+      console.log("❌ [API]: ", error);
+    }
+  }, []);
 
   // Define columns for the data grid
   const columns = [
@@ -70,6 +62,8 @@ const Category = ({ category }: CategoryProps) => {
       type: "date",
       align: "center" as GridAlignment,
       headerAlign: "center" as GridAlignment,
+      // convert string to date
+      valueGetter: (params: any) => new Date(params.row.date),
     },
     {
       field: "repeat",
@@ -97,16 +91,22 @@ const Category = ({ category }: CategoryProps) => {
       editable: true,
       type: "date",
       align: "center" as GridAlignment,
+      valueGetter: (params: any) => new Date(params.row.date),
     },
   ];
+
+  if (loading) return <div>Loading...</div>;
+
+  console.log("DATE: ", data.getMonetaryItems[0].date);
 
   return (
     <div className="category-container">
       <TopBar title={category} hasTimeControl />
       <div className="category-chart">
         <DataGrid
+          getRowId={(row) => row._id}
           columns={columns}
-          rows={data}
+          rows={data.getMonetaryItems as MonetaryItem[]}
           checkboxSelection
           density="standard"
           sx={dataGridStyles}
