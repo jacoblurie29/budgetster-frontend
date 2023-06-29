@@ -39,9 +39,9 @@ export const GetMonetaryItemsByTypeQuery = gql`
 /**
  * Mutation to add a monetary item to the database.
  */
-export const AddMonetaryItemMutation = gql`
-  mutation AddMonetaryItemMutation($monetaryItem: MonetaryItemInput!) {
-    addMonetaryItem(monetaryItem: $monetaryItem) {
+export const CreateMonetaryItemMutation = gql`
+  mutation CreateMonetaryItemMutation($monetaryItem: MonetaryItemInput!) {
+    createMonetaryItem(monetaryItem: $monetaryItem) {
       _id
       name
       value
@@ -58,7 +58,7 @@ export const AddMonetaryItemMutation = gql`
  * Mutation to update a monetary item in the database.
  */
 export const UpdateMonetaryItemMutation = gql`
-  mutation UpdateMonetaryItemMutation($monetaryItem: MonetaryItemInput!) {
+  mutation UpdateMonetaryItemMutation($monetaryItem: MonetaryItemUpdate!) {
     updateMonetaryItem(monetaryItem: $monetaryItem) {
       _id
       name

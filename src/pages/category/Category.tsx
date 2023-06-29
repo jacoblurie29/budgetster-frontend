@@ -4,33 +4,44 @@ import TopBar from "../../layout/topbar/TopBar";
 import { capitalizeFirstLetter } from "../../util/helpers/string.util";
 
 import {
+  CreateMonetaryItemMutation,
   GetMonetaryItemsByTypeQuery,
   UpdateMonetaryItemMutation,
 } from "../../graphql/MonetaryItem.gql";
+import { TimePeriod } from "../../types/types";
 import { DataGrid } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
 import { useMutation, useQuery } from "@apollo/client";
 
-import { Alert, Snackbar } from "@mui/material";
+import { Alert, Button, Snackbar } from "@mui/material";
 import type { AlertProps } from "@mui/material";
-import type { MonetaryItem } from "../../types/types";
 import type { GridAlignment } from "@mui/x-data-grid";
 
 import "./Category.styles.css";
 import type { CategoryProps, AmountParamsProps } from "./Category.definitions";
+import type { MonetaryItem } from "../../types/types";
 
 /**
  * @component Category - Displays the monetary items of a given category
  * @param {MonetaryItemCategory} category - The category of the monetary items to be displayed
  */
 const Category = ({ category }: CategoryProps) => {
+  const [rows, setRows] = useState([] as MonetaryItem[]);
+
   // Query for monetary items of the given category
   const { loading, data, refetch } = useQuery(GetMonetaryItemsByTypeQuery, {
     variables: { type: category },
   });
 
+  useEffect(() => {
+    if (data) {
+      setRows(data.getMonetaryItemsByType as MonetaryItem[]);
+    }
+  }, [data]);
+
   // Mutation for updating monetary items
   const [updateMonetaryItem] = useMutation(UpdateMonetaryItemMutation);
+  const [addMonetaryItem] = useMutation(CreateMonetaryItemMutation);
 
   // Snackbar state and handler
   const [snackbar, setSnackbar] = useState<Pick<
@@ -63,6 +74,33 @@ const Category = ({ category }: CategoryProps) => {
     });
 
     return response.data.updateMonetaryItem as MonetaryItem;
+  };
+
+  // Add monetary item to the grid and set it to edit mode
+  const handleAddMonetaryItem = async (oldRows: MonetaryItem[]) => {
+    const response = await addMonetaryItem({
+      variables: {
+        monetaryItem: {
+          name: "New " + category,
+          value: 0,
+          date: new Date().toISOString(),
+          repeat: false,
+          repeatPeriod: TimePeriod.MONTHLY,
+          repeatEndDate: new Date().toISOString(),
+          type: category,
+        },
+      },
+    });
+
+    console.log(response.data.createMonetaryItem);
+    setRows([...oldRows, response.data.createMonetaryItem as MonetaryItem]);
+
+    // Display success message
+    setSnackbar({
+      children:
+        capitalizeFirstLetter(category) + " added successfully! Click to edit.",
+      severity: "success",
+    });
   };
 
   // Display error from updating monetary item
@@ -161,13 +199,16 @@ const Category = ({ category }: CategoryProps) => {
         <DataGrid
           getRowId={(row) => row._id}
           columns={columns}
-          rows={data.getMonetaryItemsByType as MonetaryItem[]}
+          rows={rows}
           checkboxSelection
           density="standard"
           sx={dataGridStyles}
           onProcessRowUpdateError={handleUpdatedMonetaryItemError}
           processRowUpdate={handleUpdateMonetaryItem}
         />
+        <Button onClick={() => handleAddMonetaryItem(rows)}>
+          Add {category}
+        </Button>
       </div>
       {!!snackbar && (
         <Snackbar
