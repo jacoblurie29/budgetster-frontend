@@ -76,8 +76,8 @@ export const UpdateMonetaryItemMutation = gql`
  * Mutation to delete a monetary item from the database.
  */
 export const DeleteMonetaryItemMutation = gql`
-  mutation DeleteMonetaryItemMutation($id: String!) {
-    deleteMonetaryItem(id: $id) {
+  mutation DeleteMonetaryItemMutation($_id: String!) {
+    deleteMonetaryItem(_id: $_id) {
       _id
       name
       value
@@ -86,6 +86,17 @@ export const DeleteMonetaryItemMutation = gql`
       repeatPeriod
       repeatEndDate
       type
+    }
+  }
+`;
+
+/**
+ * Mutation to delete all monetary items from the database.
+ */
+export const DeleteMonetaryItemsMutation = gql`
+  mutation DeleteMonetaryItemsMutation($_ids: [String]!) {
+    deleteMonetaryItems(_ids: $_ids) {
+      deletedCount
     }
   }
 `;

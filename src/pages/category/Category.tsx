@@ -5,6 +5,7 @@ import { capitalizeFirstLetter } from "../../util/helpers/string.util";
 
 import {
   CreateMonetaryItemMutation,
+  DeleteMonetaryItemsMutation,
   GetMonetaryItemsByTypeQuery,
   UpdateMonetaryItemMutation,
 } from "../../graphql/MonetaryItem.gql";
@@ -13,9 +14,10 @@ import { DataGrid } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
 import { useMutation, useQuery } from "@apollo/client";
 
-import { Alert, Button, Snackbar } from "@mui/material";
+import { Alert, Snackbar } from "@mui/material";
+
 import type { AlertProps } from "@mui/material";
-import type { GridAlignment } from "@mui/x-data-grid";
+import type { GridAlignment, GridRowId } from "@mui/x-data-grid";
 
 import "./Category.styles.css";
 import type { CategoryProps, AmountParamsProps } from "./Category.definitions";
@@ -27,6 +29,9 @@ import type { MonetaryItem } from "../../types/types";
  */
 const Category = ({ category }: CategoryProps) => {
   const [rows, setRows] = useState([] as MonetaryItem[]);
+  const [selectedRowIds, setSelectedRowsIds] = useState([] as string[]);
+
+  // const apiRef = useGridApiContext();
 
   // Query for monetary items of the given category
   const { loading, data, refetch } = useQuery(GetMonetaryItemsByTypeQuery, {
@@ -42,6 +47,7 @@ const Category = ({ category }: CategoryProps) => {
   // Mutation for updating monetary items
   const [updateMonetaryItem] = useMutation(UpdateMonetaryItemMutation);
   const [addMonetaryItem] = useMutation(CreateMonetaryItemMutation);
+  const [deleteMonetaryItems] = useMutation(DeleteMonetaryItemsMutation);
 
   // Snackbar state and handler
   const [snackbar, setSnackbar] = useState<Pick<
@@ -99,6 +105,34 @@ const Category = ({ category }: CategoryProps) => {
     setSnackbar({
       children:
         capitalizeFirstLetter(category) + " added successfully! Click to edit.",
+      severity: "success",
+    });
+  };
+
+  // Delete monetary item
+  const handleDeleteMonetaryItems = async () => {
+    console.log(selectedRowIds);
+
+    const response = await deleteMonetaryItems({
+      variables: {
+        _ids: selectedRowIds,
+      },
+    });
+
+    // remove deleted monetary item from the grid
+    setRows(rows.filter((row) => !selectedRowIds.includes(row._id)));
+
+    // Clear selected rows
+    setSelectedRowsIds([]);
+
+    // Display success message
+    setSnackbar({
+      children:
+        response.data.deleteMonetaryItems.deletedCount +
+        " " +
+        category +
+        (response.data.deleteMonetaryItems.deletedCount > 1 ? "s" : "") +
+        " deleted successfully!",
       severity: "success",
     });
   };
@@ -203,12 +237,39 @@ const Category = ({ category }: CategoryProps) => {
           checkboxSelection
           density="standard"
           sx={dataGridStyles}
+          slots={{
+            columnMenu: () => <div>Loading...</div>,
+          }}
+          onRowSelectionModelChange={(newSelection: GridRowId[]) => {
+            console.log(newSelection);
+            setSelectedRowsIds(
+              newSelection.length === 0
+                ? ([] as string[])
+                : newSelection.toString().split(",")
+            );
+          }}
           onProcessRowUpdateError={handleUpdatedMonetaryItemError}
           processRowUpdate={handleUpdateMonetaryItem}
         />
-        <Button onClick={() => handleAddMonetaryItem(rows)}>
-          Add {category}
-        </Button>
+        <div className="category-add-button-container">
+          <button
+            className="category-add-button"
+            onClick={() => handleAddMonetaryItem(rows)}
+          >
+            Add {category}
+          </button>
+          {selectedRowIds.length > 0 && (
+            <button
+              className="category-delete-button"
+              onClick={() => handleDeleteMonetaryItems()}
+            >
+              {"Delete " +
+                selectedRowIds.length.toString() +
+                " " +
+                (selectedRowIds.length > 1 ? category + "s" : category)}
+            </button>
+          )}
+        </div>
       </div>
       {!!snackbar && (
         <Snackbar

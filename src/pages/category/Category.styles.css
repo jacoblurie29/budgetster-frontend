@@ -1,3 +1,29 @@
 .category-chart {
   padding: 20px 50px;
 }
+
+.category-add-button-container {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.category-add-button {
+  margin-top: 6px;
+  margin-right: 0px;
+  color: #8f8f8f !important;
+  font-size: 0.9rem;
+  font-family: "Lexend", sans-serif !important;
+  font-weight: 400;
+  text-decoration: underline;
+}
+
+.category-delete-button {
+  margin-top: 6px;
+  margin-right: 5px;
+  color: #eb4646 !important;
+  font-size: 0.9rem;
+  font-family: "Lexend", sans-serif !important;
+  font-weight: 400;
+  text-decoration: underline;
+}
