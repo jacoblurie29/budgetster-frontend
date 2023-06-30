@@ -1,4 +1,4 @@
-import { dataGridStyles } from "./Category.definitions";
+import { dataGridStyles, noRowsStackStyles } from "./Category.definitions";
 import TopBar from "../../layout/topbar/TopBar";
 
 import { capitalizeFirstLetter } from "../../util/helpers/string.util";
@@ -10,11 +10,13 @@ import {
   UpdateMonetaryItemMutation,
 } from "../../graphql/MonetaryItem.gql";
 import { TimePeriod } from "../../types/types";
+import { useAppSelector } from "../../state/configureStore";
+import { compareMonetaryItems } from "../../util/helpers/monetaryItem.util";
 import { DataGrid } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
 import { useMutation, useQuery } from "@apollo/client";
 
-import { Alert, Snackbar } from "@mui/material";
+import { Alert, Snackbar, Stack } from "@mui/material";
 
 import type { AlertProps } from "@mui/material";
 import type { GridAlignment, GridRowId } from "@mui/x-data-grid";
@@ -31,18 +33,52 @@ const Category = ({ category }: CategoryProps) => {
   const [rows, setRows] = useState([] as MonetaryItem[]);
   const [selectedRowIds, setSelectedRowsIds] = useState([] as string[]);
 
-  // const apiRef = useGridApiContext();
+  // Get the month and year from the redux store
+  const month = useAppSelector((state) => state.time.month);
+  const year = useAppSelector((state) => state.time.year);
+  const range = useAppSelector((state) => state.time.range);
 
   // Query for monetary items of the given category
   const { loading, data, refetch } = useQuery(GetMonetaryItemsByTypeQuery, {
     variables: { type: category },
   });
 
+  const isViewable = (item: MonetaryItem) => {
+    const itemDate = new Date(item.date);
+
+    // filter by year if the range is yearly or if the item is repeating
+    if (range === TimePeriod.YEARLY) {
+      return (
+        itemDate.getFullYear() === year ||
+        (item.repeat &&
+          item.repeatEndDate &&
+          itemDate.getFullYear() <= year &&
+          new Date(item.repeatEndDate).getFullYear() >= year)
+      );
+
+      // filter by month if the range is monthly or if the item is repeating
+    } else {
+      return (
+        (itemDate.getFullYear() === year && itemDate.getMonth() === month) ||
+        (item.repeat &&
+          item.repeatEndDate &&
+          itemDate.getFullYear() <= year &&
+          new Date(item.repeatEndDate).getFullYear() >= year &&
+          itemDate.getMonth() === month)
+      );
+    }
+  };
+
   useEffect(() => {
     if (data) {
-      setRows(data.getMonetaryItemsByType as MonetaryItem[]);
+      // Filter the monetary items using the month and/or year
+      const filteredData = data.getMonetaryItemsByType.filter(
+        (item: MonetaryItem) => isViewable(item)
+      );
+
+      setRows(filteredData as MonetaryItem[]);
     }
-  }, [data]);
+  }, [data, month, year]);
 
   // Mutation for updating monetary items
   const [updateMonetaryItem] = useMutation(UpdateMonetaryItemMutation);
@@ -56,8 +92,60 @@ const Category = ({ category }: CategoryProps) => {
   > | null>(null);
   const handleCloseSnackbar = () => setSnackbar(null);
 
+  const renderNoRowsOverlay = () => (
+    <Stack
+      height="100%"
+      alignItems="center"
+      justifyContent="center"
+      sx={noRowsStackStyles}
+    >
+      <div className="category-no-rows-overlay">No {category}s to display</div>
+    </Stack>
+  );
+
   // Update monetary item
-  const handleUpdateMonetaryItem = async (newRow: MonetaryItem) => {
+  const handleUpdateMonetaryItem = async (
+    newRow: MonetaryItem,
+    oldRow: MonetaryItem
+  ) => {
+    // If the monetary item has not changed, return the old row
+    if (compareMonetaryItems(newRow, oldRow)) {
+      return oldRow;
+    }
+
+    // If the item is now repeating, set the repeat period to monthly and the repeat end date to today
+    if (!oldRow.repeat && newRow.repeat) {
+      newRow.repeatPeriod = TimePeriod.MONTHLY;
+      newRow.repeatEndDate = new Date().toISOString();
+    }
+
+    // Show an error if the user tries to repeat an item without selecting a repeat end date
+    if (newRow.repeatPeriod === null && newRow.repeat) {
+      setSnackbar({
+        children: "Please select a repeat period!",
+        severity: "error",
+      });
+      return oldRow;
+    }
+
+    // Show an error if the repeat end date is null and the item is repeating
+    if (newRow.repeatEndDate === null && newRow.repeat) {
+      setSnackbar({
+        children: "Please select a repeat end date!",
+        severity: "error",
+      });
+      return oldRow;
+    }
+
+    // If the item is no longer repeating, set the repeat end date and period to undefined
+    if (!newRow.repeat) {
+      newRow.repeatEndDate = undefined;
+      newRow.repeatPeriod = undefined;
+    }
+
+    console.log(newRow.repeat);
+
+    // Update monetary item
     const response = await updateMonetaryItem({
       variables: {
         monetaryItem: {
@@ -79,6 +167,8 @@ const Category = ({ category }: CategoryProps) => {
       severity: "success",
     });
 
+    console.log("✅ [API]: ", response.data.updateMonetaryItem);
+
     return response.data.updateMonetaryItem as MonetaryItem;
   };
 
@@ -98,7 +188,6 @@ const Category = ({ category }: CategoryProps) => {
       },
     });
 
-    console.log(response.data.createMonetaryItem);
     setRows([...oldRows, response.data.createMonetaryItem as MonetaryItem]);
 
     // Display success message
@@ -111,8 +200,6 @@ const Category = ({ category }: CategoryProps) => {
 
   // Delete monetary item
   const handleDeleteMonetaryItems = async () => {
-    console.log(selectedRowIds);
-
     const response = await deleteMonetaryItems({
       variables: {
         _ids: selectedRowIds,
@@ -207,8 +294,17 @@ const Category = ({ category }: CategoryProps) => {
       headerName: "Repeat Period",
       flex: 1,
       editable: true,
-      type: "select",
-      valueOptions: ["Weekly", "Monthly", "Yearly"],
+      type: "singleSelect",
+      defaultValue: TimePeriod.MONTHLY,
+      valueOptions: [
+        TimePeriod.MONTHLY,
+        TimePeriod.YEARLY,
+        TimePeriod.WEEKLY,
+        {
+          value: null,
+          label: "-",
+        },
+      ],
       align: "center" as GridAlignment,
       headerAlign: "center" as GridAlignment,
     },
@@ -219,8 +315,10 @@ const Category = ({ category }: CategoryProps) => {
       editable: true,
       type: "date",
       align: "center" as GridAlignment,
+      headerAlign: "center" as GridAlignment,
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      valueGetter: (params: any) => new Date(params.row.repeatEndDate),
+      valueGetter: (params: any) =>
+        params.row.repeatEndDate ? new Date(params.row.repeatEndDate) : null,
     },
   ];
 
@@ -235,13 +333,15 @@ const Category = ({ category }: CategoryProps) => {
           columns={columns}
           rows={rows}
           checkboxSelection
+          disableRowSelectionOnClick
           density="standard"
           sx={dataGridStyles}
           slots={{
             columnMenu: () => <div>Loading...</div>,
+            noRowsOverlay: renderNoRowsOverlay,
+            noResultsOverlay: renderNoRowsOverlay,
           }}
           onRowSelectionModelChange={(newSelection: GridRowId[]) => {
-            console.log(newSelection);
             setSelectedRowsIds(
               newSelection.length === 0
                 ? ([] as string[])

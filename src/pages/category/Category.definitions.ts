@@ -93,4 +93,10 @@ export const dataGridStyles = {
   "& .MuiSelect-select": {
     paddingTop: "10px !important",
   },
+  "& .MuiDataGrid-overlayWrapper": {
+    height: "52px",
+    backgroundColor: "#EDFFF5 !important",
+  },
 };
+
+export const noRowsStackStyles = { backgroundColor: "#EDFFF5 !important" };

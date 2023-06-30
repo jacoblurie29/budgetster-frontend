@@ -12,7 +12,7 @@ import "./TimePeriodCarousel.styles.css";
  * @prop {(number) => void} setYear - A function that sets the year
  */
 interface TimePeriodCarouselProps {
-  timePeriod: TimePeriod;
+  timePeriod: Omit<TimePeriod, "weekly">;
   month: number;
   year: number;
   setMonth: (_: number) => void;

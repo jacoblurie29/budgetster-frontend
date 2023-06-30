@@ -29,3 +29,5 @@ export const userSlice = createSlice({
     },
   },
 });
+
+export const { setUser, setLoading, setStatus } = userSlice.actions;

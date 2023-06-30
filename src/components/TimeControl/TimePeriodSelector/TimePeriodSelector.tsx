@@ -8,8 +8,8 @@ import "./TimePeriodSelector.styles.css";
  * @prop {(timePeriod: TimePeriod) => void} setTimePeriod - A function that sets the time period
  */
 interface TimePeriodSelectorProps {
-  timePeriod: TimePeriod;
-  setTimePeriod: (_: TimePeriod) => void;
+  timePeriod: Omit<TimePeriod, "weekly">;
+  setTimePeriod: (_: Omit<TimePeriod, "weekly">) => void;
 }
 
 /**

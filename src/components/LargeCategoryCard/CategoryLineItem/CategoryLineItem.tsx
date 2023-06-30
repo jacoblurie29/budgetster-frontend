@@ -38,10 +38,12 @@ const CategoryLineItem = ({
       <div
         className="categorylineitem-bar"
         style={{
-          width: `${percentage}%`,
+          width: `${percentage > 0 ? percentage : 1}%`,
         }}
       />
-      <div className="categorylineitem-percentage">{percentage}%</div>
+      <div className="categorylineitem-percentage">
+        {percentage > 0 ? percentage : "< 1"}%
+      </div>
     </div>
   </div>
 );

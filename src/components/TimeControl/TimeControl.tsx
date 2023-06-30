@@ -1,8 +1,9 @@
 import TimePeriodCarousel from "./TimePeriodCarousel/TimePeriodCarousel";
 import TimePeriodSelector from "./TimePeriodSelector/TimePeriodSelector";
-import { TimePeriod } from "../../types/types";
 import "./TimeControl.styles.css";
-import { useState } from "react";
+import { useAppDispatch, useAppSelector } from "../../state/configureStore";
+import { setMonth, setRange, setYear } from "../../state/slices/timeSlice";
+import type { TimePeriod } from "../../types/types";
 
 /**
  * @component TimeControl
@@ -12,26 +13,39 @@ import { useState } from "react";
  * The selector allows the user to select and change dates between monthly and yearly.
  */
 const TimeControl = () => {
-  // Time period state
-  const [timePeriod, setTimePeriod] = useState(TimePeriod.MONTHLY);
-
   // Current month and year state
-  const [month, setMonth] = useState<number>(new Date().getMonth());
-  const [year, setYear] = useState<number>(new Date().getFullYear());
+  const month = useAppSelector((state) => state.time.month);
+  const year = useAppSelector((state) => state.time.year);
+  const range = useAppSelector((state) => state.time.range);
+
+  // Get the dispatch function from the redux store
+  const dispatch = useAppDispatch();
+
+  // Set month state
+  const setCurrentMonth = (month: number) => {
+    dispatch(setMonth(month));
+  };
+
+  // Set year state
+  const setCurrentYear = (year: number) => {
+    dispatch(setYear(year));
+  };
+
+  // Set range state
+  const setCurrentRange = (range: Omit<TimePeriod, "weekly">) => {
+    dispatch(setRange(range));
+  };
 
   return (
     <div className="timecontrol-container">
       <TimePeriodCarousel
-        timePeriod={timePeriod}
+        timePeriod={range}
         month={month}
         year={year}
-        setMonth={setMonth}
-        setYear={setYear}
+        setMonth={setCurrentMonth}
+        setYear={setCurrentYear}
       />
-      <TimePeriodSelector
-        timePeriod={timePeriod}
-        setTimePeriod={setTimePeriod}
-      />
+      <TimePeriodSelector timePeriod={range} setTimePeriod={setCurrentRange} />
     </div>
   );
 };

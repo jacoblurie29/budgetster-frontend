@@ -1,10 +1,11 @@
+import { timeSlice } from "./slices/timeSlice";
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";
 import type { TypedUseSelectorHook } from "react-redux";
 
-const store = configureStore({
+export const store = configureStore({
   reducer: {
-    // ...
+    time: timeSlice.reducer,
   },
 });
 
