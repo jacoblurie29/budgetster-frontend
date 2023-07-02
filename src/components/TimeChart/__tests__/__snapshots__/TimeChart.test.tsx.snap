@@ -796,17 +796,7 @@ exports[`TimeChart Tests correctly renders snapshot 1`] = `
           role="dialog"
           style="transform: translate(undefinedpx, undefinedpx); pointer-events: none; visibility: hidden; position: absolute; top: 0px; left: 0px;"
           tabindex="-1"
-        >
-          <div
-            class="recharts-default-tooltip"
-            style="margin: 0px; padding: 10px; background-color: rgb(47, 47, 47); white-space: nowrap; border-radius: 10px; color: rgb(255, 255, 255); font-size: 12px; text-align: center;"
-          >
-            <p
-              class="recharts-tooltip-label"
-              style="margin: 0px;"
-            />
-          </div>
-        </div>
+        />
       </div>
     </div>
     <span
@@ -1609,17 +1599,7 @@ exports[`TimeChart Tests correctly renders snapshot 1`] = `
         role="dialog"
         style="transform: translate(undefinedpx, undefinedpx); pointer-events: none; visibility: hidden; position: absolute; top: 0px; left: 0px;"
         tabindex="-1"
-      >
-        <div
-          class="recharts-default-tooltip"
-          style="margin: 0px; padding: 10px; background-color: rgb(47, 47, 47); white-space: nowrap; border-radius: 10px; color: rgb(255, 255, 255); font-size: 12px; text-align: center;"
-        >
-          <p
-            class="recharts-tooltip-label"
-            style="margin: 0px;"
-          />
-        </div>
-      </div>
+      />
     </div>
   </div>,
   "debug": [Function],

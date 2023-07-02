@@ -21,4 +21,33 @@ describe("TimeChart Tests", () => {
       expect(component.getAllByText(month).length).toBeGreaterThan(0);
     });
   });
+  test("correct renders time chart axis values", () => {
+    // Render the time chart
+    const component = render(<TimeChart values={testValues} />);
+
+    // Check for every value of "MONTHS_SHORTER" by getByText (single letter month abbreviations) (there are repeats)
+    expect(component.getByText("$0")).toBeTruthy();
+  });
+
+  // test line 31
+  test("correctly renders the time chart when the values are negative", () => {
+    // Render the time chart
+    const component = render(
+      <TimeChart values={testValues.map((value) => -value)} />
+    );
+
+    // Check for every value of "MONTHS_SHORTER" by getByText (single letter month abbreviations) (there are repeats)
+    MONTHS_SHORTER.forEach((month) => {
+      expect(component.getAllByText(month).length).toBeGreaterThan(0);
+    });
+  });
+  test("correct renders time chart axis values when the values are negative", () => {
+    // Render the time chart
+    const component = render(
+      <TimeChart values={testValues.map((value) => -value)} />
+    );
+
+    // Check for every value of "MONTHS_SHORTER" by getByText (single letter month abbreviations) (there are repeats)
+    expect(component.getAllByText("-$300").length).toBeGreaterThan(0);
+  });
 });

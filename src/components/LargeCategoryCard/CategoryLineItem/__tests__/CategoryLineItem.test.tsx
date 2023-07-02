@@ -61,4 +61,48 @@ describe("CategoryLineItem Tests", () => {
     // Check that the value is rendered correctly
     expect(categoryLineItem.children[0].children[1].innerHTML).toBe("-$500");
   });
+  test("correctly renders the category line item when the value is positive", () => {
+    // Render the category line item
+    const component = render(
+      <CategoryLineItem
+        title={testExpensesData[2].name}
+        value={testExpensesData[2].value}
+        percentage={40}
+      />
+    );
+
+    // Obtain the category line item by its testId
+    const categoryLineItem = component.getByTestId("categorylineitem-testId");
+
+    // Check that the title is rendered correctly
+    expect(categoryLineItem.children[0].children[0].innerHTML).toBe("Gas");
+
+    // Check that the percentage is rendered correctly
+    expect(categoryLineItem.children[1].children[1].innerHTML).toBe("40%");
+
+    // Check that the value is rendered correctly
+    expect(categoryLineItem.children[0].children[1].innerHTML).toBe("$100");
+  });
+  test("correctly renders the category line item when the percentage is less than 1", () => {
+    // Render the category line item
+    const component = render(
+      <CategoryLineItem
+        title={testExpensesData[2].name}
+        value={testExpensesData[2].value}
+        percentage={0}
+      />
+    );
+
+    // Obtain the category line item by its testId
+    const categoryLineItem = component.getByTestId("categorylineitem-testId");
+
+    // Check that the title is rendered correctly
+    expect(categoryLineItem.children[0].children[0].innerHTML).toBe("Gas");
+
+    // Check that the percentage is rendered correctly
+    expect(categoryLineItem.children[1].children[1].innerHTML).toBe("&lt; 1%");
+
+    // Check that the value is rendered correctly
+    expect(categoryLineItem.children[0].children[1].innerHTML).toBe("$100");
+  });
 });
