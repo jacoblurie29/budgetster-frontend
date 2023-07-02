@@ -28,6 +28,7 @@ const TimePeriodSelector = ({
       <input
         type="checkbox"
         className="checkbox"
+        defaultChecked={timePeriod === TimePeriod.YEARLY}
         onClick={() => {
           if (timePeriod === TimePeriod.MONTHLY) {
             setTimePeriod(TimePeriod.YEARLY);

@@ -4,12 +4,25 @@ import { TimePeriod, MonetaryItemCategory } from "../../types/types";
 import "./Dashboard.styles.css";
 import TopBar from "../../layout/topbar/TopBar";
 import { AllMonetaryItemsQuery } from "../../graphql/MonetaryItem.gql";
-import { useEffect } from "react";
+import TimeChart from "../../components/TimeChart/TimeChart";
+import { useAppSelector } from "../../state/configureStore";
+import { isViewable } from "../../util/helpers/monetaryItem.util";
+import { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 import type { MonetaryItem } from "../../types/types";
 
 const Dashboard = () => {
-  const { loading, data, refetch } = useQuery(AllMonetaryItemsQuery);
+  const [chartValues, setChartValues] = useState<number[]>(Array(12).fill(0));
+  const { loading, data, refetch } = useQuery(AllMonetaryItemsQuery, {
+    fetchPolicy: "cache-and-network",
+  });
+
+  // Current month, year, and range state
+  const month = useAppSelector((state) => state.time.month);
+  const year = useAppSelector((state) => state.time.year);
+  const range = useAppSelector((state) => state.time.range);
+
+  const outlookValue = chartValues.reduce((a, b) => a + b, 0) / 12;
 
   // Refetch monetary items on mount
   useEffect(() => {
@@ -21,18 +34,35 @@ const Dashboard = () => {
     }
   }, []);
 
-  if (loading) return <div>Loading...</div>;
+  // Update chart values when monetary items change
+  useEffect(() => {
+    if (data?.getMonetaryItems === undefined) return;
 
-  const outlookValue = data.getMonetaryItems.reduce(
-    (a: number, b: MonetaryItem) => {
-      if (b.type === MonetaryItemCategory.INCOME) {
-        return a + b.value;
-      } else {
-        return a - b.value;
-      }
-    },
-    0
-  );
+    const filteredMonetaryItems = data.getMonetaryItems.filter(
+      // filter for date
+      (item: MonetaryItem, index: number) =>
+        item.type === MonetaryItemCategory.EXPENSE &&
+        isViewable(item, index, year, TimePeriod.YEARLY)
+    );
+
+    const chartData = Array(12).fill(0);
+
+    chartData.forEach((_, index) => {
+      filteredMonetaryItems.forEach((item: MonetaryItem) => {
+        if (isViewable(item, index, year, TimePeriod.MONTHLY)) {
+          if (item.type === MonetaryItemCategory.INCOME) {
+            chartData[index] += item.value;
+          } else {
+            chartData[index] -= item.value;
+          }
+        }
+      });
+    });
+
+    setChartValues(chartData);
+  }, [month, year, data]);
+
+  if (loading) return <div>Loading...</div>;
 
   return (
     <div className="dashboard-container">
@@ -49,12 +79,16 @@ const Dashboard = () => {
           subtitle="per month"
           isValueCard
         />
+        <TimeChart values={chartValues} />
       </div>
       <LargeCategoryCard
         title="Expenses"
         values={
           data.getMonetaryItems.filter(
-            (item: MonetaryItem) => item.type === MonetaryItemCategory.EXPENSE
+            // filter for date
+            (item: MonetaryItem, index: number) =>
+              item.type === MonetaryItemCategory.EXPENSE &&
+              isViewable(item, index, year, range)
           ) as MonetaryItem[]
         }
         timePeriod={TimePeriod.MONTHLY}
@@ -64,7 +98,9 @@ const Dashboard = () => {
         title="Income"
         values={
           data.getMonetaryItems.filter(
-            (item: MonetaryItem) => item.type === MonetaryItemCategory.INCOME
+            (item: MonetaryItem, index: number) =>
+              item.type === MonetaryItemCategory.INCOME &&
+              isViewable(item, index, year, range)
           ) as MonetaryItem[]
         }
         timePeriod={TimePeriod.MONTHLY}
@@ -74,8 +110,9 @@ const Dashboard = () => {
         title="Investments"
         values={
           data.getMonetaryItems.filter(
-            (item: MonetaryItem) =>
-              item.type === MonetaryItemCategory.INVESTMENT
+            (item: MonetaryItem, index: number) =>
+              item.type === MonetaryItemCategory.INVESTMENT &&
+              isViewable(item, index, year, range)
           ) as MonetaryItem[]
         }
         timePeriod={TimePeriod.MONTHLY}

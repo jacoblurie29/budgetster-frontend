@@ -41,6 +41,7 @@ const Category = ({ category }: CategoryProps) => {
   // Query for monetary items of the given category
   const { loading, data, refetch } = useQuery(GetMonetaryItemsByTypeQuery, {
     variables: { type: category },
+    fetchPolicy: "cache-and-network",
   });
 
   const isViewable = (item: MonetaryItem) => {
@@ -180,7 +181,7 @@ const Category = ({ category }: CategoryProps) => {
           name: "New " + category,
           value: 0,
           date: new Date().toISOString(),
-          repeat: false,
+          repeat: true,
           repeatPeriod: TimePeriod.MONTHLY,
           repeatEndDate: new Date().toISOString(),
           type: category,

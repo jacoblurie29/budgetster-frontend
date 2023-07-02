@@ -35,3 +35,22 @@ export const MONTHS_SHORT = [
   "Nov",
   "Dec",
 ];
+
+/**
+ * @constant MONTHS_SHORTER
+ * @description Array of months in a year (shortened to 2 letters)
+ */
+export const MONTHS_SHORTER = [
+  "J",
+  "F",
+  "M",
+  "A",
+  "M",
+  "J",
+  "J",
+  "A",
+  "S",
+  "O",
+  "N",
+  "D",
+];
