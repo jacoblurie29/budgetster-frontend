@@ -16,6 +16,12 @@ exports[`CategoryLineItem Tests correctly renders snapshot 1`] = `
             class="categorylineitem-title"
           >
             Rent
+             
+            <span
+              class="categorylineitem-repeatingperiod"
+            >
+               
+            </span>
           </div>
           <div
             class="categorylineitem-value"
@@ -53,6 +59,12 @@ exports[`CategoryLineItem Tests correctly renders snapshot 1`] = `
           class="categorylineitem-title"
         >
           Rent
+           
+          <span
+            class="categorylineitem-repeatingperiod"
+          >
+             
+          </span>
         </div>
         <div
           class="categorylineitem-value"

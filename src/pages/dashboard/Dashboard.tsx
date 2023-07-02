@@ -22,7 +22,7 @@ const Dashboard = () => {
   const year = useAppSelector((state) => state.time.year);
   const range = useAppSelector((state) => state.time.range);
 
-  const outlookValue = chartValues.reduce((a, b) => a + b, 0) / 12;
+  const outlookValue = Math.round(chartValues.reduce((a, b) => a + b, 0) / 12);
 
   // Refetch monetary items on mount
   useEffect(() => {

@@ -57,6 +57,7 @@ const LargeCategoryCard = ({
               title={value.name}
               value={value.value}
               percentage={Math.floor((value.value / total) * 100)}
+              repeatingPeriod={value.repeatPeriod}
             />
           ))}
       </div>

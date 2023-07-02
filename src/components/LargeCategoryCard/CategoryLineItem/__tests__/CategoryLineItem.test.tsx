@@ -27,8 +27,10 @@ describe("CategoryLineItem Tests", () => {
     // Obtain the category line item by its testId
     const categoryLineItem = component.getByTestId("categorylineitem-testId");
 
-    // Check that the title is rendered correctly
-    expect(categoryLineItem.children[0].children[0].innerHTML).toBe("Rent");
+    // Check that the title is rendered correctly and has some of the word gas
+    expect(categoryLineItem.children[0].children[0].innerHTML).toContain(
+      "Rent"
+    );
 
     // Check that the percentage is rendered correctly
     expect(categoryLineItem.children[1].children[1].innerHTML).toBe("40%");
@@ -51,7 +53,7 @@ describe("CategoryLineItem Tests", () => {
     const categoryLineItem = component.getByTestId("categorylineitem-testId");
 
     // Check that the title is rendered correctly
-    expect(categoryLineItem.children[0].children[0].innerHTML).toBe(
+    expect(categoryLineItem.children[0].children[0].innerHTML).toContain(
       "Groceries"
     );
 
@@ -75,7 +77,7 @@ describe("CategoryLineItem Tests", () => {
     const categoryLineItem = component.getByTestId("categorylineitem-testId");
 
     // Check that the title is rendered correctly
-    expect(categoryLineItem.children[0].children[0].innerHTML).toBe("Gas");
+    expect(categoryLineItem.children[0].children[0].innerHTML).toContain("Gas");
 
     // Check that the percentage is rendered correctly
     expect(categoryLineItem.children[1].children[1].innerHTML).toBe("40%");
@@ -97,7 +99,7 @@ describe("CategoryLineItem Tests", () => {
     const categoryLineItem = component.getByTestId("categorylineitem-testId");
 
     // Check that the title is rendered correctly
-    expect(categoryLineItem.children[0].children[0].innerHTML).toBe("Gas");
+    expect(categoryLineItem.children[0].children[0].innerHTML).toContain("Gas");
 
     // Check that the percentage is rendered correctly
     expect(categoryLineItem.children[1].children[1].innerHTML).toBe("&lt; 1%");

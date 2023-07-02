@@ -51,7 +51,7 @@ describe("LargeCategoryCard Tests", () => {
     expect(
       largeCategoryCard.children[1].children[1].children[0].children[0]
         .innerHTML
-    ).toBe("Rent");
+    ).toContain("Rent");
     expect(
       largeCategoryCard.children[1].children[1].children[0].children[1]
         .innerHTML
@@ -59,7 +59,7 @@ describe("LargeCategoryCard Tests", () => {
     expect(
       largeCategoryCard.children[1].children[2].children[0].children[0]
         .innerHTML
-    ).toBe("Groceries");
+    ).toContain("Groceries");
     expect(
       largeCategoryCard.children[1].children[2].children[0].children[1]
         .innerHTML
@@ -67,7 +67,7 @@ describe("LargeCategoryCard Tests", () => {
     expect(
       largeCategoryCard.children[1].children[3].children[0].children[0]
         .innerHTML
-    ).toBe("Car Insurance");
+    ).toContain("Car Insurance");
     expect(
       largeCategoryCard.children[1].children[3].children[0].children[1]
         .innerHTML
@@ -75,7 +75,7 @@ describe("LargeCategoryCard Tests", () => {
     expect(
       largeCategoryCard.children[1].children[4].children[0].children[0]
         .innerHTML
-    ).toBe("Gas");
+    ).toContain("Gas");
     expect(
       largeCategoryCard.children[1].children[4].children[0].children[1]
         .innerHTML
@@ -108,7 +108,7 @@ describe("LargeCategoryCard Tests", () => {
     expect(
       largeCategoryCard.children[1].children[1].children[0].children[0]
         .innerHTML
-    ).toBe("Paycheck");
+    ).toContain("Paycheck");
     expect(
       largeCategoryCard.children[1].children[1].children[0].children[1]
         .innerHTML
@@ -116,7 +116,7 @@ describe("LargeCategoryCard Tests", () => {
     expect(
       largeCategoryCard.children[1].children[2].children[0].children[0]
         .innerHTML
-    ).toBe("Side Hustle");
+    ).toContain("Side Hustle");
     expect(
       largeCategoryCard.children[1].children[2].children[0].children[1]
         .innerHTML
