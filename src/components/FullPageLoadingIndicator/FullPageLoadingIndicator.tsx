@@ -8,7 +8,10 @@ import "./FullPageLoadingIndicator.styles.css";
  * @param {string} title - The title to display below the progress bar (optional - defaults to "Loading")
  */
 const FullPageLoadingIndicator = ({ title }: FullPageLoadingIndicatorProps) => (
-  <div className="full-page-loading-indicator">
+  <div
+    data-testid="fullpageloadingindicator-testId"
+    className="full-page-loading-indicator"
+  >
     <div className="full-page-loading-indicator-progress">
       <PropagateLoader color={"#76e7aa"} />
     </div>
