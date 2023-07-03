@@ -48,7 +48,7 @@ const LargeCategoryCard = ({
         </div>
       </div>
       <div className="largecategorycard-content">
-        <CategoryBreakdownBar values={values} />
+        {values.length > 0 && <CategoryBreakdownBar values={values} />}
         {values
           .sort((a, b) => b.value - a.value)
           .map((value, index) => (
@@ -60,6 +60,11 @@ const LargeCategoryCard = ({
               repeatingPeriod={value.repeatPeriod}
             />
           ))}
+        {values.length === 0 && (
+          <div className="largecategorycard-novalues">
+            No {category}s to display
+          </div>
+        )}
       </div>
     </div>
   );

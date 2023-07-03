@@ -12,6 +12,7 @@ import {
 import { TimePeriod } from "../../types/types";
 import { useAppSelector } from "../../state/configureStore";
 import { compareMonetaryItems } from "../../util/helpers/monetaryItem.util";
+import FullPageLoadingIndicator from "../../components/FullPageLoadingIndicator/FullPageLoadingIndicator";
 import { DataGrid } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
 import { useMutation, useQuery } from "@apollo/client";
@@ -103,7 +104,6 @@ const Category = ({ category }: CategoryProps) => {
       <div className="category-no-rows-overlay">No {category}s to display</div>
     </Stack>
   );
-
   // Update monetary item
   const handleUpdateMonetaryItem = async (
     newRow: MonetaryItem,
@@ -323,7 +323,7 @@ const Category = ({ category }: CategoryProps) => {
     },
   ];
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <FullPageLoadingIndicator />;
 
   return (
     <div className="category-container">
@@ -336,9 +336,9 @@ const Category = ({ category }: CategoryProps) => {
           checkboxSelection
           disableRowSelectionOnClick
           density="standard"
+          loading={loading}
           sx={dataGridStyles}
           slots={{
-            columnMenu: () => <div>Loading...</div>,
             noRowsOverlay: renderNoRowsOverlay,
             noResultsOverlay: renderNoRowsOverlay,
           }}
