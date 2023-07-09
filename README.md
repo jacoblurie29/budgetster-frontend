@@ -29,12 +29,21 @@ npm run dev
 ```
 
 ### Visual Plan (figma):
-
-<img width="877" alt="Screen Shot 2023-05-24 at 5 33 03 PM" src="https://github.com/jacoblurie29/Budgetster/assets/19592236/2c572788-a138-4f5d-b142-ec27992a0624">
+<img width="877" alt="LandingPage" src="https://github.com/jacoblurie29/budgetster-frontend/assets/19592236/2759baf4-299f-4b79-aca7-664701064076">
 <br />
 <br />
-
-<img width="877" alt="Screen Shot 2023-06-18 at 3 14 55 PM" src="https://github.com/jacoblurie29/budgetster-frontend/assets/19592236/cddd3480-61ea-450e-94a1-9b2afe137af8">
+<img width="877" alt="Dashboard" src="https://github.com/jacoblurie29/Budgetster/assets/19592236/2c572788-a138-4f5d-b142-ec27992a0624">
+<br />
+<br />
+<img width="877" alt="CategoryPage" src="https://github.com/jacoblurie29/budgetster-frontend/assets/19592236/cddd3480-61ea-450e-94a1-9b2afe137af8">
+<br />
+<br />
+<img width="877" alt="Login" src="https://github.com/jacoblurie29/budgetster-frontend/assets/19592236/df1ddc05-6b29-439f-9148-8469b7b0dc78">
+<br />
+<br />
+<img width="877" alt="Register" src="https://github.com/jacoblurie29/budgetster-frontend/assets/19592236/bbee260f-37ce-4471-821c-d4bf5cf25547">
+<br />
+<br />
 
 ### Built With
 
