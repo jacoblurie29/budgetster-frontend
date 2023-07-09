@@ -12,7 +12,7 @@ import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import { Provider } from "react-redux";
 
 const apolloClient = new ApolloClient({
-  uri: "http://127.0.0.1:4000",
+  uri: "http://127.0.0.1:4010",
   cache: new InMemoryCache(),
 });
 
