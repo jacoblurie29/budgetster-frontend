@@ -32,10 +32,10 @@ npm run dev
 <img width="877" alt="LandingPage" src="https://github.com/jacoblurie29/budgetster-frontend/assets/19592236/643b6b11-7880-43b7-aff2-ed21df8daed7">
 <br />
 <br />
-<img width="877" alt="Dashboard" src="https://github.com/jacoblurie29/Budgetster/assets/19592236/2c572788-a138-4f5d-b142-ec27992a0624">
+<img width="877" alt="Dashboard" src="https://github.com/jacoblurie29/budgetster-frontend/assets/19592236/ef5e970d-a52b-42a7-b195-1b3ebd185ac5">
 <br />
 <br />
-<img width="877" alt="CategoryPage" src="https://github.com/jacoblurie29/budgetster-frontend/assets/19592236/cddd3480-61ea-450e-94a1-9b2afe137af8">
+<img width="877" alt="CategoryPage" src="https://github.com/jacoblurie29/budgetster-frontend/assets/19592236/db9cc4cd-88b1-4d6e-8c90-afae4c994382">
 <br />
 <br />
 <img width="877" alt="Login" src="https://github.com/jacoblurie29/budgetster-frontend/assets/19592236/df1ddc05-6b29-439f-9148-8469b7b0dc78">
