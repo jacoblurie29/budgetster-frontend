@@ -1,0 +1,147 @@
+.accounts-container {
+  display: flex;
+  flex-direction: row;
+  align-items: left;
+  justify-content: right;
+  height: 100vh;
+  width: 100vw;
+}
+
+.accounts-left-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  height: 100%;
+  width: 50%;
+  margin: 0px;
+  padding: 0px;
+  font-family: "Lexend Exa", sans-serif !important;
+  background: linear-gradient(
+    0deg,
+    rgba(118, 231, 170, 1) 0%,
+    rgba(0, 0, 0, 1) 100%
+  );
+  overflow: hidden;
+}
+
+.accounts-text-container {
+  padding: 0px 60px 100px 60px;
+}
+
+.accounts-right-container {
+  height: 100%;
+  width: 50%;
+  background-color: #eeeeee;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "Lexend Exa", sans-serif !important;
+}
+
+.accounts-cashbag {
+  height: 100px;
+  width: fit-content;
+  margin: 0;
+  padding: 0;
+}
+
+.accounts-left-container h1 {
+  font-size: 40px;
+  font-weight: 500;
+  color: #eeeeee;
+  letter-spacing: 0px;
+  margin: 0;
+  padding: 0px 0px 10px 10px;
+}
+
+.accounts-left-container h2 {
+  font-size: 20px;
+  font-weight: 200;
+  color: #eeeeee;
+  letter-spacing: -1px;
+  margin: 0;
+  padding: 0px 0px 0px 10px;
+}
+
+.accounts-action-container {
+  padding: 35px 15px;
+  background-color: #ffffff;
+  width: 60%;
+  max-width: 600px;
+  min-width: 300px;
+  height: fit-content;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.accounts-action-logo {
+  width: 100px;
+  margin: 0;
+  padding: 0;
+}
+
+.accounts-action-container h1 {
+  font-weight: 400;
+  letter-spacing: -3px;
+  margin: 0;
+  padding: 0px 0px 20px 0px;
+  color: #494949;
+  font-family: "Lexend Exa", sans-serif !important;
+}
+
+.accounts-action-names-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 95%;
+}
+
+@media (max-width: 1000px) {
+  .accounts-left-container {
+    height: 100%;
+    width: 0%;
+  }
+
+  .accounts-right-container {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+@media (min-width: 1000px) {
+  .accounts-left-container {
+    height: 100%;
+    width: 40%;
+  }
+
+  .accounts-text-container {
+    padding-left: 20px;
+  }
+
+  .accounts-right-container {
+    height: 100%;
+    width: 60%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .accounts-left-container {
+    height: 100%;
+    width: 50%;
+  }
+
+  .accounts-text-container {
+    padding-left: 40px;
+  }
+
+  .accounts-right-container {
+    height: 100%;
+    width: 50%;
+  }
+}

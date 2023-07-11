@@ -5,6 +5,7 @@ import { MonetaryItemCategory } from "../types/types.ts";
 import Settings from "../pages/settings/Settings.tsx";
 import Category from "../pages/category/Category.tsx";
 import { store } from "../state/configureStore.ts";
+import Accounts from "../pages/accounts/Accounts.tsx";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
         element: <Settings />,
       },
     ],
+  },
+  {
+    path: "/accounts",
+    element: <Accounts />,
   },
 ]);
 

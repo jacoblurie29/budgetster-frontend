@@ -8,6 +8,7 @@ import { render } from "@testing-library/react";
 
 describe("LargeCategoryCard Tests", () => {
   test("correctly renders snapshot", () => {
+    console.log(testExpensesData[0]);
     const component = render(
       <LargeCategoryCard
         title={"Expenses"}

@@ -1,4 +1,8 @@
-import { dataGridStyles, noRowsStackStyles } from "./Category.definitions";
+import {
+  categoryColumns,
+  dataGridStyles,
+  noRowsStackStyles,
+} from "./Category.definitions";
 import TopBar from "../../layout/topbar/TopBar";
 
 import { capitalizeFirstLetter } from "../../util/helpers/string.util";
@@ -20,12 +24,11 @@ import { useMutation, useQuery } from "@apollo/client";
 import { Alert, Snackbar, Stack } from "@mui/material";
 
 import type { AlertProps } from "@mui/material";
-import type { GridAlignment, GridRowId } from "@mui/x-data-grid";
-
-import "./Category.styles.css";
-import type { CategoryProps, AmountParamsProps } from "./Category.definitions";
+import type { GridRowId } from "@mui/x-data-grid";
+import type { CategoryProps } from "./Category.definitions";
 import type { MonetaryItem } from "../../types/types";
 
+import "./Category.styles.css";
 /**
  * @component Category - Displays the monetary items of a given category
  * @param {MonetaryItemCategory} category - The category of the monetary items to be displayed
@@ -235,11 +238,6 @@ const Category = ({ category }: CategoryProps) => {
     console.log("❌ [API]: ", error);
   };
 
-  // Format category name for display
-  const firstColumnTitle = category.endsWith("s")
-    ? capitalizeFirstLetter(category.slice(0, -1))
-    : capitalizeFirstLetter(category);
-
   // Refetch monetary items on mount
   useEffect(() => {
     try {
@@ -249,80 +247,6 @@ const Category = ({ category }: CategoryProps) => {
     }
   }, []);
 
-  // Define columns for the data grid
-  const columns = [
-    {
-      field: "name",
-      headerName: firstColumnTitle,
-      flex: 1.5,
-      editable: true,
-      type: "string",
-      align: "left" as GridAlignment,
-      headerAlign: "left" as GridAlignment,
-    },
-    {
-      field: "value",
-      headerName: "Amount",
-      flex: 1,
-      editable: true,
-      type: "number",
-      align: "center" as GridAlignment,
-      headerAlign: "center" as GridAlignment,
-      valueFormatter: ({ value }: AmountParamsProps) => "$" + value.toFixed(0),
-    },
-    {
-      field: "date",
-      headerName: "Date",
-      flex: 1,
-      editable: true,
-      type: "date",
-      align: "center" as GridAlignment,
-      headerAlign: "center" as GridAlignment,
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      valueGetter: (params: any) => new Date(params.row.date),
-    },
-    {
-      field: "repeat",
-      headerName: "Repeat",
-      flex: 1,
-      editable: true,
-      type: "boolean",
-      align: "center" as GridAlignment,
-      headerAlign: "center" as GridAlignment,
-    },
-    {
-      field: "repeatPeriod",
-      headerName: "Repeat Period",
-      flex: 1,
-      editable: true,
-      type: "singleSelect",
-      defaultValue: TimePeriod.MONTHLY,
-      valueOptions: [
-        TimePeriod.MONTHLY,
-        TimePeriod.YEARLY,
-        TimePeriod.WEEKLY,
-        {
-          value: null,
-          label: "-",
-        },
-      ],
-      align: "center" as GridAlignment,
-      headerAlign: "center" as GridAlignment,
-    },
-    {
-      field: "repeatEndDate",
-      headerName: "End Date",
-      flex: 1,
-      editable: true,
-      type: "date",
-      align: "center" as GridAlignment,
-      headerAlign: "center" as GridAlignment,
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      valueGetter: (params: any) =>
-        params.row.repeatEndDate ? new Date(params.row.repeatEndDate) : null,
-    },
-  ];
-
   if (loading) return <FullPageLoadingIndicator />;
 
   return (
@@ -331,7 +255,7 @@ const Category = ({ category }: CategoryProps) => {
       <div className="category-chart">
         <DataGrid
           getRowId={(row) => row._id}
-          columns={columns}
+          columns={categoryColumns(category)}
           rows={rows}
           checkboxSelection
           disableRowSelectionOnClick
