@@ -29,6 +29,7 @@ npm run dev
 ```
 
 ### Visual Plan (figma):
+
 <img width="877" alt="LandingPage" src="https://github.com/jacoblurie29/budgetster-frontend/assets/19592236/643b6b11-7880-43b7-aff2-ed21df8daed7">
 <br />
 <br />
