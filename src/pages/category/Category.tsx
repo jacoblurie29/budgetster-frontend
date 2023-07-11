@@ -49,27 +49,29 @@ const Category = ({ category }: CategoryProps) => {
   });
 
   const isViewable = (item: MonetaryItem) => {
-    const itemDate = new Date(item.date);
+    const startDate = new Date(item.date);
+    const currentDate = new Date(year, month);
 
     // filter by year if the range is yearly or if the item is repeating
     if (range === TimePeriod.YEARLY) {
       return (
-        itemDate.getFullYear() === year ||
+        startDate.getFullYear() === year ||
         (item.repeat &&
           item.repeatEndDate &&
-          itemDate.getFullYear() <= year &&
+          startDate.getFullYear() <= year &&
           new Date(item.repeatEndDate).getFullYear() >= year)
       );
 
       // filter by month if the range is monthly or if the item is repeating
     } else {
       return (
-        (itemDate.getFullYear() === year && itemDate.getMonth() === month) ||
+        (!item.repeat &&
+          startDate.getMonth() === month &&
+          startDate.getFullYear() === year) ||
         (item.repeat &&
           item.repeatEndDate &&
-          itemDate.getFullYear() <= year &&
-          new Date(item.repeatEndDate).getFullYear() >= year &&
-          itemDate.getMonth() === month)
+          startDate <= currentDate &&
+          new Date(item.repeatEndDate) >= currentDate)
       );
     }
   };
