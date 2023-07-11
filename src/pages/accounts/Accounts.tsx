@@ -1,12 +1,16 @@
 import budgetsterCashBag from "../../assets/BudgsterCashBag.png";
-import budgetsterLogo from "../../assets/BudgetsterLogo.png";
-import FormInput from "../../components/FormInput/FormInput";
+import LoginCard from "../../components/LoginCard/LoginCard";
+import RegisterCard from "../../components/RegisterCard/RegisterCard";
+import { AuthType } from "../../types/types";
+import "./Accounts.styles.css";
 import { useState } from "react";
 
-import "./Accounts.styles.css";
-
 const Accounts = () => {
-  const [isLogin, setIsLogin] = useState(true);
+  const [isLogin, setIsLogin] = useState(AuthType.LOGIN);
+
+  const handleModeChange = (newValue: AuthType) => {
+    setIsLogin(newValue);
+  };
 
   return (
     <div className="accounts-container">
@@ -21,25 +25,11 @@ const Accounts = () => {
         </div>
       </div>
       <div className="accounts-right-container">
-        <div className="accounts-action-container">
-          <img className="accounts-action-logo" src={budgetsterLogo} />
-          <h1>Let's get started.</h1>
-          <FormInput
-            label="Email"
-            placeholder="example@budgetster.com"
-            type="tmail"
-          />
-          <div className="accounts-action-names-container">
-            <FormInput label="First name" placeholder="John" type="text" />
-            <FormInput label="Last name" placeholder="Doe" type="text" />
-          </div>
-          <FormInput label="Password" placeholder="•••••••••" type="password" />
-          <FormInput
-            label="Confirm Password"
-            placeholder="•••••••••"
-            type="password"
-          />
-        </div>
+        {isLogin === AuthType.LOGIN ? (
+          <LoginCard handleModeChange={handleModeChange} />
+        ) : (
+          <RegisterCard handleModeChange={handleModeChange} />
+        )}
       </div>
     </div>
   );

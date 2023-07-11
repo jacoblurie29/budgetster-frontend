@@ -59,3 +59,14 @@ export enum MonetaryItemCategory {
   SAVINGS = "savings",
   INVESTMENT = "investment",
 }
+
+/**
+ * @enum MonetaryItemCategory - Enum for the type of a monetary item.
+ *
+ * @param {string} LOGIN - The user is logging in.
+ * @param {string} SIGNUP - The user is signing up.
+ */
+export enum AuthType {
+  LOGIN = "login",
+  SIGNUP = "signup",
+}

@@ -1,0 +1,229 @@
+.login-action-container {
+  padding: 35px 15px 15px 15px;
+  background-color: #ffffff;
+  width: 60%;
+  max-width: 600px;
+  min-width: 300px;
+  height: fit-content;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-action-logo {
+  width: 100px;
+  margin: 0;
+  padding: 0;
+}
+
+.login-action-container h1 {
+  font-weight: 400;
+  letter-spacing: -3px;
+  margin: 0;
+  padding: 0px 0px 20px 0px;
+  color: #494949;
+  font-family: "Lexend Exa", sans-serif !important;
+}
+
+.login-action-button {
+  width: 90%;
+  height: 50px;
+  padding: 0;
+  margin: 30px 0px 0px 0px;
+  border-radius: 10px;
+  border: none;
+  background-image: -webkit-linear-gradient(180deg, #76e7aa, #8ae2e8);
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -1px;
+  cursor: pointer;
+  font-family: "Lexend Exa", sans-serif !important;
+}
+
+.login-action-switch-text-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  padding-top: 10px;
+}
+
+.login-switch-text {
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: -1px;
+  color: #494949;
+  text-decoration: none;
+}
+
+.login-switch-link {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: -1px;
+  background-image: -webkit-linear-gradient(180deg, #41e58e, #40ced8);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.login-switch-link:hover {
+  cursor: pointer;
+}
+
+.checkbox-wrapper-42 {
+  padding-top: 10px;
+}
+
+.checkbox-wrapper-42 input[type="checkbox"] {
+  display: none;
+  visibility: hidden;
+}
+
+.checkbox-wrapper-42 label {
+  display: inline-block;
+  letter-spacing: -1px;
+  color: #494949;
+  font-size: 14px;
+}
+
+.checkbox-wrapper-42 .cbx {
+  position: relative;
+  top: 1px;
+  width: 17px;
+  height: 17px;
+  border: 1px solid #c8ccd4;
+  border-radius: 3px;
+  vertical-align: middle;
+  cursor: pointer;
+}
+.checkbox-wrapper-42 .cbx:after {
+  content: "";
+  position: absolute;
+  top: 1px;
+  left: 5px;
+  width: 5px;
+  height: 11px;
+  opacity: 0;
+  transform: rotate(45deg) scale(0);
+  border-right: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  transition: all 0.3s ease;
+  transition-delay: 0.15s;
+}
+.checkbox-wrapper-42 .lbl {
+  margin-left: 5px;
+  vertical-align: middle;
+  cursor: pointer;
+}
+.checkbox-wrapper-42 input[type="checkbox"]:checked ~ .cbx {
+  border-color: transparent;
+  background: -webkit-linear-gradient(180deg, #76e7aa, #8ae2e8);
+  animation: jelly-42 0.6s ease;
+}
+.checkbox-wrapper-42 input[type="checkbox"]:checked ~ .cbx:after {
+  opacity: 1;
+  transform: rotate(45deg) scale(1);
+}
+.checkbox-wrapper-42 .cntr {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+@-moz-keyframes jelly-42 {
+  from {
+    transform: scale(1, 1);
+  }
+  30% {
+    transform: scale(1.25, 0.75);
+  }
+  40% {
+    transform: scale(0.75, 1.25);
+  }
+  50% {
+    transform: scale(1.15, 0.85);
+  }
+  65% {
+    transform: scale(0.95, 1.05);
+  }
+  75% {
+    transform: scale(1.05, 0.95);
+  }
+  to {
+    transform: scale(1, 1);
+  }
+}
+@-webkit-keyframes jelly-42 {
+  from {
+    transform: scale(1, 1);
+  }
+  30% {
+    transform: scale(1.25, 0.75);
+  }
+  40% {
+    transform: scale(0.75, 1.25);
+  }
+  50% {
+    transform: scale(1.15, 0.85);
+  }
+  65% {
+    transform: scale(0.95, 1.05);
+  }
+  75% {
+    transform: scale(1.05, 0.95);
+  }
+  to {
+    transform: scale(1, 1);
+  }
+}
+@-o-keyframes jelly-42 {
+  from {
+    transform: scale(1, 1);
+  }
+  30% {
+    transform: scale(1.25, 0.75);
+  }
+  40% {
+    transform: scale(0.75, 1.25);
+  }
+  50% {
+    transform: scale(1.15, 0.85);
+  }
+  65% {
+    transform: scale(0.95, 1.05);
+  }
+  75% {
+    transform: scale(1.05, 0.95);
+  }
+  to {
+    transform: scale(1, 1);
+  }
+}
+@keyframes jelly-42 {
+  from {
+    transform: scale(1, 1);
+  }
+  30% {
+    transform: scale(1.25, 0.75);
+  }
+  40% {
+    transform: scale(0.75, 1.25);
+  }
+  50% {
+    transform: scale(1.15, 0.85);
+  }
+  65% {
+    transform: scale(0.95, 1.05);
+  }
+  75% {
+    transform: scale(1.05, 0.95);
+  }
+  to {
+    transform: scale(1, 1);
+  }
+}
