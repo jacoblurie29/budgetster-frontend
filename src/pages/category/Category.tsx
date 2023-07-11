@@ -49,8 +49,18 @@ const Category = ({ category }: CategoryProps) => {
   });
 
   const isViewable = (item: MonetaryItem) => {
-    const startDate = new Date(item.date);
-    const currentDate = new Date(year, month);
+    // Get the start date of the item
+    const startDateFromObject = new Date(item.date);
+
+    // Reset the start date to the first of the month (for comparison)
+    const startDate = new Date(
+      startDateFromObject.getFullYear(),
+      startDateFromObject.getMonth(),
+      1
+    );
+
+    // Get the current date of the time control from redux
+    const currentDate = new Date(year, month, 1);
 
     // filter by year if the range is yearly or if the item is repeating
     if (range === TimePeriod.YEARLY) {
@@ -148,8 +158,6 @@ const Category = ({ category }: CategoryProps) => {
       newRow.repeatEndDate = undefined;
       newRow.repeatPeriod = undefined;
     }
-
-    console.log(newRow.repeat);
 
     // Update monetary item
     const response = await updateMonetaryItem({
