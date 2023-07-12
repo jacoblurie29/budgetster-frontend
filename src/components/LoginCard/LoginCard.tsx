@@ -1,49 +1,65 @@
+import { LoginInputName } from "./LoginCard.definitions";
 import FormInput from "../FormInput/FormInput";
 import budgetsterLogo from "../../assets/BudgetsterLogo.png";
 import "./LoginCard.styles.css";
 import { AuthType } from "../../types/types";
-import type { LoginCardProps } from "./LoginCard.definitions";
+import FormCheckbox from "../FormCheckbox/FormCheckbox";
+import { useForm } from "react-hook-form";
+import type { LoginCardProps, LoginInput } from "./LoginCard.definitions";
+import type { SubmitHandler } from "react-hook-form";
 
 const LoginCard = ({ handleModeChange }: LoginCardProps) => {
-  const handleLogin = () => {
-    console.log("💻 [AUTH]: Handling login...");
-  };
+  const {
+    control,
+    handleSubmit,
+    // formState: { errors },
+  } = useForm<LoginInput>({
+    defaultValues: {
+      [LoginInputName.EMAIL]: "",
+      [LoginInputName.PASSWORD]: "",
+      [LoginInputName.REMEMBER_ME]: false,
+    },
+  });
+  const onSubmit: SubmitHandler<LoginInput> = (data) => console.log(data);
 
   return (
     <div className="login-action-container">
-      <img className="login-action-logo" src={budgetsterLogo} />
-      <h1>Welcome back.</h1>
-      <FormInput
-        name="email"
-        label="Email"
-        placeholder="example@budgetster.com"
-        type="tmail"
-      />
-      <FormInput
-        name="password"
-        label="Password"
-        placeholder="•••••••••"
-        type="password"
-      />
-      <div className="checkbox-wrapper-42">
-        <input id="cbx-42" type="checkbox" />
-        <label className="cbx" htmlFor="cbx-42" />
-        <label className="lbl" htmlFor="cbx-42">
-          Remember me
-        </label>
-      </div>
-      <button className="login-action-button" onClick={handleLogin}>
-        Log in
-      </button>
-      <div className="login-action-switch-text-container">
-        <p className="login-switch-text">{"Don't have an account?"}</p>
-        <a
-          className="login-switch-link"
-          onClick={() => handleModeChange(AuthType.SIGNUP)}
-        >
-          Sign up here!
-        </a>
-      </div>
+      <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
+        <img className="login-action-logo" src={budgetsterLogo} />
+        <h1>Welcome back.</h1>
+        <FormInput
+          name={LoginInputName.EMAIL}
+          control={control}
+          label="Email"
+          placeholder="example@budgetster.com"
+          type="email"
+        />
+        <FormInput
+          name={LoginInputName.PASSWORD}
+          control={control}
+          label="Password"
+          placeholder="•••••••••"
+          type="password"
+        />
+        <FormCheckbox
+          name={LoginInputName.REMEMBER_ME}
+          label="Remember me?"
+          defaultChecked={false}
+          control={control}
+        />
+        <button className="login-action-button" type="submit">
+          Log in
+        </button>
+        <div className="login-action-switch-text-container">
+          <p className="login-switch-text">{"Don't have an account?"}</p>
+          <a
+            className="login-switch-link"
+            onClick={() => handleModeChange(AuthType.SIGNUP)}
+          >
+            Sign up here!
+          </a>
+        </div>
+      </form>
     </div>
   );
 };

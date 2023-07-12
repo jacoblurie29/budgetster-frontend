@@ -1,13 +1,13 @@
-import type { UseFormRegister, FieldValues } from "react-hook-form";
+import type { LoginInputName } from "../LoginCard/LoginCard.definitions";
+import type { RegisterInputName } from "../RegisterCard/RegisterCard.definitions";
+import type { Control } from "react-hook-form";
 
 export interface FormInputProps {
+  name: RegisterInputName | LoginInputName;
   type: string;
-  name: string;
   label?: string;
   placeholder: string;
   defaultValue?: string;
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  onKeyPress?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
-  register: UseFormRegister<FieldValues>;
-  errors: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  control: Control<any, any>;
 }
