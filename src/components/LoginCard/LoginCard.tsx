@@ -26,8 +26,6 @@ const LoginCard = ({ handleModeChange }: LoginCardProps) => {
   });
   const onSubmit: SubmitHandler<LoginInput> = (data) => console.log(data);
 
-  console.log("errors", errors);
-
   return (
     <div className="login-action-container">
       <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
