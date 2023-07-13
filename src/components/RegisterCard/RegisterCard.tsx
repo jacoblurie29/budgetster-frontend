@@ -4,8 +4,10 @@ import budgetsterLogo from "../../assets/BudgetsterLogo.png";
 import "./RegisterCard.styles.css";
 import { AuthType } from "../../types/types";
 import FormCheckbox from "../FormCheckbox/FormCheckbox";
+import { registerSchema } from "../../util/resolvers/auth.resolver";
 import { useForm } from "react-hook-form";
-import type { SubmitHandler } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import type { SubmitHandler, Resolver } from "react-hook-form";
 import type {
   RegisterCardProps,
   RegisterInput,
@@ -15,7 +17,7 @@ const RegisterCard = ({ handleModeChange }: RegisterCardProps) => {
   const {
     handleSubmit,
     control,
-    // formState: { errors },
+    formState: { errors },
   } = useForm<RegisterInput>({
     defaultValues: {
       [RegisterInputName.EMAIL]: "",
@@ -25,6 +27,8 @@ const RegisterCard = ({ handleModeChange }: RegisterCardProps) => {
       [RegisterInputName.CONFIRM_PASSWORD]: "",
       [RegisterInputName.REMEMBER_ME]: false,
     },
+    resolver: yupResolver(registerSchema) as Resolver<RegisterInput>,
+    mode: "onBlur",
   });
   const onSubmit: SubmitHandler<RegisterInput> = (data) => console.log(data);
 
@@ -40,6 +44,7 @@ const RegisterCard = ({ handleModeChange }: RegisterCardProps) => {
           label="Email"
           placeholder="example@budgetster.com"
           type="email"
+          error={errors[RegisterInputName.EMAIL]?.message}
         />
         <div className="register-action-names-container">
           <FormInput
@@ -48,6 +53,7 @@ const RegisterCard = ({ handleModeChange }: RegisterCardProps) => {
             label="First name"
             placeholder="John"
             type="text"
+            error={errors[RegisterInputName.FIRST_NAME]?.message}
           />
           <FormInput
             name={RegisterInputName.LAST_NAME}
@@ -55,6 +61,7 @@ const RegisterCard = ({ handleModeChange }: RegisterCardProps) => {
             label="Last name"
             placeholder="Doe"
             type="text"
+            error={errors[RegisterInputName.LAST_NAME]?.message}
           />
         </div>
 
@@ -64,6 +71,8 @@ const RegisterCard = ({ handleModeChange }: RegisterCardProps) => {
           label="Password"
           placeholder="•••••••••"
           type="password"
+          optText="8+ characters, number, uppercase, lowercase, and special character"
+          error={errors[RegisterInputName.PASSWORD]?.message}
         />
         <FormInput
           name={RegisterInputName.CONFIRM_PASSWORD}
@@ -71,11 +80,12 @@ const RegisterCard = ({ handleModeChange }: RegisterCardProps) => {
           label="Confirm Password"
           placeholder="•••••••••"
           type="password"
+          error={errors[RegisterInputName.CONFIRM_PASSWORD]?.message}
         />
 
         <FormCheckbox
           name={RegisterInputName.REMEMBER_ME}
-          label="Remember me?"
+          label="Remember me"
           defaultChecked={false}
           control={control}
         />
