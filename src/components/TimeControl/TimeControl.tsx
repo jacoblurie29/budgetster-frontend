@@ -1,7 +1,10 @@
 import TimePeriodCarousel from "./TimePeriodCarousel/TimePeriodCarousel";
 import TimePeriodSelector from "./TimePeriodSelector/TimePeriodSelector";
 import "./TimeControl.styles.css";
-import { useAppDispatch, useAppSelector } from "../../state/configureStore";
+import {
+  useAppDispatch,
+  useAppSelector,
+} from "../../state/store/configureStore";
 import { setMonth, setRange, setYear } from "../../state/slices/timeSlice";
 import type { TimePeriod } from "../../types/types";
 

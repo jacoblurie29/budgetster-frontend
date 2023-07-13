@@ -14,7 +14,7 @@ import {
   UpdateMonetaryItemMutation,
 } from "../../graphql/MonetaryItem.gql";
 import { TimePeriod } from "../../types/types";
-import { useAppSelector } from "../../state/configureStore";
+import { useAppSelector } from "../../state/store/configureStore";
 import { compareMonetaryItems } from "../../util/helpers/monetaryItem.util";
 import FullPageLoadingIndicator from "../../components/FullPageLoadingIndicator/FullPageLoadingIndicator";
 import { DataGrid } from "@mui/x-data-grid";

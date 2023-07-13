@@ -4,7 +4,7 @@ import Dashboard from "../pages/dashboard/Dashboard.tsx";
 import { MonetaryItemCategory } from "../types/types.ts";
 import Settings from "../pages/settings/Settings.tsx";
 import Category from "../pages/category/Category.tsx";
-import { store } from "../state/configureStore.ts";
+import { store } from "../state/store/configureStore.ts";
 import Accounts from "../pages/accounts/Accounts.tsx";
 import React from "react";
 import ReactDOM from "react-dom/client";

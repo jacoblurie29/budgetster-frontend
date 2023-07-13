@@ -5,7 +5,7 @@ import "./Dashboard.styles.css";
 import TopBar from "../../layout/topbar/TopBar";
 import { AllMonetaryItemsQuery } from "../../graphql/MonetaryItem.gql";
 import TimeChart from "../../components/TimeChart/TimeChart";
-import { useAppSelector } from "../../state/configureStore";
+import { useAppSelector } from "../../state/store/configureStore";
 import { isViewable } from "../../util/helpers/monetaryItem.util";
 import { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
