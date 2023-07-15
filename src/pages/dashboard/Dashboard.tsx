@@ -8,13 +8,19 @@ import TimeChart from "../../components/TimeChart/TimeChart";
 import { useAppSelector } from "../../state/store/configureStore";
 import { isViewable } from "../../util/helpers/monetaryItem.util";
 import { useEffect, useState } from "react";
+
 import { useQuery } from "@apollo/client";
 import type { MonetaryItem } from "../../types/types";
 
 const Dashboard = () => {
   const [chartValues, setChartValues] = useState<number[]>(Array(12).fill(0));
-  const { loading, data, refetch } = useQuery(AllMonetaryItemsQuery, {
-    fetchPolicy: "cache-and-network",
+  const {
+    loading: monetaryItemsLoading,
+    data: monetaryItemsData,
+    refetch: monetaryItemsRefetch,
+    error: monetaryItemsError,
+  } = useQuery(AllMonetaryItemsQuery, {
+    // fetchPolicy: "cache-and-network",
   });
 
   // Current month, year, and range state
@@ -27,8 +33,8 @@ const Dashboard = () => {
   // Refetch monetary items on mount
   useEffect(() => {
     try {
-      refetch();
-      console.log("✅ [API]: ", data);
+      monetaryItemsRefetch();
+      console.log("✅ [API]: ", monetaryItemsData);
     } catch (error) {
       console.log("❌ [API]: ", error);
     }
@@ -36,9 +42,9 @@ const Dashboard = () => {
 
   // Update chart values when monetary items change
   useEffect(() => {
-    if (data?.getMonetaryItems === undefined) return;
+    if (monetaryItemsData?.getMonetaryItems === undefined) return;
 
-    const filteredMonetaryItems = data.getMonetaryItems.filter(
+    const filteredMonetaryItems = monetaryItemsData.getMonetaryItems.filter(
       // filter for date
       (item: MonetaryItem, index: number) =>
         item.type === MonetaryItemCategory.EXPENSE &&
@@ -60,9 +66,9 @@ const Dashboard = () => {
     });
 
     setChartValues(chartData);
-  }, [month, year, data]);
+  }, [month, year, monetaryItemsData]);
 
-  if (loading) return <div>Loading...</div>;
+  if (monetaryItemsLoading || monetaryItemsError) return <div>Loading...</div>;
 
   return (
     <div className="dashboard-container">
@@ -84,7 +90,7 @@ const Dashboard = () => {
       <LargeCategoryCard
         title="Expenses"
         values={
-          data.getMonetaryItems.filter(
+          monetaryItemsData.getMonetaryItems.filter(
             // filter for date
             (item: MonetaryItem, index: number) =>
               item.type === MonetaryItemCategory.EXPENSE &&
@@ -97,7 +103,7 @@ const Dashboard = () => {
       <LargeCategoryCard
         title="Income"
         values={
-          data.getMonetaryItems.filter(
+          monetaryItemsData.getMonetaryItems.filter(
             (item: MonetaryItem, index: number) =>
               item.type === MonetaryItemCategory.INCOME &&
               isViewable(item, index, year, range)
@@ -109,7 +115,7 @@ const Dashboard = () => {
       <LargeCategoryCard
         title="Investments"
         values={
-          data.getMonetaryItems.filter(
+          monetaryItemsData.getMonetaryItems.filter(
             (item: MonetaryItem, index: number) =>
               item.type === MonetaryItemCategory.INVESTMENT &&
               isViewable(item, index, year, range)

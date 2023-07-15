@@ -5,10 +5,14 @@ import "./LoginCard.styles.css";
 import { AuthType } from "../../types/types";
 import FormCheckbox from "../FormCheckbox/FormCheckbox";
 import { loginSchema } from "../../util/resolvers/auth.resolver";
+import { LoginUserMutation } from "../../graphql/Auth.gql";
+import { setCookie } from "../../util/api/request.util";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useMutation } from "@apollo/client";
 import type { LoginCardProps, LoginInput } from "./LoginCard.definitions";
 import type { SubmitHandler, Resolver } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 const LoginCard = ({ handleModeChange }: LoginCardProps) => {
   const {
@@ -22,9 +26,32 @@ const LoginCard = ({ handleModeChange }: LoginCardProps) => {
       [LoginInputName.REMEMBER_ME]: false,
     },
     resolver: yupResolver(loginSchema) as Resolver<LoginInput>,
-    mode: "onBlur",
+    mode: "onSubmit",
   });
-  const onSubmit: SubmitHandler<LoginInput> = (data) => console.log(data);
+  const [loginUser] = useMutation(LoginUserMutation);
+  const navigate = useNavigate();
+
+  const onSubmit: SubmitHandler<LoginInput> = async (data) => {
+    const { data: loginResponseData, errors } = await loginUser({
+      variables: {
+        loginInput: {
+          email: data.email,
+          password: data.password,
+        },
+      },
+    });
+
+    if (!errors) {
+      // set the auth token in local storage
+      localStorage.setItem("authToken", loginResponseData.loginUser.authToken);
+
+      // set the refresh token in the cookies
+      setCookie("refreshToken", loginResponseData.loginUser.refreshToken, 5);
+
+      // redirect to the dashboard
+      navigate("/dashboard");
+    }
+  };
 
   return (
     <div className="login-action-container">

@@ -43,10 +43,13 @@ const Category = ({ category }: CategoryProps) => {
   const range = useAppSelector((state) => state.time.range);
 
   // Query for monetary items of the given category
-  const { loading, data, refetch } = useQuery(GetMonetaryItemsByTypeQuery, {
-    variables: { type: category },
-    fetchPolicy: "cache-and-network",
-  });
+  const { loading, data, refetch, error } = useQuery(
+    GetMonetaryItemsByTypeQuery,
+    {
+      variables: { type: category },
+      // fetchPolicy: "cache-and-network",
+    }
+  );
 
   const isViewable = (item: MonetaryItem) => {
     // Get the start date of the item
@@ -257,7 +260,7 @@ const Category = ({ category }: CategoryProps) => {
     }
   }, []);
 
-  if (loading) return <FullPageLoadingIndicator />;
+  if (loading || error) return <FullPageLoadingIndicator />;
 
   return (
     <div className="category-container">

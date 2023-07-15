@@ -5,8 +5,10 @@ import "./RegisterCard.styles.css";
 import { AuthType } from "../../types/types";
 import FormCheckbox from "../FormCheckbox/FormCheckbox";
 import { registerSchema } from "../../util/resolvers/auth.resolver";
+import { RegisterUserMutation } from "../../graphql/Auth.gql";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useMutation } from "@apollo/client";
 import type { SubmitHandler, Resolver } from "react-hook-form";
 import type {
   RegisterCardProps,
@@ -28,9 +30,25 @@ const RegisterCard = ({ handleModeChange }: RegisterCardProps) => {
       [RegisterInputName.REMEMBER_ME]: false,
     },
     resolver: yupResolver(registerSchema) as Resolver<RegisterInput>,
-    mode: "onBlur",
+    mode: "onSubmit",
   });
-  const onSubmit: SubmitHandler<RegisterInput> = (data) => console.log(data);
+
+  const [registerUser] = useMutation(RegisterUserMutation);
+
+  const onSubmit: SubmitHandler<RegisterInput> = async (data) => {
+    const response = await registerUser({
+      variables: {
+        registerInput: {
+          email: data.email,
+          password: data.password,
+          firstName: data.firstName,
+          lastName: data.lastName,
+        },
+      },
+    });
+
+    console.log(response.data);
+  };
 
   return (
     <div className="register-action-container">
