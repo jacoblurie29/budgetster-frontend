@@ -3,7 +3,25 @@ h1 {
   font-family: "Lexend";
 }
 
-.app-largecountcards-container {
+.dashboard-container {
+  height: 100%;
+  overflow: visible;
+}
+
+.dashboard-container-no-header {
+  border-radius: 20px;
+  background: linear-gradient(
+    63deg,
+    rgba(232, 253, 255, 1) 0%,
+    rgba(255, 255, 255, 1) 50%,
+    rgba(238, 255, 246, 1) 100%
+  );
+  height: calc(100% - 160px);
+  padding: 40px;
+  overflow: auto;
+}
+
+.dashboard-largecountcards-container {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;

@@ -10,9 +10,9 @@ import { setCookie } from "../../util/api/request.util";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useMutation } from "@apollo/client";
+import { useNavigate } from "react-router-dom";
 import type { LoginCardProps, LoginInput } from "./LoginCard.definitions";
 import type { SubmitHandler, Resolver } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
 
 const LoginCard = ({ handleModeChange }: LoginCardProps) => {
   const {

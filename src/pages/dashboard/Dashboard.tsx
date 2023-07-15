@@ -73,57 +73,59 @@ const Dashboard = () => {
   return (
     <div className="dashboard-container">
       <TopBar title={"Dashboard"} hasTimeControl />
-      <div className="app-largecountcards-container">
-        <LargeCountCard
-          title="Spending Budget"
-          value={180}
-          subtitle="per month"
+      <div className="dashboard-container-no-header">
+        <div className="dashboard-largecountcards-container">
+          <LargeCountCard
+            title="Spending Budget"
+            value={180}
+            subtitle="per month"
+          />
+          <LargeCountCard
+            title="Current Outlook"
+            value={outlookValue}
+            subtitle="per month"
+            isValueCard
+          />
+          <TimeChart values={chartValues} />
+        </div>
+        <LargeCategoryCard
+          title="Expenses"
+          values={
+            monetaryItemsData.getMonetaryItems.filter(
+              // filter for date
+              (item: MonetaryItem, index: number) =>
+                item.type === MonetaryItemCategory.EXPENSE &&
+                isViewable(item, index, year, range)
+            ) as MonetaryItem[]
+          }
+          timePeriod={TimePeriod.MONTHLY}
+          category={MonetaryItemCategory.EXPENSE}
         />
-        <LargeCountCard
-          title="Current Outlook"
-          value={outlookValue}
-          subtitle="per month"
-          isValueCard
+        <LargeCategoryCard
+          title="Income"
+          values={
+            monetaryItemsData.getMonetaryItems.filter(
+              (item: MonetaryItem, index: number) =>
+                item.type === MonetaryItemCategory.INCOME &&
+                isViewable(item, index, year, range)
+            ) as MonetaryItem[]
+          }
+          timePeriod={TimePeriod.MONTHLY}
+          category={MonetaryItemCategory.INCOME}
         />
-        <TimeChart values={chartValues} />
+        <LargeCategoryCard
+          title="Investments"
+          values={
+            monetaryItemsData.getMonetaryItems.filter(
+              (item: MonetaryItem, index: number) =>
+                item.type === MonetaryItemCategory.INVESTMENT &&
+                isViewable(item, index, year, range)
+            ) as MonetaryItem[]
+          }
+          timePeriod={TimePeriod.MONTHLY}
+          category={MonetaryItemCategory.INVESTMENT}
+        />
       </div>
-      <LargeCategoryCard
-        title="Expenses"
-        values={
-          monetaryItemsData.getMonetaryItems.filter(
-            // filter for date
-            (item: MonetaryItem, index: number) =>
-              item.type === MonetaryItemCategory.EXPENSE &&
-              isViewable(item, index, year, range)
-          ) as MonetaryItem[]
-        }
-        timePeriod={TimePeriod.MONTHLY}
-        category={MonetaryItemCategory.EXPENSE}
-      />
-      <LargeCategoryCard
-        title="Income"
-        values={
-          monetaryItemsData.getMonetaryItems.filter(
-            (item: MonetaryItem, index: number) =>
-              item.type === MonetaryItemCategory.INCOME &&
-              isViewable(item, index, year, range)
-          ) as MonetaryItem[]
-        }
-        timePeriod={TimePeriod.MONTHLY}
-        category={MonetaryItemCategory.INCOME}
-      />
-      <LargeCategoryCard
-        title="Investments"
-        values={
-          monetaryItemsData.getMonetaryItems.filter(
-            (item: MonetaryItem, index: number) =>
-              item.type === MonetaryItemCategory.INVESTMENT &&
-              isViewable(item, index, year, range)
-          ) as MonetaryItem[]
-        }
-        timePeriod={TimePeriod.MONTHLY}
-        category={MonetaryItemCategory.INVESTMENT}
-      />
     </div>
   );
 };

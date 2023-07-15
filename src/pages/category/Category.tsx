@@ -265,60 +265,62 @@ const Category = ({ category }: CategoryProps) => {
   return (
     <div className="category-container">
       <TopBar title={category} hasTimeControl />
-      <div className="category-chart">
-        <DataGrid
-          getRowId={(row) => row._id}
-          columns={categoryColumns(category)}
-          rows={rows}
-          checkboxSelection
-          disableRowSelectionOnClick
-          density="standard"
-          loading={loading}
-          sx={dataGridStyles}
-          slots={{
-            noRowsOverlay: renderNoRowsOverlay,
-            noResultsOverlay: renderNoRowsOverlay,
-          }}
-          onRowSelectionModelChange={(newSelection: GridRowId[]) => {
-            setSelectedRowsIds(
-              newSelection.length === 0
-                ? ([] as string[])
-                : newSelection.toString().split(",")
-            );
-          }}
-          onProcessRowUpdateError={handleUpdatedMonetaryItemError}
-          processRowUpdate={handleUpdateMonetaryItem}
-        />
-        <div className="category-add-button-container">
-          <button
-            className="category-add-button"
-            onClick={() => handleAddMonetaryItem(rows)}
-          >
-            Add {category}
-          </button>
-          {selectedRowIds.length > 0 && (
+      <div className="category-container-no-header">
+        <div className="category-chart">
+          <DataGrid
+            getRowId={(row) => row._id}
+            columns={categoryColumns(category)}
+            rows={rows}
+            checkboxSelection
+            disableRowSelectionOnClick
+            density="standard"
+            loading={loading}
+            sx={dataGridStyles}
+            slots={{
+              noRowsOverlay: renderNoRowsOverlay,
+              noResultsOverlay: renderNoRowsOverlay,
+            }}
+            onRowSelectionModelChange={(newSelection: GridRowId[]) => {
+              setSelectedRowsIds(
+                newSelection.length === 0
+                  ? ([] as string[])
+                  : newSelection.toString().split(",")
+              );
+            }}
+            onProcessRowUpdateError={handleUpdatedMonetaryItemError}
+            processRowUpdate={handleUpdateMonetaryItem}
+          />
+          <div className="category-add-button-container">
             <button
-              className="category-delete-button"
-              onClick={() => handleDeleteMonetaryItems()}
+              className="category-add-button"
+              onClick={() => handleAddMonetaryItem(rows)}
             >
-              {"Delete " +
-                selectedRowIds.length.toString() +
-                " " +
-                (selectedRowIds.length > 1 ? category + "s" : category)}
+              Add {category}
             </button>
-          )}
+            {selectedRowIds.length > 0 && (
+              <button
+                className="category-delete-button"
+                onClick={() => handleDeleteMonetaryItems()}
+              >
+                {"Delete " +
+                  selectedRowIds.length.toString() +
+                  " " +
+                  (selectedRowIds.length > 1 ? category + "s" : category)}
+              </button>
+            )}
+          </div>
         </div>
+        {!!snackbar && (
+          <Snackbar
+            open
+            anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+            onClose={handleCloseSnackbar}
+            autoHideDuration={6000}
+          >
+            <Alert {...snackbar} onClose={handleCloseSnackbar} />
+          </Snackbar>
+        )}
       </div>
-      {!!snackbar && (
-        <Snackbar
-          open
-          anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-          onClose={handleCloseSnackbar}
-          autoHideDuration={6000}
-        >
-          <Alert {...snackbar} onClose={handleCloseSnackbar} />
-        </Snackbar>
-      )}
     </div>
   );
 };
