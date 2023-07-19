@@ -3,7 +3,7 @@ import {
   dataGridStyles,
   noRowsStackStyles,
 } from "./Category.definitions";
-import TopBar from "../../layout/topbar/TopBar";
+import DashboardTopBar from "../../components/DashboardTopBar/DashboardTopBar";
 
 import { capitalizeFirstLetter } from "../../util/helpers/string.util";
 
@@ -264,7 +264,7 @@ const Category = ({ category }: CategoryProps) => {
 
   return (
     <div className="category-container">
-      <TopBar title={category} hasTimeControl />
+      <DashboardTopBar title={category} hasTimeControl />
       <div className="category-container-no-header">
         <div className="category-chart">
           <DataGrid

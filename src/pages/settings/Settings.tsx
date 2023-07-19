@@ -1,8 +1,8 @@
-import TopBar from "../../layout/topbar/TopBar";
+import DashboardTopBar from "../../components/DashboardTopBar/DashboardTopBar";
 
 const Settings = () => (
   <div className="settings-container">
-    <TopBar title={"Settings"} />
+    <DashboardTopBar title={"Settings"} />
   </div>
 );
 

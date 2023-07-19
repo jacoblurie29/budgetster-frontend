@@ -8,4 +8,5 @@ body {
     rgba(0, 0, 0, 1) 100%
   );
   overflow: hidden;
+  height: 100vh;
 }

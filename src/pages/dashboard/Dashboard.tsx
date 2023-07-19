@@ -2,7 +2,7 @@ import LargeCategoryCard from "../../components/LargeCategoryCard/LargeCategoryC
 import LargeCountCard from "../../components/LargeCountCard/LargeCountCard";
 import { TimePeriod, MonetaryItemCategory } from "../../types/types";
 import "./Dashboard.styles.css";
-import TopBar from "../../layout/topbar/TopBar";
+import DashboardTopBar from "../../components/DashboardTopBar/DashboardTopBar";
 import { AllMonetaryItemsQuery } from "../../graphql/MonetaryItem.gql";
 import TimeChart from "../../components/TimeChart/TimeChart";
 import { useAppSelector } from "../../state/store/configureStore";
@@ -72,7 +72,7 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard-container">
-      <TopBar title={"Dashboard"} hasTimeControl />
+      <DashboardTopBar title={"Dashboard"} hasTimeControl />
       <div className="dashboard-container-no-header">
         <div className="dashboard-largecountcards-container">
           <LargeCountCard

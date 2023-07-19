@@ -1,6 +1,6 @@
 import budgetsterIcon from "../../assets/BudgetsterIcon.png";
 import { useState } from "react";
-import "./Sidebar.styles.css";
+import "./DashboardSideBar.styles.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCog,
@@ -11,7 +11,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
-const Sidebar = () => {
+const DashboardSideBar = () => {
   const [sideBar, setSideBar] = useState<boolean>(false);
   const [activeRoute, setActiveRoute] = useState<string>("Dashboard");
 
@@ -116,4 +116,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default DashboardSideBar;

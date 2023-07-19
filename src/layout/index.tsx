@@ -12,6 +12,7 @@ import {
   getCookie,
   setCookie,
 } from "../util/api/request.util.ts";
+import Home from "../pages/home/Home.tsx";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
@@ -148,30 +149,51 @@ const refreshToken = async () => {
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
-    children: [
-      { path: "/dashboard", element: <Dashboard /> },
-      {
-        path: "/expenses",
-        element: <Category category={MonetaryItemCategory.EXPENSE} />,
-      },
-      {
-        path: "/income",
-        element: <Category category={MonetaryItemCategory.INCOME} />,
-      },
-      {
-        path: "/investments",
-        element: <Category category={MonetaryItemCategory.INVESTMENT} />,
-      },
-      {
-        path: "/settings",
-        element: <Settings />,
-      },
-    ],
+    element: <Home />,
   },
   {
     path: "/accounts",
     element: <Accounts />,
+  },
+  {
+    path: "/dashboard",
+    element: (
+      <App>
+        <Dashboard />
+      </App>
+    ),
+  },
+  {
+    path: "/expenses",
+    element: (
+      <App>
+        <Category category={MonetaryItemCategory.EXPENSE} />
+      </App>
+    ),
+  },
+  {
+    path: "/income",
+    element: (
+      <App>
+        <Category category={MonetaryItemCategory.INCOME} />
+      </App>
+    ),
+  },
+  {
+    path: "/investments",
+    element: (
+      <App>
+        <Category category={MonetaryItemCategory.INVESTMENT} />
+      </App>
+    ),
+  },
+  {
+    path: "/settings",
+    element: (
+      <App>
+        <Settings />
+      </App>
+    ),
   },
 ]);
 

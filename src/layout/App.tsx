@@ -1,15 +1,13 @@
 import "./App.css";
-import Sidebar from "./sidebar/Sidebar";
-import { Outlet } from "react-router-dom";
+import DashboardSideBar from "./DashboardSideBar/DashboardSideBar";
+import type { PropsWithChildren } from "react";
 
-const App = () => (
+const App = ({ children }: PropsWithChildren) => (
   <div className="app-main-container">
     <div className="app-main-sidebar">
-      <Sidebar />
+      <DashboardSideBar />
     </div>
-    <div className="app-main-content">
-      <Outlet />
-    </div>
+    <div className="app-main-content">{children}</div>
   </div>
 );
 
