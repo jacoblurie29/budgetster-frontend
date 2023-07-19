@@ -1,5 +1,5 @@
 import "./App.css";
-import DashboardSideBar from "./DashboardSideBar/DashboardSideBar";
+import DashboardSideBar from "../components/DashboardSideBar/DashboardSideBar";
 import type { PropsWithChildren } from "react";
 
 const App = ({ children }: PropsWithChildren) => (

@@ -1,3 +1,10 @@
+/**
+ * setCookie - set cookie in browser with name, value and expiration days
+ *
+ * @param name the name of the cookie to retrieve its value
+ * @param value the value of the cookie
+ * @param expDays the number of days the cookie will be valid
+ */
 export const setCookie = (name: string, value: string, expDays: number) => {
   const d = new Date();
   d.setTime(d.getTime() + expDays * 24 * 60 * 60 * 1000);
@@ -5,6 +12,11 @@ export const setCookie = (name: string, value: string, expDays: number) => {
   document.cookie = name + "=" + value + ";" + expires + ";path=/";
 };
 
+/**
+ * getCookie - get cookie value from browser by name
+ *
+ * @param cname the name of the cookie to retrieve its value
+ */
 export const getCookie = (cname: string) => {
   const name = cname + "=";
   const decodedCookie = decodeURIComponent(document.cookie);
@@ -21,6 +33,11 @@ export const getCookie = (cname: string) => {
   return "";
 };
 
+/**
+ * deleteCookie - delete cookie from browser by setting expiration date to past
+ *
+ * @param name the name of the cookie to delete
+ */
 export const deleteCookie = (name: string) => {
   document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 };

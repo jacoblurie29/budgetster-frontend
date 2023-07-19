@@ -1,2 +1,291 @@
 .home-screen-container {
+  overflow: auto;
+}
+
+@media (min-width: 1501px) {
+  .home-screen-section-one-left-title {
+    font-family: "Lexend Exa", sans-serif;
+    font-weight: 600;
+    font-size: 60px;
+    color: #ffffff;
+    margin: 0px;
+    letter-spacing: -1px;
+    white-space: nowrap;
+  }
+
+  .home-screen-section-one-left-title-decorated {
+    font-family: "Lexend Exa", sans-serif;
+    font-weight: 600;
+    font-size: 60px;
+    margin: 0px 0px 15px 0px;
+    letter-spacing: -1px;
+    background-image: -webkit-linear-gradient(180deg, #76e7aa, #8ae2e8);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    white-space: nowrap;
+  }
+
+  .home-screen-paragraph {
+    font-family: "Lexend Exa", sans-serif;
+    color: #c8c8c8;
+    font-weight: 100;
+    font-size: 20px;
+  }
+
+  .home-screen-paragraph-bold {
+    font-weight: 500 !important;
+  }
+  .home-screen-laptop-preview-slanted-image {
+    height: 600px;
+    object-fit: contain;
+  }
+  .home-screen-section-one {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding-top: 40px;
+  }
+
+  .home-screen-section-one-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding-left: 100px;
+    margin-bottom: 100px;
+    flex: 1 1 0px;
+    width: 0;
+  }
+  .home-screen-section-one-right {
+    margin-right: 50px;
+    flex: 2 1 0px;
+    width: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .home-screen-titles-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media (max-width: 1500px) {
+  .home-screen-section-one-left-title {
+    font-family: "Lexend Exa", sans-serif;
+    font-weight: 600;
+    font-size: 40px;
+    color: #ffffff;
+    margin: 0px;
+    letter-spacing: -1px;
+    white-space: nowrap;
+  }
+
+  .home-screen-section-one-left-title-decorated {
+    font-family: "Lexend Exa", sans-serif;
+    font-weight: 600;
+    font-size: 40px;
+    margin: 0px 0px 15px 0px;
+    letter-spacing: -1px;
+    background-image: -webkit-linear-gradient(180deg, #76e7aa, #8ae2e8);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    white-space: nowrap;
+  }
+
+  .home-screen-paragraph {
+    font-family: "Lexend Exa", sans-serif;
+    color: #c8c8c8;
+    font-weight: 100;
+    font-size: 15px;
+  }
+
+  .home-screen-paragraph-bold {
+    font-weight: 500 !important;
+  }
+  .home-screen-laptop-preview-slanted-image {
+    height: 400px;
+    object-fit: contain;
+  }
+  .home-screen-section-one {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding-top: 40px;
+  }
+
+  .home-screen-section-one-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding-left: 50px;
+    margin-bottom: 100px;
+    flex: 1 1 0px;
+    width: 0;
+  }
+  .home-screen-section-one-right {
+    margin-right: 50px;
+    flex: 2 1 0px;
+    width: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .home-screen-titles-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media (max-width: 1000px) {
+  .home-screen-section-one-left-title {
+    font-family: "Lexend Exa", sans-serif;
+    font-weight: 600;
+    font-size: 40px;
+    color: #ffffff;
+    margin: 0px;
+    letter-spacing: -1px;
+    white-space: nowrap;
+  }
+
+  .home-screen-section-one-left-title-decorated {
+    font-family: "Lexend Exa", sans-serif;
+    font-weight: 600;
+    font-size: 40px;
+    margin: 0px 0px 15px 0px;
+    letter-spacing: -1px;
+    background-image: -webkit-linear-gradient(180deg, #76e7aa, #8ae2e8);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    white-space: nowrap;
+  }
+
+  .home-screen-paragraph {
+    font-family: "Lexend Exa", sans-serif;
+    color: #c8c8c8;
+    font-weight: 100;
+    font-size: 15px;
+    text-align: center;
+  }
+
+  .home-screen-paragraph-bold {
+    font-weight: 500 !important;
+  }
+  .home-screen-laptop-preview-slanted-image {
+    height: 400px;
+    object-fit: contain;
+  }
+  .home-screen-section-one {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 40px;
+  }
+
+  .home-screen-section-one-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+  }
+  .home-screen-section-one-right {
+    margin-right: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  .home-screen-titles-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media (max-width: 588px) {
+  .home-screen-section-one-left-title {
+    font-family: "Lexend Exa", sans-serif;
+    font-weight: 600;
+    font-size: 30px;
+    color: #ffffff;
+    margin: 0px;
+    letter-spacing: -1px;
+    white-space: nowrap;
+  }
+
+  .home-screen-section-one-left-title-decorated {
+    font-family: "Lexend Exa", sans-serif;
+    font-weight: 600;
+    font-size: 30px;
+    margin: 0px 0px 15px 0px;
+    letter-spacing: -1px;
+    background-image: -webkit-linear-gradient(180deg, #76e7aa, #8ae2e8);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    white-space: nowrap;
+  }
+
+  .home-screen-paragraph {
+    font-family: "Lexend Exa", sans-serif;
+    color: #c8c8c8;
+    font-weight: 100;
+    font-size: 15px;
+    text-align: center;
+  }
+
+  .home-screen-paragraph-bold {
+    font-weight: 500 !important;
+  }
+  .home-screen-laptop-preview-slanted-image {
+    height: 250px;
+    object-fit: contain;
+  }
+  .home-screen-section-one {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 40px;
+  }
+
+  .home-screen-section-one-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+  }
+  .home-screen-section-one-right {
+    margin-right: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  .home-screen-titles-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }
