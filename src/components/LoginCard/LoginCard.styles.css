@@ -63,6 +63,7 @@
 .login-switch-link {
   font-size: 12px;
   font-weight: 500;
+  padding-left: 5px;
   letter-spacing: -1px;
   background-image: -webkit-linear-gradient(180deg, #41e58e, #40ced8);
   background-clip: text;

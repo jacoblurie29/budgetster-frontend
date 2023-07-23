@@ -1,4 +1,6 @@
 import budgetsterLogoTransparent from "../../assets/BudgetsterLogoTransparent.png";
+import { AuthType } from "../../types/types";
+import { Link } from "react-router-dom";
 import "./LandingTopBar.styles.css";
 
 const LandingTopBar = () => {
@@ -14,8 +16,20 @@ const LandingTopBar = () => {
         <button className="landing-top-bar-menu-item">home</button>
         <button className="landing-top-bar-menu-item">about</button>
         <button className="landing-top-bar-menu-item">contact</button>
-        <button className="landing-top-bar-menu-login-button">Log In</button>
-        <button className="landing-top-bar-menu-signup-button">Sign Up</button>
+        <Link
+          to="/accounts"
+          state={{ authOptionFromNavigation: AuthType.LOGIN }}
+        >
+          <button className="landing-top-bar-menu-login-button">Log In</button>
+        </Link>
+        <Link
+          to="/accounts"
+          state={{ authOptionFromNavigation: AuthType.SIGNUP }}
+        >
+          <button className="landing-top-bar-menu-signup-button">
+            Sign Up
+          </button>
+        </Link>
       </div>
     </div>
   );

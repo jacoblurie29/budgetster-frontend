@@ -260,56 +260,58 @@ const Category = ({ category }: CategoryProps) => {
     }
   }, []);
 
-  if (loading || error) return <FullPageLoadingIndicator />;
-
   return (
     <div className="category-container">
       <DashboardTopBar title={category} hasTimeControl />
       <div className="category-container-no-header">
-        <div className="category-chart">
-          <DataGrid
-            getRowId={(row) => row._id}
-            columns={categoryColumns(category)}
-            rows={rows}
-            checkboxSelection
-            disableRowSelectionOnClick
-            density="standard"
-            loading={loading}
-            sx={dataGridStyles}
-            slots={{
-              noRowsOverlay: renderNoRowsOverlay,
-              noResultsOverlay: renderNoRowsOverlay,
-            }}
-            onRowSelectionModelChange={(newSelection: GridRowId[]) => {
-              setSelectedRowsIds(
-                newSelection.length === 0
-                  ? ([] as string[])
-                  : newSelection.toString().split(",")
-              );
-            }}
-            onProcessRowUpdateError={handleUpdatedMonetaryItemError}
-            processRowUpdate={handleUpdateMonetaryItem}
-          />
-          <div className="category-add-button-container">
-            <button
-              className="category-add-button"
-              onClick={() => handleAddMonetaryItem(rows)}
-            >
-              Add {category}
-            </button>
-            {selectedRowIds.length > 0 && (
+        {loading || error ? (
+          <FullPageLoadingIndicator />
+        ) : (
+          <div className="category-chart">
+            <DataGrid
+              getRowId={(row) => row._id}
+              columns={categoryColumns(category)}
+              rows={rows}
+              checkboxSelection
+              disableRowSelectionOnClick
+              density="standard"
+              loading={loading}
+              sx={dataGridStyles}
+              slots={{
+                noRowsOverlay: renderNoRowsOverlay,
+                noResultsOverlay: renderNoRowsOverlay,
+              }}
+              onRowSelectionModelChange={(newSelection: GridRowId[]) => {
+                setSelectedRowsIds(
+                  newSelection.length === 0
+                    ? ([] as string[])
+                    : newSelection.toString().split(",")
+                );
+              }}
+              onProcessRowUpdateError={handleUpdatedMonetaryItemError}
+              processRowUpdate={handleUpdateMonetaryItem}
+            />
+            <div className="category-add-button-container">
               <button
-                className="category-delete-button"
-                onClick={() => handleDeleteMonetaryItems()}
+                className="category-add-button"
+                onClick={() => handleAddMonetaryItem(rows)}
               >
-                {"Delete " +
-                  selectedRowIds.length.toString() +
-                  " " +
-                  (selectedRowIds.length > 1 ? category + "s" : category)}
+                Add {category}
               </button>
-            )}
+              {selectedRowIds.length > 0 && (
+                <button
+                  className="category-delete-button"
+                  onClick={() => handleDeleteMonetaryItems()}
+                >
+                  {"Delete " +
+                    selectedRowIds.length.toString() +
+                    " " +
+                    (selectedRowIds.length > 1 ? category + "s" : category)}
+                </button>
+              )}
+            </div>
           </div>
-        </div>
+        )}
         {!!snackbar && (
           <Snackbar
             open

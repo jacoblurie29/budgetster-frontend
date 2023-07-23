@@ -2,15 +2,21 @@ import budgetsterCashBag from "../../assets/BudgsterCashBag.png";
 import LoginCard from "../../components/LoginCard/LoginCard";
 import RegisterCard from "../../components/RegisterCard/RegisterCard";
 import { AuthType } from "../../types/types";
+import { useLocation } from "react-router-dom";
 import "./Accounts.styles.css";
 import { useState } from "react";
 
 const Accounts = () => {
-  const [isLogin, setIsLogin] = useState(AuthType.LOGIN);
+  const { authOptionFromNavigation } = useLocation().state || "";
+  const [isLogin, setIsLogin] = useState(
+    authOptionFromNavigation || AuthType.LOGIN
+  );
 
   const handleModeChange = (newValue: AuthType) => {
     setIsLogin(newValue);
   };
+
+  console.log(authOptionFromNavigation);
 
   return (
     <div className="accounts-container">

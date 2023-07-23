@@ -89,7 +89,7 @@ const LoginCard = ({ handleModeChange }: LoginCardProps) => {
             className="login-switch-link"
             onClick={() => handleModeChange(AuthType.SIGNUP)}
           >
-            Sign up here!
+            {"Sign up here!"}
           </a>
         </div>
       </form>
