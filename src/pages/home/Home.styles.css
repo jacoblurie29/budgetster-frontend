@@ -1,5 +1,5 @@
 .home-screen-container {
-  overflow: auto;
+  overflow: none;
 }
 
 @media (min-width: 1501px) {

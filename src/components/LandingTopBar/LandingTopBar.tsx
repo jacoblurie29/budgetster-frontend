@@ -1,10 +1,38 @@
+import AlreadyLoggedInButton from "./AlreadyLoggedInButton/AlreadyLoggedInButton";
 import budgetsterLogoTransparent from "../../assets/BudgetsterLogoTransparent.png";
+import { RefreshTokenQuery } from "../../graphql/Auth.gql";
+import { getCookie, setCookie } from "../../util/api/request.util";
 import { AuthType } from "../../types/types";
 import { Link } from "react-router-dom";
 import "./LandingTopBar.styles.css";
+import { useEffect } from "react";
+
+import { useQuery } from "@apollo/client";
 
 const LandingTopBar = () => {
-  console.log("LandingTopBar");
+  // Get the refresh token from the cookie
+  const cookieValue = getCookie("refreshToken");
+
+  const { data, error, loading } = useQuery(RefreshTokenQuery, {
+    variables: {
+      refreshTokenInput: {
+        refreshToken: cookieValue,
+      },
+    },
+  });
+
+  useEffect(() => {
+    if (!error && !loading) {
+      // set the auth token in local storage
+      localStorage.setItem("authToken", data.refreshToken.authToken);
+
+      // set the refresh token in the cookies
+      setCookie("refreshToken", data.refreshToken.refreshToken, 5);
+    }
+  }, [data, loading, error]);
+
+  console.log("DATA: " + data);
+
   return (
     <div className="landing-top-bar">
       <img
@@ -30,6 +58,13 @@ const LandingTopBar = () => {
             Sign Up
           </button>
         </Link>
+        {(data !== undefined || loading) && (
+          <AlreadyLoggedInButton
+            firstName="John"
+            lastName="Doe"
+            loading={loading}
+          />
+        )}
       </div>
     </div>
   );

@@ -31,6 +31,8 @@ export const RefreshTokenQuery = gql`
     refreshToken(refreshTokenInput: $refreshTokenInput) {
       authToken
       refreshToken
+      firstName
+      lastName
     }
   }
 `;
