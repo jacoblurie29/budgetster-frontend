@@ -60,8 +60,8 @@ const LandingTopBar = () => {
         </Link>
         {(data !== undefined || loading) && (
           <AlreadyLoggedInButton
-            firstName="John"
-            lastName="Doe"
+            firstName={data?.refreshToken?.firstName || ""}
+            lastName={data?.refreshToken?.lastName || ""}
             loading={loading}
           />
         )}
