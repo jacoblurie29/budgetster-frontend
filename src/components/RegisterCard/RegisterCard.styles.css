@@ -1,5 +1,5 @@
 .register-action-container {
-  padding: 35px 15px 15px 15px;
+  padding: 15px 15px 15px 15px;
   background-color: #ffffff;
   width: 60%;
   max-width: 600px;
@@ -88,5 +88,15 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 100%;
+}
+
+.register-go-back {
+  font-size: 30px;
+  font-weight: 500;
+  font-family: "Lexend", sans-serif !important;
+  color: #686868;
+  cursor: pointer;
+  text-align: left;
   width: 100%;
 }

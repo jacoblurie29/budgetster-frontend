@@ -15,7 +15,10 @@ import {
 } from "../../graphql/MonetaryItem.gql";
 import { TimePeriod } from "../../types/types";
 import { useAppSelector } from "../../state/store/configureStore";
-import { compareMonetaryItems } from "../../util/helpers/monetaryItem.util";
+import {
+  compareMonetaryItems,
+  isViewable,
+} from "../../util/helpers/monetaryItem.util";
 import FullPageLoadingIndicator from "../../components/FullPageLoadingIndicator/FullPageLoadingIndicator";
 import { DataGrid } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
@@ -51,49 +54,11 @@ const Category = ({ category }: CategoryProps) => {
     }
   );
 
-  const isViewable = (item: MonetaryItem) => {
-    // Get the start date of the item
-    const startDateFromObject = new Date(item.date);
-
-    // Reset the start date to the first of the month (for comparison)
-    const startDate = new Date(
-      startDateFromObject.getFullYear(),
-      startDateFromObject.getMonth(),
-      1
-    );
-
-    // Get the current date of the time control from redux
-    const currentDate = new Date(year, month, 1);
-
-    // filter by year if the range is yearly or if the item is repeating
-    if (range === TimePeriod.YEARLY) {
-      return (
-        startDate.getFullYear() === year ||
-        (item.repeat &&
-          item.repeatEndDate &&
-          startDate.getFullYear() <= year &&
-          new Date(item.repeatEndDate).getFullYear() >= year)
-      );
-
-      // filter by month if the range is monthly or if the item is repeating
-    } else {
-      return (
-        (!item.repeat &&
-          startDate.getMonth() === month &&
-          startDate.getFullYear() === year) ||
-        (item.repeat &&
-          item.repeatEndDate &&
-          startDate <= currentDate &&
-          new Date(item.repeatEndDate) >= currentDate)
-      );
-    }
-  };
-
   useEffect(() => {
     if (data) {
       // Filter the monetary items using the month and/or year
       const filteredData = data.getMonetaryItemsByType.filter(
-        (item: MonetaryItem) => isViewable(item)
+        (item: MonetaryItem) => isViewable(item, month, year, range)
       );
 
       setRows(filteredData as MonetaryItem[]);
@@ -186,6 +151,8 @@ const Category = ({ category }: CategoryProps) => {
 
     console.log("✅ [API]: ", response.data.updateMonetaryItem);
 
+    await refetch();
+
     return response.data.updateMonetaryItem as MonetaryItem;
   };
 
@@ -213,6 +180,8 @@ const Category = ({ category }: CategoryProps) => {
         capitalizeFirstLetter(category) + " added successfully! Click to edit.",
       severity: "success",
     });
+
+    await refetch();
   };
 
   // Delete monetary item
@@ -239,6 +208,8 @@ const Category = ({ category }: CategoryProps) => {
         " deleted successfully!",
       severity: "success",
     });
+
+    await refetch();
   };
 
   // Display error from updating monetary item

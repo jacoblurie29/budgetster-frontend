@@ -21,39 +21,39 @@ export const isViewable = (
   year: number,
   range: Omit<TimePeriod, "weekly">
 ) => {
-  const itemDate = new Date(item.date);
+  // Get the start date of the item
+  const startDateFromObject = new Date(item.date);
+
+  // Reset the start date to the first of the month (for comparison)
+  const startDate = new Date(
+    startDateFromObject.getFullYear(),
+    startDateFromObject.getMonth(),
+    1
+  );
+
+  // Get the current date of the time control from redux
+  const currentDate = new Date(year, month, 1);
 
   // filter by year if the range is yearly or if the item is repeating
   if (range === TimePeriod.YEARLY) {
     return (
-      itemDate.getFullYear() === year ||
+      startDate.getFullYear() === year ||
       (item.repeat &&
-        itemDate.getFullYear() <= year &&
-        (!item.repeatEndDate ||
-          new Date(item.repeatEndDate).getFullYear() >= year))
+        item.repeatEndDate &&
+        startDate.getFullYear() <= year &&
+        new Date(item.repeatEndDate).getFullYear() >= year)
     );
 
     // filter by month if the range is monthly or if the item is repeating
   } else {
     return (
-      // If it repeats yearly, check if the month is the same and the it is after the start date (.date)
-      // If it repeats monthly, check if it is after the start date (.date)
-      // If it doesn't repeat, check if the month and year are the same
-      // The repeat end date is optional so if there is no repeat end date, assume it repeats forever
-      (item.repeat &&
-        item.repeatPeriod === TimePeriod.YEARLY &&
-        itemDate.getMonth() === month &&
-        itemDate.getFullYear() <= year &&
-        (!item.repeatEndDate ||
-          new Date(item.repeatEndDate).getFullYear() >= year)) ||
-      (item.repeat &&
-        item.repeatPeriod === TimePeriod.MONTHLY &&
-        itemDate.getFullYear() <= year &&
-        (!item.repeatEndDate ||
-          new Date(item.repeatEndDate).getFullYear() >= year)) ||
       (!item.repeat &&
-        itemDate.getMonth() === month &&
-        itemDate.getFullYear() === year)
+        startDate.getMonth() === month &&
+        startDate.getFullYear() === year) ||
+      (item.repeat &&
+        item.repeatEndDate &&
+        startDate <= currentDate &&
+        new Date(item.repeatEndDate) >= currentDate)
     );
   }
 };

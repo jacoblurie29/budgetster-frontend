@@ -6,9 +6,11 @@ import { AuthType } from "../../types/types";
 import FormCheckbox from "../FormCheckbox/FormCheckbox";
 import { registerSchema } from "../../util/resolvers/auth.resolver";
 import { RegisterUserMutation } from "../../graphql/Auth.gql";
+import { setCookie } from "../../util/api/request.util";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useMutation } from "@apollo/client";
+import { useNavigate } from "react-router-dom";
 import type { SubmitHandler, Resolver } from "react-hook-form";
 import type {
   RegisterCardProps,
@@ -34,9 +36,10 @@ const RegisterCard = ({ handleModeChange }: RegisterCardProps) => {
   });
 
   const [registerUser] = useMutation(RegisterUserMutation);
+  const navigate = useNavigate();
 
   const onSubmit: SubmitHandler<RegisterInput> = async (data) => {
-    const response = await registerUser({
+    const { data: registerResponseData, errors } = await registerUser({
       variables: {
         registerInput: {
           email: data.email,
@@ -47,15 +50,39 @@ const RegisterCard = ({ handleModeChange }: RegisterCardProps) => {
       },
     });
 
-    console.log(response.data);
+    console.log(registerResponseData);
+
+    if (!errors) {
+      // set the auth token in local storage
+      localStorage.setItem(
+        "authToken",
+        registerResponseData.registerUser.authToken
+      );
+
+      // set the refresh token in the cookies
+      setCookie(
+        "refreshToken",
+        registerResponseData.registerUser.refreshToken,
+        5
+      );
+
+      // redirect to the dashboard
+      navigate("/dashboard");
+    }
+  };
+
+  const handleGoBack = () => {
+    navigate("/");
   };
 
   return (
     <div className="register-action-container">
+      <button className="register-go-back" onClick={handleGoBack}>
+        &larr;&nbsp;
+      </button>
       <form className="register-form" onSubmit={handleSubmit(onSubmit)}>
         <img className="register-action-logo" src={budgetsterLogo} />
         <h1>{"Let's get started."}</h1>
-
         <FormInput
           name={RegisterInputName.EMAIL}
           control={control}

@@ -45,17 +45,10 @@ const Dashboard = () => {
   useEffect(() => {
     if (monetaryItemsData?.getMonetaryItems === undefined) return;
 
-    const filteredMonetaryItems = monetaryItemsData.getMonetaryItems.filter(
-      // filter for date
-      (item: MonetaryItem, index: number) =>
-        item.type === MonetaryItemCategory.EXPENSE &&
-        isViewable(item, index, year, TimePeriod.YEARLY)
-    );
-
     const chartData = Array(12).fill(0);
 
     chartData.forEach((_, index) => {
-      filteredMonetaryItems.forEach((item: MonetaryItem) => {
+      monetaryItemsData.getMonetaryItems.forEach((item: MonetaryItem) => {
         if (isViewable(item, index, year, TimePeriod.MONTHLY)) {
           if (item.type === MonetaryItemCategory.INCOME) {
             chartData[index] += item.value;
@@ -96,36 +89,36 @@ const Dashboard = () => {
               values={
                 monetaryItemsData.getMonetaryItems.filter(
                   // filter for date
-                  (item: MonetaryItem, index: number) =>
+                  (item: MonetaryItem) =>
                     item.type === MonetaryItemCategory.EXPENSE &&
-                    isViewable(item, index, year, range)
+                    isViewable(item, month, year, range)
                 ) as MonetaryItem[]
               }
-              timePeriod={TimePeriod.MONTHLY}
+              timePeriod={range as TimePeriod}
               category={MonetaryItemCategory.EXPENSE}
             />
             <LargeCategoryCard
               title="Income"
               values={
                 monetaryItemsData.getMonetaryItems.filter(
-                  (item: MonetaryItem, index: number) =>
+                  (item: MonetaryItem) =>
                     item.type === MonetaryItemCategory.INCOME &&
-                    isViewable(item, index, year, range)
+                    isViewable(item, month, year, range)
                 ) as MonetaryItem[]
               }
-              timePeriod={TimePeriod.MONTHLY}
+              timePeriod={range as TimePeriod}
               category={MonetaryItemCategory.INCOME}
             />
             <LargeCategoryCard
               title="Investments"
               values={
                 monetaryItemsData.getMonetaryItems.filter(
-                  (item: MonetaryItem, index: number) =>
+                  (item: MonetaryItem) =>
                     item.type === MonetaryItemCategory.INVESTMENT &&
-                    isViewable(item, index, year, range)
+                    isViewable(item, month, year, range)
                 ) as MonetaryItem[]
               }
-              timePeriod={TimePeriod.MONTHLY}
+              timePeriod={range as TimePeriod}
               category={MonetaryItemCategory.INVESTMENT}
             />
           </>

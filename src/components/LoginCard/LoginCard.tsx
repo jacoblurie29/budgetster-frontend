@@ -53,8 +53,15 @@ const LoginCard = ({ handleModeChange }: LoginCardProps) => {
     }
   };
 
+  const handleGoBack = () => {
+    navigate("/");
+  };
+
   return (
     <div className="login-action-container">
+      <button className="login-go-back" onClick={handleGoBack}>
+        &larr;&nbsp;
+      </button>
       <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
         <img className="login-action-logo" src={budgetsterLogo} />
         <h1>Welcome back.</h1>
