@@ -1,5 +1,10 @@
 .home-screen-container {
-  overflow: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  background: none;
+  overflow-x: hidden;
 }
 
 @media (min-width: 1501px) {
@@ -72,6 +77,10 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+  }
+
+  .home-screen-laptop-front-image-container {
+    height: 400px;
   }
 }
 
@@ -146,6 +155,10 @@
     justify-content: center;
     align-items: center;
   }
+
+  .home-screen-laptop-front-image-container {
+    height: 400px;
+  }
 }
 
 @media (max-width: 1000px) {
@@ -217,6 +230,10 @@
     justify-content: center;
     align-items: center;
   }
+
+  .home-screen-laptop-front-image-container {
+    height: 400px;
+  }
 }
 
 @media (max-width: 588px) {
@@ -287,5 +304,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+  }
+
+  .home-screen-laptop-front-image-container {
+    height: 400px;
   }
 }

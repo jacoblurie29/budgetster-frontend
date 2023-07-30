@@ -1,0 +1,368 @@
+@media (min-width: 1751px) {
+  .home-screen-section-two {
+    background-color: #ffffff;
+    padding: 50px;
+    margin: 50px 150px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+
+  .home-screen-section-two-left {
+    width: 100%;
+  }
+
+  .home-screen-section-two-right {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .home-screen-section-two-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding-right: 30px;
+  }
+
+  .home-screen-section-two-list-item {
+    font-family: "Lexend Exa", sans-serif;
+    font-weight: 600;
+    font-size: 25px;
+    color: #7d7d7d;
+    margin: 0px;
+    letter-spacing: -1px;
+    white-space: nowrap;
+    padding-bottom: 20px;
+  }
+
+  .home-screen-laptop-front-image-container {
+    height: 500px;
+  }
+
+  .home-screen-laptop-front-image {
+    height: 500px;
+  }
+
+  #bullet-point-arrow {
+    background-image: -webkit-linear-gradient(180deg, #76e7aa, #8ae2e8);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    font-size: 40px;
+    vertical-align: middle;
+  }
+}
+
+@media (max-width: 1750px) {
+  .home-screen-section-two {
+    background-color: #ffffff;
+    padding: 50px;
+    margin: 50px 150px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+
+  .home-screen-section-two-left {
+    width: 100%;
+  }
+
+  .home-screen-section-two-right {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .home-screen-section-two-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding-right: 30px;
+  }
+
+  .home-screen-section-two-list-item {
+    font-family: "Lexend Exa", sans-serif;
+    font-weight: 600;
+    font-size: 22px;
+    color: #7d7d7d;
+    margin: 0px;
+    letter-spacing: -1px;
+    white-space: nowrap;
+    padding-bottom: 20px;
+  }
+
+  .home-screen-laptop-front-image-container {
+    height: 400px;
+  }
+
+  .home-screen-laptop-front-image {
+    height: 400px;
+  }
+
+  #bullet-point-arrow {
+    background-image: -webkit-linear-gradient(180deg, #76e7aa, #8ae2e8);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    font-size: 30px;
+    vertical-align: middle;
+  }
+}
+
+@media (max-width: 1500px) {
+  .home-screen-section-two {
+    background-color: #ffffff;
+    padding: 50px;
+    margin: 50px 70px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+
+  .home-screen-section-two-left {
+    width: 100%;
+  }
+
+  .home-screen-section-two-right {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .home-screen-section-two-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding-right: 30px;
+  }
+
+  .home-screen-section-two-list-item {
+    font-family: "Lexend Exa", sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    color: #7d7d7d;
+    margin: 0px;
+    letter-spacing: -1px;
+    white-space: nowrap;
+    padding-bottom: 15px;
+  }
+
+  .home-screen-laptop-front-image-container {
+    height: 400px;
+  }
+
+  .home-screen-laptop-front-image {
+    height: 400px;
+  }
+
+  #bullet-point-arrow {
+    background-image: -webkit-linear-gradient(180deg, #76e7aa, #8ae2e8);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    font-size: 30px;
+    vertical-align: middle;
+  }
+}
+
+@media (max-width: 1250px) {
+  .home-screen-section-two {
+    background-color: #ffffff;
+    padding: 50px;
+    margin: 50px 70px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+
+  .home-screen-section-two-left {
+    width: 100%;
+  }
+
+  .home-screen-section-two-right {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .home-screen-section-two-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .home-screen-section-two-list-item {
+    font-family: "Lexend Exa", sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: #7d7d7d;
+    margin: 0px;
+    letter-spacing: -1px;
+    white-space: nowrap;
+    padding-bottom: 15px;
+  }
+
+  .home-screen-laptop-front-image-container {
+    height: 250px;
+  }
+
+  .home-screen-laptop-front-image {
+    height: 250px;
+  }
+
+  #bullet-point-arrow {
+    background-image: -webkit-linear-gradient(180deg, #76e7aa, #8ae2e8);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    font-size: 28px;
+    vertical-align: middle;
+  }
+}
+
+@media (max-width: 950px) {
+  .home-screen-section-two {
+    background-color: white;
+    padding: 30px;
+    margin: 50px 80px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .home-screen-section-two-left {
+    width: 100%;
+  }
+
+  .home-screen-section-two-right {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .home-screen-section-two-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 30px;
+    padding-left: 30px;
+  }
+
+  .home-screen-section-two-list-item {
+    font-family: "Lexend Exa", sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: #7d7d7d;
+    margin: 0px;
+    letter-spacing: -1px;
+    white-space: nowrap;
+    padding-bottom: 15px;
+  }
+
+  .home-screen-laptop-front-image-container {
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .home-screen-laptop-front-image {
+    height: 300px;
+  }
+
+  #bullet-point-arrow {
+    background-image: -webkit-linear-gradient(180deg, #76e7aa, #8ae2e8);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    font-size: 28px;
+    vertical-align: middle;
+  }
+}
+
+@media (max-width: 650px) {
+  .home-screen-section-two {
+    background-color: white;
+    padding: 30px;
+    margin: 50px 80px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .home-screen-section-two-left {
+    width: 100%;
+  }
+
+  .home-screen-section-two-right {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .home-screen-section-two-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 30px;
+    padding-left: 30px;
+  }
+
+  .home-screen-section-two-list-item {
+    font-family: "Lexend Exa", sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    color: #7d7d7d;
+    margin: 0px;
+    letter-spacing: -1px;
+    white-space: nowrap;
+    padding-bottom: 15px;
+  }
+
+  .home-screen-laptop-front-image-container {
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .home-screen-laptop-front-image {
+    height: 200px;
+  }
+
+  #bullet-point-arrow {
+    background-image: -webkit-linear-gradient(180deg, #76e7aa, #8ae2e8);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    font-size: 18px;
+    vertical-align: middle;
+  }
+}
