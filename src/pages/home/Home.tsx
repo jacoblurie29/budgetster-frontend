@@ -37,32 +37,37 @@ const Home = () => {
         </div>
       </div>
       <div className="home-screen-section-two">
-        <div className="home-screen-section-two-left">
-          <div className="home-screen-laptop-front-image-container">
-            <img
-              className="home-screen-laptop-front-image"
-              src={budgetsterLaptopFront}
-              alt=""
-            />
-          </div>
+        <div className="home-screen-section-two-title">
+          User friendly money tracking.
         </div>
-        <div className="home-screen-section-two-right">
-          <div className="home-screen-section-two-list">
-            <div className="home-screen-section-two-list-item">
-              <span id="bullet-point-arrow">&#9658;</span>&nbsp;&nbsp;No cents,
-              ever.
+        <div className="home-screen-section-two-content">
+          <div className="home-screen-section-two-left">
+            <div className="home-screen-laptop-front-image-container">
+              <img
+                className="home-screen-laptop-front-image"
+                src={budgetsterLaptopFront}
+                alt=""
+              />
             </div>
-            <div className="home-screen-section-two-list-item">
-              <span id="bullet-point-arrow">&#9658;</span>&nbsp;&nbsp;No
-              complicated settings.
-            </div>
-            <div className="home-screen-section-two-list-item">
-              <span id="bullet-point-arrow">&#9658;</span>&nbsp;&nbsp;Set goals
-              and track your trends.
-            </div>
-            <div className="home-screen-section-two-list-item">
-              <span id="bullet-point-arrow">&#9658;</span>&nbsp;&nbsp;Easy time
-              frame toggling.
+          </div>
+          <div className="home-screen-section-two-right">
+            <div className="home-screen-section-two-list">
+              <div className="home-screen-section-two-list-item">
+                <span id="bullet-point-arrow">&#9658;</span>&nbsp;&nbsp;No
+                cents, ever.
+              </div>
+              <div className="home-screen-section-two-list-item">
+                <span id="bullet-point-arrow">&#9658;</span>&nbsp;&nbsp;No
+                complicated settings.
+              </div>
+              <div className="home-screen-section-two-list-item">
+                <span id="bullet-point-arrow">&#9658;</span>&nbsp;&nbsp;Set
+                goals and track your trends.
+              </div>
+              <div className="home-screen-section-two-list-item">
+                <span id="bullet-point-arrow">&#9658;</span>&nbsp;&nbsp;Easy
+                time frame toggling.
+              </div>
             </div>
           </div>
         </div>

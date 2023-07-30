@@ -4,6 +4,18 @@
     padding: 50px;
     margin: 50px 150px;
     border-radius: 20px;
+  }
+
+  .home-screen-section-two-title {
+    font-family: "Lexend", sans-serif;
+    font-weight: 600;
+    font-size: 40px;
+    color: #5e5e5e;
+    text-align: center;
+    padding-bottom: 40px;
+  }
+
+  .home-screen-section-two-content {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -64,6 +76,18 @@
     padding: 50px;
     margin: 50px 150px;
     border-radius: 20px;
+  }
+
+  .home-screen-section-two-title {
+    font-family: "Lexend", sans-serif;
+    font-weight: 600;
+    font-size: 36px;
+    color: #5e5e5e;
+    text-align: center;
+    padding-bottom: 30px;
+  }
+
+  .home-screen-section-two-content {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -124,6 +148,18 @@
     padding: 50px;
     margin: 50px 70px;
     border-radius: 20px;
+  }
+
+  .home-screen-section-two-title {
+    font-family: "Lexend", sans-serif;
+    font-weight: 600;
+    font-size: 36px;
+    color: #5e5e5e;
+    text-align: center;
+    padding-bottom: 30px;
+  }
+
+  .home-screen-section-two-content {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -184,6 +220,18 @@
     padding: 50px;
     margin: 50px 70px;
     border-radius: 20px;
+  }
+
+  .home-screen-section-two-title {
+    font-family: "Lexend", sans-serif;
+    font-weight: 600;
+    font-size: 36px;
+    color: #5e5e5e;
+    text-align: center;
+    padding-bottom: 30px;
+  }
+
+  .home-screen-section-two-content {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -239,14 +287,25 @@
 
 @media (max-width: 950px) {
   .home-screen-section-two {
-    background-color: white;
+    background-color: #ffffff;
     padding: 30px;
     margin: 50px 80px;
     border-radius: 20px;
+  }
+
+  .home-screen-section-two-title {
+    font-family: "Lexend", sans-serif;
+    font-weight: 600;
+    font-size: 26px;
+    color: #5e5e5e;
+    text-align: center;
+    padding: 10px 0px 20px 0px;
+  }
+
+  .home-screen-section-two-content {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
   }
 
   .home-screen-section-two-left {
@@ -304,14 +363,25 @@
 
 @media (max-width: 650px) {
   .home-screen-section-two {
-    background-color: white;
+    background-color: #ffffff;
     padding: 30px;
     margin: 50px 80px;
     border-radius: 20px;
+  }
+
+  .home-screen-section-two-title {
+    font-family: "Lexend", sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: #5e5e5e;
+    text-align: center;
+    padding: 10px 0px 20px 0px;
+  }
+
+  .home-screen-section-two-content {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
   }
 
   .home-screen-section-two-left {
