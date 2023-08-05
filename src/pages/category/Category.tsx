@@ -5,7 +5,10 @@ import {
 } from "./Category.definitions";
 import DashboardTopBar from "../../components/DashboardTopBar/DashboardTopBar";
 
-import { capitalizeFirstLetter } from "../../util/helpers/string.util";
+import {
+  capitalizeFirstLetter,
+  formatTitle,
+} from "../../util/helpers/string.util";
 
 import {
   CreateMonetaryItemMutation,
@@ -21,6 +24,7 @@ import {
 } from "../../util/helpers/monetaryItem.util";
 import FullPageLoadingIndicator from "../../components/FullPageLoadingIndicator/FullPageLoadingIndicator";
 import CategoryBarChart from "../../components/CategoryBarChart/CategoryBarChart";
+import LargeCountCard from "../../components/LargeCountCard/LargeCountCard";
 import { DataGrid } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
 import { useMutation, useQuery } from "@apollo/client";
@@ -63,15 +67,10 @@ const Category = ({ category }: CategoryProps) => {
         (item: MonetaryItem) => isViewable(item, month, year, range)
       );
 
-      // Filter the monetary items using just the year
-      const chartData = data.getMonetaryItemsByType.filter(
-        (item: MonetaryItem) => isViewable(item, month, year, TimePeriod.YEARLY)
-      );
-
       setRows(filteredData as MonetaryItem[]);
-      setChartData(chartData as MonetaryItem[]);
+      setChartData(data.getMonetaryItemsByType as MonetaryItem[]);
     }
-  }, [data, month, year]);
+  }, [data, month, year, range]);
 
   // Mutation for updating monetary items
   const [updateMonetaryItem] = useMutation(UpdateMonetaryItemMutation);
@@ -230,15 +229,6 @@ const Category = ({ category }: CategoryProps) => {
     console.log("❌ [API]: ", error);
   };
 
-  // Refetch monetary items on mount
-  useEffect(() => {
-    try {
-      refetch();
-    } catch (error) {
-      console.log("❌ [API]: ", error);
-    }
-  }, []);
-
   return (
     <div className="category-container">
       <DashboardTopBar title={category} hasTimeControl />
@@ -292,7 +282,25 @@ const Category = ({ category }: CategoryProps) => {
               )}
             </div>
             <div className="category-information-container">
-              <CategoryBarChart data={chartData} />
+              <div className="category-information-container-left">
+                <CategoryBarChart data={chartData} />
+              </div>
+              <div className="category-information-container-right">
+                <LargeCountCard
+                  title={"Average " + formatTitle(category)}
+                  value={100}
+                  variant="small"
+                  subtitle={
+                    "per" + (range === TimePeriod.MONTHLY ? " month" : " year")
+                  }
+                />
+                <LargeCountCard
+                  title={"Current Trend"}
+                  value={100}
+                  variant="small"
+                  isValueCard
+                />
+              </div>
             </div>
           </div>
         )}

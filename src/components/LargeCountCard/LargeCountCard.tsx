@@ -12,6 +12,7 @@ interface LargeCountCardProps {
   value: number;
   subtitle?: string;
   isValueCard?: boolean;
+  variant?: "small" | "large";
 }
 
 /**
@@ -24,14 +25,17 @@ const LargeCountCard = ({
   value,
   subtitle,
   isValueCard,
+  variant,
 }: LargeCountCardProps) => (
-  <div className="largecountcard-container">
-    <div className="largecountcard-title">{title}</div>
-    <div className="largecountcard-value">
+  <div className={`largecountcard-container-${variant}`}>
+    <div className={`largecountcard-title-${variant}`}>{title}</div>
+    <div className={`largecountcard-value-${variant}`}>
       {(value < 0 ? "-$" : isValueCard ? "+$" : "$") +
         value.toString().replace("-", "")}
     </div>
-    {subtitle && <div className="largecountcard-subtitle">{subtitle}</div>}
+    {subtitle && (
+      <div className={`largecountcard-subtitle-${variant}`}>{subtitle}</div>
+    )}
   </div>
 );
 

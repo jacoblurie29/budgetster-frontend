@@ -1,5 +1,5 @@
 .landing-top-bar-menu-already-login-button {
-  font-family: "Lexend", sans-serif;
+  font-family: "Lexend Exa", sans-serif;
   color: #ffffff;
   background-color: #ffffff;
   border-radius: 10px;
@@ -17,15 +17,18 @@
 
 .landing-top-bar-menu-already-login-button-welcome {
   color: #686868;
-  font-family: "Lexend", sans-serif;
+  font-family: "Lexend Exa", sans-serif;
   font-size: 16px;
+  white-space: nowrap;
+  letter-spacing: -1px;
 }
 
 .landing-top-bar-menu-already-login-button-dashboard {
   color: #686868;
-  font-family: "Lexend", sans-serif;
+  font-family: "Lexend Exa", sans-serif;
   font-size: 10px;
   text-align: right;
+  letter-spacing: -1px;
 }
 
 .landing-top-bar-menu-already-login-left {

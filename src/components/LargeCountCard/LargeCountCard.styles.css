@@ -1,4 +1,5 @@
-.largecountcard-container {
+/* LARGE VARIANT */
+.largecountcard-container-large {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -7,7 +8,7 @@
   width: fit-content;
 }
 
-.largecountcard-title {
+.largecountcard-title-large {
   font-style: normal;
   font-weight: 500;
   font-size: 36px;
@@ -15,7 +16,7 @@
   color: #aeaeae;
 }
 
-.largecountcard-value {
+.largecountcard-value-large {
   font-style: normal;
   font-weight: 600;
   font-size: 90px;
@@ -27,7 +28,7 @@
   color: transparent;
 }
 
-.categorybreakdownbar-value-p {
+.categorybreakdownbar-value-p-large {
   display: inline-flex;
   margin: 0;
   height: 100%;
@@ -36,12 +37,66 @@
   width: min-content;
 }
 
-.largecountcard-subtitle {
+.largecountcard-subtitle-large {
   font-style: normal;
   font-weight: 400;
   font-size: 15px;
   text-align: right;
   padding-right: 25px;
+  margin-top: -15px;
+
+  background-image: -webkit-linear-gradient(180deg, #76e7aa, #8ae2e8);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* SMALL VARIANT */
+.largecountcard-container-small {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: "Lexend", sans-serif;
+  min-height: 150px;
+  width: fit-content;
+}
+
+.largecountcard-title-small {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  text-align: center;
+  color: #aeaeae;
+}
+
+.largecountcard-value-small {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 60px;
+  text-align: center;
+
+  background-image: -webkit-linear-gradient(180deg, #76e7aa, #8ae2e8);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.categorybreakdownbar-value-p-small {
+  display: inline-flex;
+  margin: 0;
+  height: 100%;
+  align-items: center;
+  white-space: nowrap;
+  width: min-content;
+}
+
+.largecountcard-subtitle-small {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  text-align: right;
+  padding-right: 20px;
+  padding-top: 5px;
   margin-top: -15px;
 
   background-image: -webkit-linear-gradient(180deg, #76e7aa, #8ae2e8);

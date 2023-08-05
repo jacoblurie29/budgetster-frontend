@@ -75,11 +75,13 @@ const Dashboard = () => {
                 title="Spending Budget"
                 value={180}
                 subtitle="per month"
+                variant="large"
               />
               <LargeCountCard
                 title="Current Outlook"
                 value={outlookValue}
                 subtitle="per month"
+                variant="large"
                 isValueCard
               />
               <TimeChart values={chartValues} />
