@@ -20,18 +20,19 @@ import {
   isViewable,
 } from "../../util/helpers/monetaryItem.util";
 import FullPageLoadingIndicator from "../../components/FullPageLoadingIndicator/FullPageLoadingIndicator";
+import CategoryBarChart from "../../components/CategoryBarChart/CategoryBarChart";
 import { DataGrid } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
 import { useMutation, useQuery } from "@apollo/client";
-
+import { ResponsiveContainer } from "recharts";
 import { Alert, Snackbar, Stack } from "@mui/material";
-
 import type { AlertProps } from "@mui/material";
 import type { GridRowId } from "@mui/x-data-grid";
 import type { CategoryProps } from "./Category.definitions";
 import type { MonetaryItem } from "../../types/types";
 
 import "./Category.styles.css";
+
 /**
  * @component Category - Displays the monetary items of a given category
  * @param {MonetaryItemCategory} category - The category of the monetary items to be displayed
@@ -39,6 +40,7 @@ import "./Category.styles.css";
 const Category = ({ category }: CategoryProps) => {
   const [rows, setRows] = useState([] as MonetaryItem[]);
   const [selectedRowIds, setSelectedRowsIds] = useState([] as string[]);
+  const [chartData, setChartData] = useState([] as MonetaryItem[]);
 
   // Get the month and year from the redux store
   const month = useAppSelector((state) => state.time.month);
@@ -61,7 +63,13 @@ const Category = ({ category }: CategoryProps) => {
         (item: MonetaryItem) => isViewable(item, month, year, range)
       );
 
+      // Filter the monetary items using just the year
+      const chartData = data.getMonetaryItemsByType.filter(
+        (item: MonetaryItem) => isViewable(item, month, year, TimePeriod.YEARLY)
+      );
+
       setRows(filteredData as MonetaryItem[]);
+      setChartData(chartData as MonetaryItem[]);
     }
   }, [data, month, year]);
 
@@ -239,29 +247,31 @@ const Category = ({ category }: CategoryProps) => {
           <FullPageLoadingIndicator />
         ) : (
           <div className="category-chart">
-            <DataGrid
-              getRowId={(row) => row._id}
-              columns={categoryColumns(category)}
-              rows={rows}
-              checkboxSelection
-              disableRowSelectionOnClick
-              density="standard"
-              loading={loading}
-              sx={dataGridStyles}
-              slots={{
-                noRowsOverlay: renderNoRowsOverlay,
-                noResultsOverlay: renderNoRowsOverlay,
-              }}
-              onRowSelectionModelChange={(newSelection: GridRowId[]) => {
-                setSelectedRowsIds(
-                  newSelection.length === 0
-                    ? ([] as string[])
-                    : newSelection.toString().split(",")
-                );
-              }}
-              onProcessRowUpdateError={handleUpdatedMonetaryItemError}
-              processRowUpdate={handleUpdateMonetaryItem}
-            />
+            <ResponsiveContainer width={"100%"} height={"100%"}>
+              <DataGrid
+                getRowId={(row) => row._id}
+                columns={categoryColumns(category)}
+                rows={rows}
+                checkboxSelection
+                disableRowSelectionOnClick
+                density="standard"
+                loading={loading}
+                sx={dataGridStyles}
+                slots={{
+                  noRowsOverlay: renderNoRowsOverlay,
+                  noResultsOverlay: renderNoRowsOverlay,
+                }}
+                onRowSelectionModelChange={(newSelection: GridRowId[]) => {
+                  setSelectedRowsIds(
+                    newSelection.length === 0
+                      ? ([] as string[])
+                      : newSelection.toString().split(",")
+                  );
+                }}
+                onProcessRowUpdateError={handleUpdatedMonetaryItemError}
+                processRowUpdate={handleUpdateMonetaryItem}
+              />
+            </ResponsiveContainer>
             <div className="category-add-button-container">
               <button
                 className="category-add-button"
@@ -280,6 +290,9 @@ const Category = ({ category }: CategoryProps) => {
                     (selectedRowIds.length > 1 ? category + "s" : category)}
                 </button>
               )}
+            </div>
+            <div className="category-information-container">
+              <CategoryBarChart data={chartData} />
             </div>
           </div>
         )}
