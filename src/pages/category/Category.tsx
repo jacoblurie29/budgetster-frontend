@@ -18,6 +18,7 @@ import {
 } from "../../graphql/MonetaryItem.gql";
 import { TimePeriod } from "../../types/types";
 import { useAppSelector } from "../../state/store/configureStore";
+import { createChartBars } from "../../components/CategoryBarChart/CategoryBarChart.definitions";
 import {
   compareMonetaryItems,
   isViewable,
@@ -33,7 +34,7 @@ import { Alert, Snackbar, Stack } from "@mui/material";
 import type { AlertProps } from "@mui/material";
 import type { GridRowId } from "@mui/x-data-grid";
 import type { CategoryProps } from "./Category.definitions";
-import type { MonetaryItem } from "../../types/types";
+import type { MonetaryItem, ChartBarType } from "../../types/types";
 
 import "./Category.styles.css";
 
@@ -229,6 +230,26 @@ const Category = ({ category }: CategoryProps) => {
     console.log("❌ [API]: ", error);
   };
 
+  const chartBars: ChartBarType[] = createChartBars(chartData, year, range);
+
+  // Calculate the average value of the chart bars, ignoring the bars with zero value
+  const averageValue = Math.round(
+    chartBars
+      .filter((bar) => bar.value !== 0)
+      .reduce((acc, bar) => acc + bar.value, 0) /
+      chartBars.filter((bar) => bar.value !== 0).length
+  );
+
+  // calculate the average change bar to bar ignoring the bars with zero value
+  const averageChange = Math.round(
+    chartBars
+      .filter((bar) => bar.value !== 0)
+      .reduce((acc, bar, index, array) => {
+        if (index === 0) return acc;
+        return acc + bar.value - array[index - 1].value;
+      }, 0) / chartBars.filter((bar) => bar.value !== 0).length
+  );
+
   return (
     <div className="category-container">
       <DashboardTopBar title={category} hasTimeControl />
@@ -283,12 +304,12 @@ const Category = ({ category }: CategoryProps) => {
             </div>
             <div className="category-information-container">
               <div className="category-information-container-left">
-                <CategoryBarChart data={chartData} />
+                <CategoryBarChart bars={chartBars} />
               </div>
               <div className="category-information-container-right">
                 <LargeCountCard
                   title={"Average " + formatTitle(category)}
-                  value={100}
+                  value={averageValue || 0}
                   variant="small"
                   subtitle={
                     "per" + (range === TimePeriod.MONTHLY ? " month" : " year")
@@ -296,8 +317,11 @@ const Category = ({ category }: CategoryProps) => {
                 />
                 <LargeCountCard
                   title={"Current Trend"}
-                  value={100}
+                  value={averageChange || 0}
                   variant="small"
+                  subtitle={
+                    "per" + (range === TimePeriod.MONTHLY ? " month" : " year")
+                  }
                   isValueCard
                 />
               </div>

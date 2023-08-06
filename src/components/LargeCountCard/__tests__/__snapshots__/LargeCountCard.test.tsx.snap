@@ -6,20 +6,20 @@ exports[`LargeCountCard Tests correctly renders snapshot 1`] = `
   "baseElement": <body>
     <div>
       <div
-        class="largecountcard-container"
+        class="largecountcard-container-undefined"
       >
         <div
-          class="largecountcard-title"
+          class="largecountcard-title-undefined"
         >
           Test Title
         </div>
         <div
-          class="largecountcard-value"
+          class="largecountcard-value-undefined"
         >
           $100
         </div>
         <div
-          class="largecountcard-subtitle"
+          class="largecountcard-subtitle-undefined"
         >
           Test Subtitle
         </div>
@@ -28,20 +28,20 @@ exports[`LargeCountCard Tests correctly renders snapshot 1`] = `
   </body>,
   "container": <div>
     <div
-      class="largecountcard-container"
+      class="largecountcard-container-undefined"
     >
       <div
-        class="largecountcard-title"
+        class="largecountcard-title-undefined"
       >
         Test Title
       </div>
       <div
-        class="largecountcard-value"
+        class="largecountcard-value-undefined"
       >
         $100
       </div>
       <div
-        class="largecountcard-subtitle"
+        class="largecountcard-subtitle-undefined"
       >
         Test Subtitle
       </div>

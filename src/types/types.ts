@@ -34,6 +34,17 @@ export interface MonetaryItem {
 }
 
 /**
+ * @type ChartBarType - Interface for a chart value.
+ *
+ * @param {string} name - The name of the chart value.
+ * @param {number} value - The value of the chart value.
+ */
+export type ChartBarType = {
+  name: string;
+  value: number;
+};
+
+/**
  * @enum MonetaryItem - Interface for a monetary item.
  *
  * @param {string} MONTHLY - The component displays a monthly outlook.
