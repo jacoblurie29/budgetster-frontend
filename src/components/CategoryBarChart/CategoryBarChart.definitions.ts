@@ -3,6 +3,11 @@ import { MONTHS_SHORT, MONTHS } from "../../util/constants/constants";
 import { isViewable } from "../../util/helpers/monetaryItem.util";
 import type { ChartBarType, MonetaryItem } from "../../types/types";
 
+/**
+ * @interface CategoryBarChartProps
+ * @description The props for the category bar chart component
+ * @param {ChartBarType[]} bars The bars that contain a name and value for the chart
+ */
 export interface CategoryBarChartProps {
   bars: ChartBarType[];
 }
@@ -27,16 +32,13 @@ export const createChartBars = (
     chartData = Array(12).fill(undefined);
 
     // fill the chart data with empty values
-    chartData = chartData.reduce(
-      (acc: { name: string; value: number }[], _, index) => {
-        acc.push({
-          name: MONTHS_SHORT[index],
-          value: 0,
-        });
-        return acc;
-      },
-      []
-    );
+    chartData = chartData.reduce((acc: ChartBarType[], _, index) => {
+      acc.push({
+        name: MONTHS_SHORT[index],
+        value: 0,
+      });
+      return acc;
+    }, []);
 
     // populate the chart data with the monetary items
     chartData.forEach((_, index) => {
@@ -56,16 +58,13 @@ export const createChartBars = (
     chartData = Array(9).fill(undefined);
 
     // fill the chart data with empty values
-    chartData = chartData.reduce(
-      (acc: { name: string; value: number }[], _, index) => {
-        acc.push({
-          name: years[index].toString(),
-          value: 0,
-        });
-        return acc;
-      },
-      []
-    );
+    chartData = chartData.reduce((acc: ChartBarType[], _, index) => {
+      acc.push({
+        name: years[index].toString(),
+        value: 0,
+      });
+      return acc;
+    }, []);
 
     // populate the chart for each year
     chartData.forEach((_, index) => {
