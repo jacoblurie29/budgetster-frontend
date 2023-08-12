@@ -78,6 +78,7 @@ const DashboardSideBar = () => {
                 key={index}
                 onClick={() => {
                   handleRouteChange(title);
+                  setSideBar(false);
                 }}
               >
                 {title}
