@@ -103,6 +103,7 @@ export const categoryColumns = (category: string) => [
 export type GridAlignment = "left" | "right" | "center";
 
 export const dataGridStyles = {
+  minWidth: "1200px",
   fontFamily: "Lexend",
   borderRadius: "17px",
   "& .MuiDataGrid-columnHeaderTitle": {

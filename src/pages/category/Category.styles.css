@@ -16,6 +16,12 @@
   display: none;
 }
 
+.category-table {
+  height: 100%;
+  width: 100%;
+  overflow-x: auto;
+}
+
 .category-container {
   height: calc(100% - 80px);
 }

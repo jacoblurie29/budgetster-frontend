@@ -29,7 +29,6 @@ import LargeCountCard from "../../components/LargeCountCard/LargeCountCard";
 import { DataGrid } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
 import { useMutation, useQuery } from "@apollo/client";
-import { ResponsiveContainer } from "recharts";
 import { Alert, Snackbar, Stack } from "@mui/material";
 import type { AlertProps } from "@mui/material";
 import type { GridRowId } from "@mui/x-data-grid";
@@ -258,7 +257,7 @@ const Category = ({ category }: CategoryProps) => {
           <FullPageLoadingIndicator />
         ) : (
           <div className="category-chart">
-            <ResponsiveContainer width={"100%"} height={"100%"}>
+            <div className="category-table">
               <DataGrid
                 getRowId={(row) => row._id}
                 columns={categoryColumns(category)}
@@ -282,7 +281,7 @@ const Category = ({ category }: CategoryProps) => {
                 onProcessRowUpdateError={handleUpdatedMonetaryItemError}
                 processRowUpdate={handleUpdateMonetaryItem}
               />
-            </ResponsiveContainer>
+            </div>
             <div className="category-add-button-container">
               <button
                 className="category-add-button"
