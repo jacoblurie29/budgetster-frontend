@@ -102,8 +102,9 @@ export const categoryColumns = (category: string) => [
  */
 export type GridAlignment = "left" | "right" | "center";
 
+// Styles for the data grid (overrides the default MUI styles)
 export const dataGridStyles = {
-  minWidth: "1200px",
+  minWidth: "1000px",
   fontFamily: "Lexend",
   borderRadius: "17px",
   "& .MuiDataGrid-columnHeaderTitle": {
