@@ -1,3 +1,53 @@
+import { errorLink, authLink, httpLink } from "./links";
+import { RefreshTokenQuery } from "../../graphql/Auth.gql";
+import { ApolloClient, ApolloLink, InMemoryCache } from "@apollo/client";
+
+/**
+ * Apollo client for making GraphQL requests.
+ */
+export const apolloClient = new ApolloClient({
+  link: ApolloLink.from([errorLink, authLink, httpLink]),
+  cache: new InMemoryCache(),
+});
+
+/**
+ * Request a refresh token to then stores and returns the accessToken.
+ */
+export const refreshToken = async () => {
+  try {
+    // Get the refresh token from the cookie
+    const cookieValue = getCookie("refreshToken");
+
+    // Attempt to get a new access token
+    const refreshResolverResponse = await apolloClient.query({
+      query: RefreshTokenQuery,
+      variables: {
+        refreshTokenInput: {
+          refreshToken: cookieValue,
+        },
+      },
+    });
+
+    // Get the refresh token and auth token from the response
+    const refreshToken =
+      refreshResolverResponse.data?.refreshToken.refreshToken;
+    const authToken = refreshResolverResponse.data?.refreshToken.authToken;
+
+    // Store the refresh token and auth token in local storage and cookies
+    setCookie("refreshToken", refreshToken || "", 30);
+    localStorage.setItem("authToken", authToken || "");
+
+    return refreshToken;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error: any) {
+    // Clear local storage and cookies
+    localStorage.clear();
+    deleteCookie("refreshToken");
+
+    console.log("❌ [API]: ", error);
+  }
+};
+
 /**
  * setCookie - set cookie in browser with name, value and expiration days
  *

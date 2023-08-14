@@ -16,8 +16,6 @@ const Accounts = () => {
     setIsLogin(newValue);
   };
 
-  console.log(authOptionFromNavigation);
-
   return (
     <div className="accounts-container">
       <div className="accounts-left-container">

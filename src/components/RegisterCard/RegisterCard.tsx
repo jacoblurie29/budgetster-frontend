@@ -50,8 +50,6 @@ const RegisterCard = ({ handleModeChange }: RegisterCardProps) => {
       },
     });
 
-    console.log(registerResponseData);
-
     if (!errors) {
       // set the auth token in local storage
       localStorage.setItem(

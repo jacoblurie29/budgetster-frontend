@@ -31,8 +31,6 @@ const LandingTopBar = () => {
     }
   }, [data, loading, error]);
 
-  console.log("DATA: " + data);
-
   return (
     <div className="landing-top-bar">
       <img
