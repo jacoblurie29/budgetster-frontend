@@ -4,6 +4,7 @@ import {
   DefaultTooltipContent,
   Line,
   LineChart,
+  ResponsiveContainer,
   Tooltip,
   XAxis,
   YAxis,
@@ -35,37 +36,39 @@ const TimeChart = ({ values }: TimeChartProps) => {
     label: MONTHS[index],
   }));
   return (
-    <LineChart width={350} height={220} data={data}>
-      <CartesianGrid stroke="#ccc" vertical={false} />
-      <Line
-        type="monotone"
-        dataKey="Amount"
-        stroke="#8ae2e8"
-        strokeWidth={"2px"}
-      />
-      <XAxis dataKey="xLabel" tick={{ fontSize: 10 }} />
-      <YAxis
-        tickFormatter={(value) =>
-          value < 0 ? `-$${Math.abs(value)}` : `$${value}`
-        }
-        tick={{ fontSize: 10 }}
-      />
-      <Tooltip
-        content={<CustomTooltip />}
-        formatter={(value: number) =>
-          value < 0 ? `-$${Math.abs(value)}` : `$${value}`
-        }
-        contentStyle={{
-          backgroundColor: "#2f2f2f",
-          border: "none",
-          borderRadius: "10px",
-          color: "#fff",
-          fontSize: "12px",
-          padding: "10px",
-          textAlign: "center",
-        }}
-      />
-    </LineChart>
+    <ResponsiveContainer width="100%" height={220}>
+      <LineChart data={data}>
+        <CartesianGrid stroke="#ccc" vertical={false} />
+        <Line
+          type="monotone"
+          dataKey="Amount"
+          stroke="#8ae2e8"
+          strokeWidth={"2px"}
+        />
+        <XAxis dataKey="xLabel" tick={{ fontSize: 10 }} />
+        <YAxis
+          tickFormatter={(value) =>
+            value < 0 ? `-$${Math.abs(value)}` : `$${value}`
+          }
+          tick={{ fontSize: 10 }}
+        />
+        <Tooltip
+          content={<CustomTooltip />}
+          formatter={(value: number) =>
+            value < 0 ? `-$${Math.abs(value)}` : `$${value}`
+          }
+          contentStyle={{
+            backgroundColor: "#2f2f2f",
+            border: "none",
+            borderRadius: "10px",
+            color: "#fff",
+            fontSize: "12px",
+            padding: "10px",
+            textAlign: "center",
+          }}
+        />
+      </LineChart>
+    </ResponsiveContainer>
   );
 };
 

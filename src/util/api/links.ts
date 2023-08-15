@@ -58,7 +58,7 @@ export const errorLink = onError(
                 } catch (err: any) {
                   if (err.extensions.code === "EMPTY_ACCESS_TOKEN") {
                     // TODO: This is unsafe from XSS attacks and some other attacks, so we need to find a better way to do this.
-                    window.location.href = "/accounts";
+                    window.location.href = "/";
                     // This below is the react router way of doing it, but it doesn't work for some reason.
                     // history.push("/accounts");
                   } else {

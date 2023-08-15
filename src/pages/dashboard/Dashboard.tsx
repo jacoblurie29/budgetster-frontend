@@ -70,22 +70,28 @@ const Dashboard = () => {
           <FullPageLoadingIndicator />
         ) : (
           <>
-            <div className="dashboard-largecountcards-container">
-              <LargeCountCard
-                title="Spending Budget"
-                value={180}
-                subtitle="per month"
-                variant="large"
-              />
-              <LargeCountCard
-                title="Current Outlook"
-                value={outlookValue}
-                subtitle="per month"
-                variant="large"
-                isValueCard
-              />
-              <TimeChart values={chartValues} />
+            <div className="dashboard-top-information">
+              <div className="dashboard-largecountcards-container">
+                <LargeCountCard
+                  title="Spending Budget"
+                  value={180}
+                  subtitle="per month"
+                  variant="large"
+                />
+                <div className="dashboard-largecountcards-spacer" />
+                <LargeCountCard
+                  title="Current Outlook"
+                  value={outlookValue}
+                  subtitle="per month"
+                  variant="large"
+                  isValueCard
+                />
+              </div>
+              <div className="dashboard-timechart-container">
+                <TimeChart values={chartValues} />
+              </div>
             </div>
+
             <LargeCategoryCard
               title="Expenses"
               values={
