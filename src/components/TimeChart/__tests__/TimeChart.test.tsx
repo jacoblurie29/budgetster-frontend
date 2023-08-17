@@ -7,14 +7,32 @@ const testValues = [
 ];
 
 describe("TimeChart Tests", () => {
+  const { ResizeObserver } = window;
+
+  beforeEach(() => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    delete window.ResizeObserver;
+    window.ResizeObserver = jest.fn().mockImplementation(() => ({
+      observe: jest.fn(),
+      unobserve: jest.fn(),
+      disconnect: jest.fn(),
+    }));
+  });
+
+  afterEach(() => {
+    window.ResizeObserver = ResizeObserver;
+    jest.restoreAllMocks();
+  });
+
   test("correctly renders snapshot", () => {
-    const component = render(<TimeChart values={testValues} />);
+    const component = render(<TimeChart values={testValues} width={400} />);
     expect(component).toMatchSnapshot();
   });
 
   test("correctly renders the time chart", () => {
     // Render the time chart
-    const component = render(<TimeChart values={testValues} />);
+    const component = render(<TimeChart values={testValues} width={400} />);
 
     // Check for every value of "MONTHS_SHORTER" by getByText (single letter month abbreviations) (there are repeats)
     MONTHS_SHORTER.forEach((month) => {
@@ -23,7 +41,7 @@ describe("TimeChart Tests", () => {
   });
   test("correct renders time chart axis values", () => {
     // Render the time chart
-    const component = render(<TimeChart values={testValues} />);
+    const component = render(<TimeChart values={testValues} width={400} />);
 
     // Check for every value of "MONTHS_SHORTER" by getByText (single letter month abbreviations) (there are repeats)
     expect(component.getByText("$0")).toBeTruthy();
@@ -33,7 +51,7 @@ describe("TimeChart Tests", () => {
   test("correctly renders the time chart when the values are negative", () => {
     // Render the time chart
     const component = render(
-      <TimeChart values={testValues.map((value) => -value)} />
+      <TimeChart values={testValues.map((value) => -value)} width={400} />
     );
 
     // Check for every value of "MONTHS_SHORTER" by getByText (single letter month abbreviations) (there are repeats)
@@ -44,7 +62,7 @@ describe("TimeChart Tests", () => {
   test("correct renders time chart axis values when the values are negative", () => {
     // Render the time chart
     const component = render(
-      <TimeChart values={testValues.map((value) => -value)} />
+      <TimeChart values={testValues.map((value) => -value)} width={400} />
     );
 
     // Check for every value of "MONTHS_SHORTER" by getByText (single letter month abbreviations) (there are repeats)
