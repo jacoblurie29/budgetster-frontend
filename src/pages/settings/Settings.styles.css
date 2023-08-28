@@ -1,0 +1,43 @@
+.settings-container {
+  height: 100%;
+  overflow: visible;
+  font-family: "Lexend Exa", sans-serif !important;
+  color: #494949;
+}
+
+.settings-container-no-header {
+  border-radius: 20px;
+  background: linear-gradient(
+    63deg,
+    rgba(232, 253, 255, 1) 0%,
+    rgba(255, 255, 255, 1) 50%,
+    rgba(238, 255, 246, 1) 100%
+  );
+  height: calc(100% - 160px);
+  padding: 40px;
+  overflow: auto;
+}
+
+.settings-user-name {
+  letter-spacing: -1px;
+  font-size: 36px;
+}
+
+.settings-user-logout {
+  color: #f54848;
+}
+
+.settings-person-line {
+  padding-bottom: 7px;
+}
+
+.settings-user-block {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-bottom: 20px;
+}
+
+.settings-user-block-left {
+  padding-right: 20px;
+}

@@ -36,3 +36,13 @@ export const RefreshTokenQuery = gql`
     }
   }
 `;
+
+export const GetUserQuery = gql`
+  query GetUser {
+    getUser {
+      email
+      firstName
+      lastName
+    }
+  }
+`;
