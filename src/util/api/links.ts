@@ -6,7 +6,7 @@ import { GraphQLError } from "graphql";
 import type { FetchResult } from "@apollo/client";
 
 export const httpLink = createHttpLink({
-  uri: "http://budgetster.fly.dev",
+  uri: "https://budgetster.fly.dev",
 });
 
 export const authLink = setContext((_, { headers }) => {
