@@ -5,7 +5,6 @@ import { onError } from "@apollo/client/link/error";
 import { GraphQLError } from "graphql";
 import type { FetchResult } from "@apollo/client";
 
-// Using the fly.dev subdomain for now
 export const httpLink = createHttpLink({
   uri: "http://budgetster.fly.dev",
 });
