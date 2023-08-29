@@ -3,6 +3,7 @@ import DashboardTopBar from "../../components/DashboardTopBar/DashboardTopBar";
 import FullPageLoadingIndicator from "../../components/FullPageLoadingIndicator/FullPageLoadingIndicator";
 import InitialsCircle from "../../components/InitialsCircle/InitialsCircle";
 import { deleteCookie } from "../../util/api/request.util";
+import { getInitials } from "../../util/helpers/string.util";
 import { useQuery } from "@apollo/client";
 import { useEffect } from "react";
 import "./Settings.styles.css";
@@ -46,7 +47,10 @@ const Settings = () => {
         <div className="settings-container-no-header">
           <div className="settings-user-block">
             <div className="settings-user-block-left">
-              <InitialsCircle initials={"JL"} variant={"large"} />
+              <InitialsCircle
+                initials={getInitials(userData.getUser)}
+                variant={"large"}
+              />
             </div>
             <div className="settings-user-block-right">
               <div className="settings-user-name settings-person-line">
