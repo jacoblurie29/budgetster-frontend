@@ -19,6 +19,7 @@ const LoginCard = ({ handleModeChange }: LoginCardProps) => {
     control,
     handleSubmit,
     formState: { errors },
+    setError,
   } = useForm<LoginInput>({
     defaultValues: {
       [LoginInputName.EMAIL]: "",
@@ -32,24 +33,35 @@ const LoginCard = ({ handleModeChange }: LoginCardProps) => {
   const navigate = useNavigate();
 
   const onSubmit: SubmitHandler<LoginInput> = async (data) => {
-    const { data: loginResponseData, errors } = await loginUser({
-      variables: {
-        loginInput: {
-          email: data.email,
-          password: data.password,
+    try {
+      const { data: loginResponseData, errors } = await loginUser({
+        variables: {
+          loginInput: {
+            email: data.email,
+            password: data.password,
+          },
         },
-      },
-    });
+      });
 
-    if (!errors) {
-      // set the auth token in local storage
-      localStorage.setItem("authToken", loginResponseData.loginUser.authToken);
+      if (!errors) {
+        // set the auth token in local storage
+        localStorage.setItem(
+          "authToken",
+          loginResponseData.loginUser.authToken
+        );
 
-      // set the refresh token in the cookies
-      setCookie("refreshToken", loginResponseData.loginUser.refreshToken, 5);
+        // set the refresh token in the cookies
+        setCookie("refreshToken", loginResponseData.loginUser.refreshToken, 5);
 
-      // redirect to the dashboard
-      navigate("/dashboard");
+        // redirect to the dashboard
+        navigate("/dashboard");
+      }
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      setError(LoginInputName.PASSWORD, {
+        type: "manual",
+        message: "Invalid password or email",
+      });
     }
   };
 
