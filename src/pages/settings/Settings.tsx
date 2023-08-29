@@ -2,11 +2,15 @@ import { GetUserQuery } from "../../graphql/Auth.gql";
 import DashboardTopBar from "../../components/DashboardTopBar/DashboardTopBar";
 import FullPageLoadingIndicator from "../../components/FullPageLoadingIndicator/FullPageLoadingIndicator";
 import InitialsCircle from "../../components/InitialsCircle/InitialsCircle";
+import { deleteCookie } from "../../util/api/request.util";
 import { useQuery } from "@apollo/client";
 import { useEffect } from "react";
 import "./Settings.styles.css";
+import { useNavigate } from "react-router-dom";
 
 const Settings = () => {
+  const navigate = useNavigate();
+
   const {
     loading: userLoading,
     data: userData,
@@ -15,6 +19,13 @@ const Settings = () => {
   } = useQuery(GetUserQuery, {
     // fetchPolicy: "cache-and-network",
   });
+
+  const handleLogout = () => {
+    deleteCookie("refreshToken");
+    localStorage.removeItem("authToken");
+
+    navigate("/");
+  };
 
   // Refetch monetary items on mount
   useEffect(() => {
@@ -47,7 +58,9 @@ const Settings = () => {
               <div className="settings-user-since settings-person-line">
                 {"Member since 12/2022"}
               </div>
-              <div className="settings-user-logout">{"Logout"}</div>
+              <div className="settings-user-logout" onClick={handleLogout}>
+                {"Logout"}
+              </div>
             </div>
           </div>
         </div>

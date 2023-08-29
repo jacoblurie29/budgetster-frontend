@@ -52,6 +52,7 @@ h1 {
     border-width: 0 3px 3px 0;
     display: inline-block;
     padding: 3px;
+    transition: 0.2s ease-in-out;
   }
 
   .right {

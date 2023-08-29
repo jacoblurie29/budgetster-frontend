@@ -76,7 +76,6 @@
   top: 60px;
   left: 15px;
   width: 15rem;
-  height: fit-content;
   transition: transform 0.3s ease-out;
 }
 
@@ -153,4 +152,24 @@
 
 .sidebar-route-link {
   text-decoration: none;
+}
+
+.sidebar-back-to-home {
+  font-size: 12px;
+  color: #d9d9d9;
+  padding-top: 20px;
+  transition: 0.2s ease-in-out;
+}
+
+.sidebar-back-to-home:hover .arrow {
+  cursor: pointer;
+  color: #ffffff !important;
+  border-color: #ffffff !important;
+}
+
+.sidebar-back-to-home:hover {
+  cursor: pointer;
+  color: #ffffff !important;
+  border-color: #ffffff !important;
+  transform: translateY(-2px);
 }

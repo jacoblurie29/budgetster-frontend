@@ -9,11 +9,13 @@ import {
   faPiggyBank,
   faWallet,
 } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const DashboardSideBar = () => {
   const [sideBar, setSideBar] = useState<boolean>(false);
   const [activeRoute, setActiveRoute] = useState<string>("Dashboard");
+
+  const navigate = useNavigate();
 
   // Titles for the sidebar
   const sideBarTitles = [
@@ -36,6 +38,10 @@ const DashboardSideBar = () => {
   // Sets the active route when a route is clicked
   const handleRouteChange = (route: string) => {
     setActiveRoute(route);
+  };
+
+  const handleBackToHome = () => {
+    navigate("/");
   };
 
   return (
@@ -62,29 +68,35 @@ const DashboardSideBar = () => {
           />
         </div>
         <div className={"sidebar-routes"}>
-          {sideBarTitles.map((title, index) => (
-            <Link
-              to={"/" + title.toLowerCase()}
-              className={"sidebar-route-link"}
-              key={index}
-            >
-              <div
-                className={
-                  "sidebar-route " +
-                  (activeRoute === title
-                    ? "sidebar-route-active"
-                    : "sidebar-route-inactive")
-                }
+          <div>
+            {sideBarTitles.map((title, index) => (
+              <Link
+                to={"/" + title.toLowerCase()}
+                className={"sidebar-route-link"}
                 key={index}
-                onClick={() => {
-                  handleRouteChange(title);
-                  setSideBar(false);
-                }}
               >
-                {title}
-              </div>
-            </Link>
-          ))}
+                <div
+                  className={
+                    "sidebar-route " +
+                    (activeRoute === title
+                      ? "sidebar-route-active"
+                      : "sidebar-route-inactive")
+                  }
+                  key={index}
+                  onClick={() => {
+                    handleRouteChange(title);
+                    setSideBar(false);
+                  }}
+                >
+                  {title}
+                </div>
+              </Link>
+            ))}
+          </div>
+          <div className="sidebar-back-to-home" onClick={handleBackToHome}>
+            <i className={"arrow left"} />
+            Back to home
+          </div>
         </div>
       </div>
       <div
