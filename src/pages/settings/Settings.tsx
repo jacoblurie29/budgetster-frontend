@@ -21,6 +21,7 @@ const Settings = () => {
     // fetchPolicy: "cache-and-network",
   });
 
+  // Logout the user and redirect to login page, remove tokens
   const handleLogout = () => {
     deleteCookie("refreshToken");
     localStorage.removeItem("authToken");
