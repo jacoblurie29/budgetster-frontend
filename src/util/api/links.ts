@@ -7,8 +7,7 @@ import type { FetchResult } from "@apollo/client";
 
 // Using the fly.dev subdomain for now
 export const httpLink = createHttpLink({
-  // uri: "https://budgetster.fly.dev",
-  uri: "http://127.0.0.1:4010",
+  uri: "https://budgetster.fly.dev",
 });
 
 export const authLink = setContext((_, { headers }) => {
