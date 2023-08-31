@@ -1,3 +1,4 @@
+import type { SettingsBudgetInputName } from "../../pages/settings/Settings.definitions";
 import type { LoginInputName } from "../LoginCard/LoginCard.definitions";
 import type { RegisterInputName } from "../RegisterCard/RegisterCard.definitions";
 import type { Control } from "react-hook-form";
@@ -15,7 +16,7 @@ import type { Control } from "react-hook-form";
  * @param {string} error - error of the input (optional, displayed in red next to label)
  */
 export interface FormInputProps {
-  name: RegisterInputName | LoginInputName;
+  name: RegisterInputName | LoginInputName | SettingsBudgetInputName;
   type: string;
   label?: string;
   placeholder?: string;

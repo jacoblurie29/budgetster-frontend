@@ -8,6 +8,7 @@ import TimeChart from "../../components/TimeChart/TimeChart";
 import { useAppSelector } from "../../state/store/configureStore";
 import { isViewable } from "../../util/helpers/monetaryItem.util";
 import FullPageLoadingIndicator from "../../components/FullPageLoadingIndicator/FullPageLoadingIndicator";
+import { GetUserQuery } from "../../graphql/Auth.gql";
 import { useEffect, useState } from "react";
 
 import { useQuery } from "@apollo/client";
@@ -24,6 +25,15 @@ const Dashboard = () => {
     // fetchPolicy: "cache-and-network",
   });
 
+  const {
+    loading: userLoading,
+    data: userData,
+    refetch: userRefetch,
+    error: userError,
+  } = useQuery(GetUserQuery, {
+    // fetchPolicy: "cache-and-network",
+  });
+
   // Current month, year, and range state
   const month = useAppSelector((state) => state.time.month);
   const year = useAppSelector((state) => state.time.year);
@@ -35,6 +45,7 @@ const Dashboard = () => {
   useEffect(() => {
     try {
       monetaryItemsRefetch();
+      userRefetch();
       console.log("✅ [API]: ", monetaryItemsData);
     } catch (error) {
       console.log("❌ [API]: ", error);
@@ -66,7 +77,10 @@ const Dashboard = () => {
     <div className="dashboard-container">
       <DashboardTopBar title={"Dashboard"} hasTimeControl />
       <div className="dashboard-container-no-header">
-        {monetaryItemsLoading || monetaryItemsError ? (
+        {monetaryItemsLoading ||
+        monetaryItemsError ||
+        userLoading ||
+        userError ? (
           <FullPageLoadingIndicator />
         ) : (
           <>
@@ -74,7 +88,7 @@ const Dashboard = () => {
               <div className="dashboard-largecountcards-container">
                 <LargeCountCard
                   title="Spending Budget"
-                  value={180}
+                  value={userData.getUser.budget || 0}
                   subtitle="per month"
                   variant="large"
                 />

@@ -7,6 +7,7 @@ export const LoginUserMutation = gql`
       email
       firstName
       lastName
+      budget
       authToken
       refreshToken
     }
@@ -43,6 +44,7 @@ export const GetUserQuery = gql`
       email
       firstName
       lastName
+      budget
     }
   }
 `;
