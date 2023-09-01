@@ -46,8 +46,7 @@ const Settings = () => {
     handleSubmit,
   } = useForm<SettingsBudgetInput>({
     defaultValues: {
-      //TODO: need to get this value from redux
-      [SettingsBudgetInputName.BUDGET]: 0,
+      [SettingsBudgetInputName.BUDGET]: userData?.getUser.budget || 0,
     },
     resolver: yupResolver(
       settingsBudgetSchema

@@ -5,11 +5,12 @@ import { onError } from "@apollo/client/link/error";
 import { GraphQLError } from "graphql";
 import type { FetchResult } from "@apollo/client";
 
-// Using the fly.dev subdomain for now
+// Create the http link for the graphql server
 export const httpLink = createHttpLink({
   uri: "https://budgetster.fly.dev",
 });
 
+// Add the headers for the authorization token
 export const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem("authToken");
 
@@ -21,6 +22,7 @@ export const authLink = setContext((_, { headers }) => {
   };
 });
 
+// Handle the errors from the graphql server and attempt to refresh the token if needed
 export const errorLink = onError(
   ({ graphQLErrors, networkError, operation, forward }) => {
     if (graphQLErrors) {
